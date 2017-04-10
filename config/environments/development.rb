@@ -42,13 +42,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.delivery_method = :smtp
-
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: 'smtp.mandrillapp.com',
     port: 587,
-    enable_starttsl_auto: true,
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
+    enable_starttls_auto: true,
+    user_name: 'shopsalud',
+    password: 'ZV50V-a3tJkrOV7UDT9Xig',
     authentication: 'login'
   }
 end

@@ -12,7 +12,7 @@
               center: {lat: 44.5403, lng: -78,5463},
             <% end %>
 
-            zoom: 14
+            zoom: 10
           });
 
           <% @arrRooms.each do |room| %>
@@ -57,7 +57,7 @@
               <%= check_box_tag "q[room_type_eq_any][]", "Entire" %> Entire Room
             </div>
             <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Private" %> Private Room
+                <%= f.select :city_gteq, [["miami","miami"], ["Texas City","Texas City"]], prompt: "Select...", class: "form-control" %>
             </div>
             <div class="col-md-4">
               <%= check_box_tag "q[room_type_eq_any][]", "Shared" %> Shared Room

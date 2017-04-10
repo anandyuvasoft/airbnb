@@ -3,20 +3,29 @@ class Room < ActiveRecord::Base
   has_many :photos
   has_many :reservations
   has_many :reviews
+  
+  
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
+  geocoded_by :full_street_address
+  after_validation :geocode
 
   validates :home_type, presence: true
-  validates :room_type, presence: true
-  validates :accomodate, presence: true
-  validates :bed_room, presence: true
-  validates :bath_room, presence: true
   validates :listing_name, presence: true, length: {maximum: 50}
   validates :summary, presence: true, length: {maximum: 500}
-  validates :address, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :zipcode, presence: true
+  validates :country, presence: true
+
+
+  def full_street_address
+  [street, city, state, zipcode, country].compact.join(', ')
+  end
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)
   end
+
+  
+
 end

@@ -4,7 +4,7 @@ module ApplicationHelper
     if user.image
       user.image
     else
-      "https://gravatar.com/avatar/#{gravatar_id}.jpg?d=indentical&s=150"
+      ""
     end
   end
 

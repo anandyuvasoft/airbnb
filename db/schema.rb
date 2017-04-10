@@ -60,11 +60,11 @@ ActiveRecord::Schema.define(version: 20160226022606) do
 
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"
-    t.integer  "star"
+    t.integer  "star",       default: 1
     t.integer  "room_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "reviews", ["room_id"], name: "index_reviews_on_room_id"
@@ -79,6 +79,11 @@ ActiveRecord::Schema.define(version: 20160226022606) do
     t.string   "listing_name"
     t.text     "summary"
     t.string   "address"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "country"
     t.boolean  "is_tv"
     t.boolean  "is_kitchen"
     t.boolean  "is_air"
