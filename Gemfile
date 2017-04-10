@@ -1,7 +1,15 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.5.1'
-gem 'sqlite3'
+
+group :production do
+	gem 'pg'
+end
+group :development do
+	gem 'sqlite3'
+end
+
+
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
 gem 'font-awesome-sass', '~> 4.5.0'
