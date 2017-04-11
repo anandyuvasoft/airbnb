@@ -91,9 +91,19 @@ ActiveRecord::Schema.define(version: 20160226022606) do
     t.boolean  "is_internet"
     t.integer  "price"
     t.boolean  "active"
+    t.string   "degree"
+    t.string   "gender"
+    t.string   "medical_license_number"
+    t.string   "category"
+    t.text     "biography"
+    t.string   "practice"
+    t.string   "phone"
+    t.string   "email"
+    t.boolean  "accepting_insurance"
+    t.string   "website"
     t.integer  "user_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.float    "latitude"
     t.float    "longitude"
   end
@@ -122,6 +132,7 @@ ActiveRecord::Schema.define(version: 20160226022606) do
     t.string   "image"
     t.string   "phone_number"
     t.text     "description"
+    t.string   "account_type"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

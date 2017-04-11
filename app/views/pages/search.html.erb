@@ -35,33 +35,15 @@
       <div class="col-md-12">
         <%= search_form_for @search, url: search_path do |f| %>
 
-          <div class="row">
-            <div class="col-md-3">
-              <%= text_field_tag :start_date, params[:start_date], placeholder: "Start Date", class: "form-control" %>
-            </div>
-            <div class="col-md-3">
-              <%= text_field_tag :end_date, params[:end_date], placeholder: "End Date", class: "form-control" %>
-            </div>
-            <div class="col-md-3">
-              <%= f.text_field :price_gteq, placeholder: "Min Price", class: "form-control" %>
-            </div>
-            <div class="col-md-3">
-              <%= f.text_field :price_lteq, placeholder: "Max Price", class: "form-control" %>
-            </div>
-          </div>
 
           <hr>
 
           <div class="row">
+            
             <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Entire" %> Entire Room
+                <%= f.select :city, [["miami","miami"], ["Texas City","Texas City"]], prompt: "Select...", class: "form-control" %>
             </div>
-            <div class="col-md-4">
-                <%= f.select :city_gteq, [["miami","miami"], ["Texas City","Texas City"]], prompt: "Select...", class: "form-control" %>
-            </div>
-            <div class="col-md-4">
-              <%= check_box_tag "q[room_type_eq_any][]", "Shared" %> Shared Room
-            </div>
+          
           </div>
 
           <hr>

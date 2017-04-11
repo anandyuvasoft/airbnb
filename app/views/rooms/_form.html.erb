@@ -1,74 +1,48 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    Create Your Beautiful Place
+    Create a Listing
   </div>
   <div class="panel-body">
     <div class="container">
       <%= form_for @room, html: {multipart: true} do |f| %>
         <div class="row">
 
-          <div class="col-md-4 select">
-            <div class="form-group">
-              <label>Home Type</label>
-              <%= f.select :home_type, [['Apartment', 'Apartment'], ['House', 'House'], ['Bed & Breakfast',
-                'Bed & Breakfast']], id: 'home_type', prompt: 'Select...', class: 'form-control' %>
-            </div>
-          </div>
-
-         
-
+       
         <div class="row">
           <div class="form-group">
-            <label>Listing Name</label>
+            <label>Name</label>
             <%= f.text_field :listing_name, placeholder: 'Be clear and descriptive', class: 'form-control' %>
           </div>
         </div>
 
+       
         <div class="row">
-          <div class="form-group">
-            <label>Summary</label>
-            <%= f.text_area :summary, rows: 5, placeholder: 'Tell the details about your place', class: 'form-control' %>
-          </div>
-        </div>
 
-        <div class="row">
           <div class="form-group">
+            <div class="col-md-3">
+              <label>Street</label>
+              <%= f.text_field :street, placeholder: 'Street', class: 'form-control' %>
+            </div>
+            <div class="col-md-3">
+              <label>City</label>
+              <%= f.text_field :city, placeholder: 'City', class: 'form-control' %>
+            </div>
+            <div class="col-md-3 select">
+              <label>State</label>
+              <%= f.select :state, [["Alabama","Alabama"], ["Alaska","Alaska"], ["Arizona","Arizona"], ["Arkansas","Arkansas"], ["California","California"], ["Colorado","Colorado"], ["Connecticut","Connecticut"], ["Delaware","Delaware"], ["Florida","Florida"], ["Georgia","Georgia"], ["Hawaii","Hawaii"], ["Idaho","Idaho"], ["Illinois","Illinois"], ["Indiana","Indiana"], ["Iowa","Iowa"], ["Kansas","Kansas"], ["Kentucky","Kentucky"], ["Louisiana","Louisiana"], ["Maine","Maine"], ["Maryland","Maryland"], ["Massachusetts","Massachusetts"], ["Michigan","Michigan"], ["Minnesota","Minnesota"], ["Mississippi","Mississippi"], ["Missouri","Missouri"], ["Montana","Montana"], ["Nebraska","Nebraska"], ["Nevada","Nevada"], ["New Hampshire","New Hampshire"], ["New Jersey","New Jersey"], ["New Mexico","New Mexico"], ["New York","New York"], ["North Carolina","North Carolina"], ["North Dakota","North Dakota"], ["Ohio","Ohio"], ["Oklahoma","Oklahoma"], ["Oregon","Oregon"], ["Pennsylvania","Pennsylvania"], ["Rhode Island","Rhode Island"], ["South Carolina","South Carolina"], ["South Dakota","South Dakota"], ["Tennessee","Tennessee"], ["Texas","Texas"], ["Utah","Utah"], ["Vermont","Vermont"], ["Virginia","Virginia"], ["Washington","Washington"], ["West Virginia","West Virginia"], ["Wisconsin","Wisconsin"], ["Wyoming","Wyoming"]], prompt: "Select a State...", class: "form-control" %>
+            </div>
+            <div class="col-md-3">
+              <label>Zip Code</label>
+              <%= f.text_field :zipcode, placeholder: 'Zip Code', class: 'form-control' %>
+           
+               <%= f.hidden_field :country, :value => "United States" %>
+           </div>
             
-            <label>Street</label>
-            <%= f.text_field :street, placeholder: 'Where is the location of your place', class: 'form-control' %>
-            <label>City</label>
-            <%= f.text_field :city, placeholder: 'Where is the location of your place', class: 'form-control' %>
-            <label>State</label>
-            <%= f.text_field :state, placeholder: 'Where is the location of your place', class: 'form-control' %>
-            <label>Zip Code</label>
-            <%= f.text_field :zipcode, placeholder: 'Where is the location of your place', class: 'form-control' %>
-            <label>Country</label>
-            <%= f.text_field :country, placeholder: 'Where is the location of your place', class: 'form-control' %>
+            
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <%= f.check_box :is_tv %> TV
-            </div>
-            <div class="form-group">
-              <%= f.check_box :is_kitchen %> Kitchen
-            </div>
-            <div class="form-group">
-              <%= f.check_box :is_internet %> Internet
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <div class="form-group">
-              <%= f.check_box :is_air %> Air Conditioning
-            </div>
-            <div class="form-group">
-              <%= f.check_box :is_heating %> Heating
-            </div>
-          </div>
-        </div>
+        
 
         <div class="row">
           <div class="col-md-4">

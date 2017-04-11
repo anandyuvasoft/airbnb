@@ -21,6 +21,17 @@ class CreateRooms < ActiveRecord::Migration
       t.boolean :is_internet
       t.integer :price
       t.boolean :active
+      t.string :degree
+      t.string :gender
+      t.string :medical_license_number
+      t.string :category
+      t.text :biography
+      t.string :practice
+      t.string :phone
+      t.string :address
+      t.string :email
+      t.boolean :accepting_insurance
+      t.string :website
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false

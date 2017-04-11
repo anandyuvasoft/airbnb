@@ -21,7 +21,7 @@
 
         <ul class="nav navbar-nav navbar-right">
           <% if(user_signed_in?) %>
-            <li><%= link_to icon('home', 'Become a Host', class: 'fa-lg'), new_room_path %></li>
+            <li><%= link_to icon('home', 'Create a Listing', class: 'fa-lg'), new_room_path %></li>
             <li><%= link_to icon('envelope', 'Messages'), conversations_path %></li>
 
             <li class="dropdown">
@@ -31,15 +31,25 @@
               <%= current_user.fullname %>
               <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Your Listings', rooms_path %></li>
-                <li><%= link_to 'Your Reservations', your_reservations_path %></li>
-                <li><%= link_to 'Your Trips', your_trips_path %></li>
+              <!-- links for users that dont have the word physician in the account_type column:-->
+                <li><%= link_to 'Appointments', your_trips_path %></li>
                 <li><%= link_to 'Wish List', '#' %></li>
                 <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
-                <li role="separator" class="divider"></li>
+                
+                <li><%= link_to 'Account Setting', '#' %></li>
+                <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+
+               <li role="separator" class="divider"></li>
+
+              <!-- links for users that have the word physician in the account_type column:-->
+
+                <li><%= link_to 'My Listings', rooms_path %></li>
+                <li><%= link_to 'My Leads', your_reservations_path %></li>
+                <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
                 <li><%= link_to 'Account Setting', '#' %></li>
                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
               </ul>
+
             </li>
           <% else %>
             <li><%= link_to 'Sign In', new_user_session_path %></li>

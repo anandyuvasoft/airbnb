@@ -8,10 +8,8 @@ class Room < ActiveRecord::Base
 
   geocoded_by :full_street_address
   after_validation :geocode
-
-  validates :home_type, presence: true
+  
   validates :listing_name, presence: true, length: {maximum: 50}
-  validates :summary, presence: true, length: {maximum: 500}
   validates :city, presence: true
   validates :state, presence: true
   validates :zipcode, presence: true
