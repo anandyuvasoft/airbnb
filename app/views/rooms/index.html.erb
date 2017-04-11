@@ -3,7 +3,7 @@
   <div class="col-md-9">
     <div class="panel panel-default">
       <div class="panel-heading">
-        Listings
+        My Listings
       </div>
       <div class="panel-body">
         <% @rooms.each do |room| %>
@@ -13,9 +13,11 @@
             </div>
             <div class="col-md-7">
               <h4><%= room.listing_name %></h4>
-            </div>
+              <p><%= room.full_street_address %></p>
+              </div>
             <div class="col-md-3 right">
-              <%= link_to 'Edit Listing', edit_room_path(room), class: 'btn btn-primary' %>
+              <%= link_to 'Edit', edit_room_path(room), class: 'btn btn-primary btn-block' %>
+                <%= link_to 'View', room_path(room), class: 'btn btn-default btn-block' %>
             </div>
           </div>
           <hr>
