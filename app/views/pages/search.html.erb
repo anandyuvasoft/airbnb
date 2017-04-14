@@ -44,6 +44,10 @@
                 <%= f.select :city, [["miami","miami"], ["Texas City","Texas City"]], prompt: "Select...", class: "form-control" %>
             </div>
           
+            <div class="col-md-4">
+                <%= f.select :category_eq, [["category_1","category_1"], ["category_2","category_2"]], include_blank: "Select Category...", class: "form-control" %>
+            </div>
+
           </div>
 
           <hr>

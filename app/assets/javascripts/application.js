@@ -19,3 +19,18 @@
 //= require toastr
 //= require private_pub
 //= require_tree .
+
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+    $('#image_preview')
+      .attr('src', e.target.result)
+      .removeClass("hide")
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}

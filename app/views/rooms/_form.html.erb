@@ -61,10 +61,16 @@
             <div class="form-group">
               <span class="btn btn-default btn-file">
                 <%= icon('upload', 'Upload Photos', class:'fa-lg') %>
-                <%= file_field_tag "images[]", type: :file, multiple: true %>
+                <%= file_field_tag "images[]", type: :file, multiple: true, onchange: "readURL(this);" %>
               </span>
+              
             </div>
           </div>
+          <div class="col-md-offset-1 col-md-4">
+            <img id="image_preview" src="javascript:void(0)", class="hide"/>
+          </div>
+
+
         </div>
 
         <div id="photos">

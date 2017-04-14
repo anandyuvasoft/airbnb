@@ -4,7 +4,6 @@ class PagesController < ApplicationController
   end
 
 
-
   def search
 
   	if params[:search].present? && params[:search].strip != ""
