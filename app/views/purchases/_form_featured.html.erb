@@ -1,0 +1,24 @@
+<%= form_for([@room, @room.purchases.new]) do |f| %>
+
+
+	
+	<%= f.hidden_field :room_id, value: @room.id %>
+	
+
+
+	<h4><span id="message"></span></h4>
+
+	
+<%= check_box_tag "purchase[price]", '199' %>
+<%= label_tag "Featured" %>
+
+<%= check_box_tag "purchase[price]", '599' %>
+<%= label_tag "Business" %>
+
+
+
+	<%= f.submit "UPGRADE $199/month", class: "btn btn-primary wide" %>
+
+<% end %>
+
+
