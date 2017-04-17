@@ -1,11 +1,6 @@
 class CreateRooms < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
-      t.string :home_type
-      t.string :room_type
-      t.integer :accomodate
-      t.integer :bed_room
-      t.integer :bath_room
       t.string :listing_name
       t.text :summary
       t.string :address
@@ -14,11 +9,6 @@ class CreateRooms < ActiveRecord::Migration
       t.string :state
       t.string :zipcode
       t.string :country
-      t.boolean :is_tv
-      t.boolean :is_kitchen
-      t.boolean :is_air
-      t.boolean :is_heating
-      t.boolean :is_internet
       t.integer :price
       t.boolean :active
       t.string :degree
@@ -26,11 +16,16 @@ class CreateRooms < ActiveRecord::Migration
       t.string :medical_license_number
       t.string :category
       t.text :biography
+      t.text :education
       t.string :practice
       t.string :phone
       t.string :address
       t.string :email
       t.boolean :accepting_insurance
+      t.text :insurance_providers
+      t.text :languages
+      t.text :board_certifications
+      t.text :specialities
       t.string :website
       t.references :user, index: true, foreign_key: true
 

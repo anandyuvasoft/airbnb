@@ -9,20 +9,21 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to 'AirAlien', root_path, class: 'navbar-brand' %>
+        <%= link_to 'Doctors', root_path, class: 'navbar-brand' %>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
 
         <%= form_tag search_path, class: 'nav navbar-nav navbar-form navbar-left', method: :get do %>
           <div class="form-group">
-            <%= text_field_tag :search, params[:search], placeholder: 'Where are you going?', class: 'form-control' %>
+            <%= text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State', class: 'form-control' %>
           </div>
         <% end %>
 
         <ul class="nav navbar-nav navbar-right">
           <% if(user_signed_in?) %>
-            <li><%= link_to icon('home', 'Create a Listing', class: 'fa-lg'), new_room_path %></li>
+            <li><%= link_to 'List My Practice', new_room_path %></li>
             <li><%= link_to icon('envelope', 'Messages'), conversations_path %></li>
+            <li><%= link_to icon('bell', 'Notifications'), conversations_path %></li>
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -42,13 +43,12 @@
                     <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
  
                 <% else %>
-
-
+                <li><%= link_to 'Dashboard', rooms_path %></li>
+                <li><%= link_to 'Profile', user_path(current_user.id) %></li>
                 <li><%= link_to 'Appointments', your_trips_path %></li>
-                <li><%= link_to 'Wish List', '#' %></li>
-                <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+                <li><%= link_to 'Reviews', your_trips_path %></li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to 'Account Setting', '#' %></li>
+                <li><%= link_to 'Settings', edit_user_registration_path %></li>
                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
 
                

@@ -106,7 +106,6 @@ body {
 
   .form-control {
     border-radius: 2px;
-    height: 4em;
   }
 }
 
@@ -286,4 +285,26 @@ input[type="checkbox"] {
 
 .avatar-full {
   width: 100%;
+}
+
+.nopadding{
+  padding:0;
+}
+.navbar-nav > li > a {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 4px solid white;
+}
+img.img-circle.avatar-small {
+    margin-top: -5px;
+    border: 1px solid #eaeaea;
+}
+.navbar-nav > li > a:hover {
+    border-color: #ff5a5f;
+}
+h2 {
+  margin-top:0px;
+}
+.panel{
+  padding: 30px;
 }

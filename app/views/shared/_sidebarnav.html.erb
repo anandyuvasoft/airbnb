@@ -2,11 +2,11 @@
 
 <div class="col-md-3">
   <ul class="sidebar-list">
-  <li class="sidebar-item"><%= link_to icon('home', 'Dashboard', class: 'fa-sm'), rooms_path, class: active_class(rooms_path) %></li>
-    <li class="sidebar-item"><%= link_to icon('users', 'Leads', class: 'fa-sm'), your_reservations_path, class: active_class(your_reservations_path) %></li>
-    <li class="sidebar-item"><%= link_to icon('star', 'Reviews', class: 'fa-sm'), your_reservations_path, class: active_class(your_reservations_path) %></li>
-     <li class="sidebar-item"><%= link_to icon('bill', 'Purchase History', class: 'fa-sm'), your_purchases_path, class: active_class(your_purchases_path) %></li><br/>
-     <li class="sidebar-item"><%= link_to icon('plus', 'Add-ons', class: 'fa-sm'), your_purchases_path, class: active_class(your_purchases_path) %></li><br/>
+  <li class="sidebar-item"><%= link_to 'Dashboard', rooms_path, class: active_class(rooms_path) %></li>
+    <li class="sidebar-item"><%= link_to 'Leads', your_reservations_path, class: active_class(your_reservations_path) %></li>
+    <li class="sidebar-item"><%= link_to 'Reviews', your_reservations_path, class: active_class(your_reservations_path) %></li>
+     <li class="sidebar-item"><%= link_to 'Purchase History', your_purchases_path, class: active_class(your_purchases_path) %></li><br/>
+     <li class="sidebar-item"><%= link_to 'Add-ons', your_purchases_path, class: active_class(your_purchases_path) %></li><br/>
      <li class="btn btn-primary btn-block"><%= link_to 'Upgrade Listing', your_trips_path, class: active_class(your_trips_path) %></li><br/>
           <li class="btn btn-default btn-block"><%= link_to 'View My Listings', rooms_path, class: active_class(rooms_path) %></li><br/>
   </ul>
