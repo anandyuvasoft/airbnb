@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_id: 
+  school: MyString
+  date: 2017-04-17
+
+two:
+  room_id: 
+  school: MyString
+  date: 2017-04-17

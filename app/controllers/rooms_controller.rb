@@ -18,6 +18,11 @@ class RoomsController < ApplicationController
 
   def new
     @room = current_user.rooms.build
+    @room.conditions.build
+    @room.procedures.build
+    @room.insurances.build
+    @room.languages.build
+    @room.educations.build
   end
 
   def create
@@ -65,8 +70,12 @@ class RoomsController < ApplicationController
     end
 
     def room_params
-      params.require(:room).permit(:home_type, :room_type, :accomodate, :bed_room, :bath_room,
-                                   :listing_name, :summary, :zipcode, :street, :city, :state, :country, :is_tv, :is_kitchen, :is_air,
-                                   :is_heating, :is_internet, :price, :active)
+      params.require(:room).permit(
+        :listing_name, :zipcode, :street, :city, :state, :country, :price, :active, :degree, :biography, :category, :practice, :gender,
+        :conditions_attributes => [:condition],
+        :procedures_attributes => [:procedure],
+        :insurances_attributes => [:insurance_provider],
+        :languages_attributes => [:language],
+        :educations_attributes => [:school, :date ] )
     end
-  end
+end

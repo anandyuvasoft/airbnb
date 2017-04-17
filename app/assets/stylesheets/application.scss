@@ -302,9 +302,40 @@ img.img-circle.avatar-small {
 .navbar-nav > li > a:hover {
     border-color: #ff5a5f;
 }
-h2 {
-  margin-top:0px;
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 0;
 }
 .panel{
   padding: 30px;
+}
+
+.col-md-4 img {
+    width: 100%;
+}
+.image-cropper {
+    width: 110px;
+    height: 110px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1px solid #dddddd;
+}
+
+.image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: auto;
+    width: 100%;
+}
+.docprofile h6 {
+    background: #eaeaea;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: center;
+    width: 150px;
+}
+
+.docprofile h5{
+    color: #969696;
+    font-weight: 400;
 }

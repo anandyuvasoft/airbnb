@@ -22,7 +22,6 @@ class CreateRooms < ActiveRecord::Migration
       t.string :address
       t.string :email
       t.boolean :accepting_insurance
-      t.text :insurance_providers
       t.text :languages
       t.text :board_certifications
       t.text :specialities

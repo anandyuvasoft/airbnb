@@ -1,24 +1,26 @@
-<div class="panel panel-default">
+<div class="panel panel-default docprofile">
   <div class="panel-defaultpanel-body">
 
     <div class="row">
         <div class="col-md-12">
             
             <div class="col-md-8 nopadding">
-                <div class="col-md-4">
-                  <%= image_tag @photos[0].image.url(), class: 'img-responsive img-circle' if @photos.length > 0 %>
+                <div class="col-md-3">
+                <div class="image-cropper">
+                  <%= image_tag @photos[0].image.url(), class: 'img-responsive rounded' if @photos.length > 0 %>
+                  </div>
                 </div>
                 
-                <div class="col-md-8">
-                  <h2><%= @room.listing_name %>, <%= @room.degree %></h2>
+                <div class="col-md-9">
+                  <h3><%= @room.listing_name %>, <%= @room.degree %></h3>
                   <h6><%= @room.category %></h6>
-                  <h5><strong>Practice:</strong> <%= @room.practice %></h5>
-                  <h3>Reviews <span id="average_rating"></span>  (<%= @reviews.count %>)</h3>
+                  <h5>Practice: <%= @room.practice %></h5>
+                  <h4>Reviews <span id="average_rating"></span>  (<%= @reviews.count %>)</h4>
                 </div>
             </div>
   
             <div class="col-md-4 nopadding">
-                <p><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @room.full_street_address %></p>
+               
                  <a href="" class="btn btn-block btn-primary">Book An Appointment</a>   
 
             </div>
@@ -36,11 +38,11 @@
 
     <!-- About -->
     <div class="row">
-      <div class="col-md-6">
-        <h2>Biography</h2>
+      <div class="col-md-8">
+        <h3>Biography</h3>
         <p><%= @room.biography %></p>
-        <h2>Biography</h2>
-        <p><%= @room.biography %></p>
+        <h3>Education</h3>
+        <p>LIST OF EDUCATION SCHOOL, YEAR</p>
         <h2>Biography</h2>
         <p><%= @room.biography %></p>
 
@@ -51,11 +53,12 @@
                   <%= render 'reviews/list' %>
       
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4 nopadding">
 
     <!-- Google Maps -->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 nopadding">
+       <p><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @room.full_street_address %></p>
         <div id="map"></div>
         <style>
           #map {

@@ -1,25 +1,42 @@
 <div class="panel panel-default">
-  <div class="panel-heading">
-    Create a Listing
-  </div>
-  <div class="panel-body">
-    <div class="container">
+  <h1>Hello <%= current_user.fullname %>! Let's get you ready to list your practice.</h1><br/><br/>
+  <h4>STEP 1:</h4>
+  <h2>Tell us about yourself & your practice:</h2><br/><br/>
+  <div class="panel-body nopadding">
+
       <%= form_for @room, html: {multipart: true} do |f| %>
-        <div class="row">
+
 
        
         <div class="row">
-          <div class="form-group">
-            <label>Name</label>
-            <%= f.text_field :listing_name, placeholder: 'Be clear and descriptive', class: 'form-control' %>
+          
+          <div class="col-md-4">
+            <label>My full name is:</label>
+            <%= f.text_field :listing_name, placeholder: 'Enter your full name...', class: 'form-control' %>
+          </div>
+          <div class="col-md-5">
+            <label>My doctorate abbr. is:</label>
+            <%= f.select :degree, [["D.Au.","D.Au."],["D.B.H.","D.B.H."],["D.C.","D.C."],["D.C.M.","D.C.M."],["D.P.M.","D.P.M."],["D.S.M.","D.S.M."],["D.W.S.","D.W.S."],["D.C.Sc.","D.C.Sc."],["D.D.S.","D.D.S."],["D.M.D.","D.M.D."],["D.Env.Sc.","D.Env.Sc."],["D.H.A.","D.H.A."],["D.H.Sc.","D.H.Sc."],["D.H.S.","D.H.S."],["D.M.","D.M."],["D.Min.","D.Min."],["D.P.Th.","D.P.Th."],["D.B.S.","D.B.S."],["DCOUN.","DCOUN."],["DEDMIN","DEDMIN"],["D.N.P.","D.N.P."],["D.N.A.P.","D.N.A.P."],["D.O.","D.O."],["D.O.T.","D.O.T."],["D.P.A.","D.P.A."],["D.P.M.","D.P.M."],["D.P.S.","D.P.S."],["D.P.T.","D.P.T."],["D.Psy","D.Psy"],["Psy.D","Psy.D"],["Psy.D","Psy.D"],["D.S.L.P.","D.S.L.P."],["D.S.W.","D.S.W."],["D.V.M.","D.V.M."],["V.M.D.","V.M.D."],["J.D.","J.D."],["D.Jur.","D.Jur."],["M.D.","M.D."],["N.D.","N.D."],["N.M.D","N.M.D"],["O.D.","O.D."],["Pharm.D","Pharm.D"]], prompt: "Select your professional degree...", class: "form-control" %>
+          </div>
+          <div class="col-md-3">
+            <label>I'm an experienced:</label>
+             <%= f.select :category, [["Acupuncturist","Acupuncturist"], ["Allergist","Allergist"], ["Audiologist","Audiologist"], ["Cardiologist","Cardiologist"], ["Chiropractor","Chiropractor"], ["Dentist","Dentist"], ["Dermatologist","Dermatologist"], ["Dietitian","Dietitian"], ["Doctor","Doctor"], ["Ear, Nose & Throat Doctor","Ear, Nose & Throat Doctor"], ["Emergency Medicine Physician","Emergency Medicine Physician"], ["Endocrinologist","Endocrinologist"], ["Endodontist","Endodontist"], ["Eye Doctor","Eye Doctor"], ["Family Physician","Family Physician"], ["Gastroenterologist","Gastroenterologist"], ["Hand Surgeon","Hand Surgeon"], ["Hearing Specialist","Hearing Specialist"], ["Hematologist","Hematologist"], ["Infectious Disease Specialist","Infectious Disease Specialist"], ["Infertility Specialist","Infertility Specialist"], ["Internist","Internist"], ["Naturopathic Doctor","Naturopathic Doctor"], ["Nephrologist","Nephrologist"], ["Neurologist","Neurologist"], ["Neurosurgeon","Neurosurgeon"], ["Nurse Practitioner","Nurse Practitioner"], ["Nutritionist","Nutritionist"], ["OB-GYN","OB-GYN"], ["Oncologist","Oncologist"], ["Ophthalmologist","Ophthalmologist"], ["Optometrist","Optometrist"], ["Oral Surgeon","Oral Surgeon"], ["Orthodontist","Orthodontist"], ["Orthopedic Surgeon","Orthopedic Surgeon"], ["Pain Management Specialist","Pain Management Specialist"], ["Pediatric Dentist","Pediatric Dentist"], ["Pediatric Urgent Care Specialist","Pediatric Urgent Care Specialist"], ["Pediatrician","Pediatrician"], ["Periodontist","Periodontist"], ["Physiatrist","Physiatrist"], ["Physical Therapist","Physical Therapist"], ["Plastic Surgeon","Plastic Surgeon"], ["Podiatrist","Podiatrist"], ["Prosthodontist","Prosthodontist"], ["Psychiatrist","Psychiatrist"], ["Psychologist","Psychologist"], ["Psychotherapist","Psychotherapist"], ["Pulmonologist","Pulmonologist"], ["Radiologist","Radiologist"], ["Rheumatologist","Rheumatologist"], ["Sleep Medicine Specialist","Sleep Medicine Specialist"], ["Sports Medicine Specialist","Sports Medicine Specialist"], ["Surgeon","Surgeon"], ["Therapists / Counselor","Therapists / Counselor"], ["Travel Medicine Specialist","Travel Medicine Specialist"], ["Urgent Care Specialist","Urgent Care Specialist"], ["Urologist","Urologist"], ["Other...","Other"]], prompt: "Select a Category...", class: "form-control" %>
           </div>
         </div>
 
-       
+<br/>
         <div class="row">
+         
+          <div class="col-md-12">
+            <label>The name of my practice is:</label>
+            <%= f.text_field :practice, placeholder: 'Enter the name of your practice...', class: 'form-control' %>
+          </div>
+          <div class="col-md-12"><br/>
+          <label>The address to my practice is:</label>
 
-          <div class="form-group">
+         </div>
             <div class="col-md-3">
+
               <label>Street</label>
               <%= f.text_field :street, placeholder: 'Street', class: 'form-control' %>
             </div>
@@ -38,37 +55,102 @@
                <%= f.hidden_field :country, :value => "United States" %>
            </div>
             
-            
+        </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-body nopadding">
+           <h4>STEP 2:</h4>
+            <h2>Help patients find you by telling them more about:</h2><br/><br/>
+
+         <div class="row">
+          <div class="col-md-4">
+            <label>Conditons I'm experienced treating:</label>
+             <%= f.fields_for :conditions do |f| %>
+              <%= f.select :condition, [["White","White"],["Black","Black"]], prompt: "Select Conditions...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <label>Procedures I currently offer in my practice:</label>
+             <%= f.fields_for :procedures do |f| %>
+              <%= f.select :procedure, [['Red','Red'],['Orange','Orange']], prompt: "Select Procedures...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+           <label>Insurance plans I currently accept in my practice:</label>
+             <%= f.fields_for :insurances do |f| %>
+              <%= f.select :insurance_provider, [['American','American'],['Red Cross','Red Cross']], prompt: "Select Insurance Providers..", class: "form-control" %>
+            <% end %>
           </div>
         </div>
-
-        
-
-        <div class="row">
+<br/>
+         <div class="row">
           <div class="col-md-4">
-            <div class="form-group">
-              <label>Rate per Night</label>
+            <label>Languages I speak:</label>
+             <%= f.fields_for :languages do |f| %>
+              <%= f.select :language, [['English','English'],['Spanish','Spanish']], prompt: "Select Conditions...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <label>My gender:</label>
+             
+              <%= f.select :gender, [['Male','Male'],['Female','Female']], prompt: "Select Gender...", class: "form-control" %>
+      
+          </div>
+          <div class="col-md-4">
+         
+              <label>Cost of initial consultation:</label>
               <div class="input-group">
                 <div class="input-group-addon">$</div>
                 <%= f.text_field :price, placeholder: 'eg. $100', class: 'form-control' %>
               </div>
             </div>
+     
+        </div>
+
           </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-body nopadding">
+<h4>STEP 3:</h4>
+            <h2>Enhance your profile:</h2><br/>
+        <div class="row">
+              <div class="col-md-4">
+                    <label>Upload your picture:</label>
+                    <span class="btn btn-default btn-file">
+                      <%= icon('upload', 'Upload Photo', class:'fa-lg') %>
+                      <%= file_field_tag "images[]", type: :file, multiple: true, onchange: "readURL(this);" %>
+                    </span>
+                    <img id="image_preview" src="javascript:void(0)", class="hide"/>
+              </div>
+
+              <div class="col-md-8">
+              <div class="col-md-12"><label>Add your biography:</label>
+                  <%= f.text_area :biography, :cols => "10", :rows => "10", class: "form-control" %>
+                </div>
+              <div class="col-md-12"><label>Add your education:</label>
+              <div class="col-md-12"><label>Name of school:</label>
+                 <%= f.fields_for :educations do |f| %>
+              <%= f.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control' %>
+             <label>Graduation Year:</label>
+              <%= f.date_select :date  %>
+            <% end %>
+                  </div>
+                  
+              </div>
         </div>
 
         <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <span class="btn btn-default btn-file">
-                <%= icon('upload', 'Upload Photos', class:'fa-lg') %>
-                <%= file_field_tag "images[]", type: :file, multiple: true, onchange: "readURL(this);" %>
-              </span>
-              
-            </div>
-          </div>
-          <div class="col-md-offset-1 col-md-4">
-            <img id="image_preview" src="javascript:void(0)", class="hide"/>
-          </div>
+
+              <div class="col-md-4">
+                    <img id="image_preview" src="javascript:void(0)", class="hide"/>
+              </div>
+          
+          
 
 
         </div>
@@ -91,5 +173,4 @@
 
       <% end %>
     </div>
-  </div>
-</div>
+</div></div>

@@ -4,6 +4,14 @@ class Room < ActiveRecord::Base
   has_many :reservations
   has_many :reviews
   has_many :purchases
+  has_many :specialities
+  has_many :procedures
+  has_many :conditions
+  has_many :insurances
+  has_many :languages
+  has_many :educations
+
+  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations
   
   
 

@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415013147) do
+ActiveRecord::Schema.define(version: 20170417193517) do
+
+  create_table "conditions", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "condition"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "conditions", ["room_id"], name: "index_conditions_on_room_id"
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -19,6 +28,34 @@ ActiveRecord::Schema.define(version: 20170415013147) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "educations", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "school"
+    t.date     "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "educations", ["room_id"], name: "index_educations_on_room_id"
+
+  create_table "insurances", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "insurance_provider"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "insurances", ["room_id"], name: "index_insurances_on_room_id"
+
+  create_table "languages", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "language"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "languages", ["room_id"], name: "index_languages_on_room_id"
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
@@ -42,6 +79,15 @@ ActiveRecord::Schema.define(version: 20170415013147) do
   end
 
   add_index "photos", ["room_id"], name: "index_photos_on_room_id"
+
+  create_table "procedures", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "procedure"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "procedures", ["room_id"], name: "index_procedures_on_room_id"
 
   create_table "purchases", force: :cascade do |t|
     t.integer  "user_id"
@@ -122,6 +168,13 @@ ActiveRecord::Schema.define(version: 20170415013147) do
   end
 
   add_index "rooms", ["user_id"], name: "index_rooms_on_user_id"
+
+  create_table "specialities", force: :cascade do |t|
+    t.integer  "room_id"
+    t.string   "speciality"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
