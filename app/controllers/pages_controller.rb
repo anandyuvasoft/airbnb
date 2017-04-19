@@ -3,6 +3,12 @@ class PagesController < ApplicationController
     @rooms = Room.all
   end
 
+    def dashboard
+    @rooms = Room.all
+    @users = User.all
+    @conversations = Conversation.involving(current_user)
+  end
+
 
   def search
 

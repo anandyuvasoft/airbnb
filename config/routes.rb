@@ -43,5 +43,6 @@ Rails.application.routes.draw do
   post '/your-sales' => 'purchases#your_sales'
 
   get '/search' => 'pages#search'
+  get '/dashboard' => 'pages#dashboard'
   
 end

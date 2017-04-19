@@ -64,10 +64,11 @@ body {
 }
 
 .btn-default.btn {
-  width: 100%;
   border-radius: 2px;
-  padding: 10px 0;
-  margin-top: 10px;
+      background-color: #eaf0f6;
+    border-color: #cbd6e2;
+    color: #506e91;
+    font-weight:400;font-size:13px;
 }
 
 .panel-default {
@@ -78,6 +79,7 @@ body {
     font-weight: 400;
   }
 }
+.row {margin:0}
 
 .row-space-1 {
   margin-top: 6px;
@@ -305,8 +307,15 @@ img.img-circle.avatar-small {
 h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 0;
 }
-.panel{
-  padding: 30px;
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 0.2em;
+    box-shadow: 0 1px 5px 0 rgba(45,62,80,0.12);
+    border:0px;
+}
+.dashboard .panel {
+    padding: 1.6em;
 }
 
 .col-md-4 img {
@@ -338,4 +347,84 @@ h1, .h1, h2, .h2, h3, .h3 {
 .docprofile h5{
     color: #969696;
     font-weight: 400;
+}
+.dashboard h3{
+    font-size: 1.9rem;
+    font-weight: 400;
+    line-height: 2.46rem;
+        margin-top: 10px;
+    margin-bottom: 10px;
+}
+.dashboard h4{
+    font-size: 1.7rem;
+    font-weight: 300;
+    line-height: 1.84rem;
+    text-transform: capitalize;
+}
+.dashboard .date {
+    font-size: 10px;
+}
+.dashboard .name{
+    color:#3498db;
+    font-size:13px;
+    font-weight:400;
+    text-transform: capitalize;
+}
+
+img.image-circle {
+    border-radius: 50%;
+}
+.col-md-2.img-circle {
+    padding: 0;
+}
+.dashboard .conv {
+    padding: 10px 0;
+}
+
+img.img-circle.dashimage {
+    width: 38px;
+    float: left;
+}
+p.leads {
+    color: #3498db;
+    font-size: 50px;
+    font-weight: bold;
+}
+.borderright{
+  border-right: 1px solid #eaf0f6;
+}
+.dashboard h3 {
+    font-weight: bold;
+    font-size:15px;
+    margin-bottom:25px;
+    color:#333;
+    letter-spacing:0.02em;
+}
+.dashboard h2 {
+    font-weight: 300;
+    font-size:27px;
+    margin-bottom:25px;
+    color:#333;
+    letter-spacing:0.02em;
+}
+.dashboard p {
+    font-weight: 300;
+    font-size:13px;
+    margin-bottom:25px;
+    color:#333;
+    letter-spacing:0.04em;
+}
+.task {
+    padding:20px;
+}
+.task .fa {
+    color:#007adb;
+    font-size:30px;
+}
+a.btn.btn-block.btn-dark {
+    background: #007adb;
+    color: white;
+    font-weight: 400;
+    border-radius: 2px;
+    font-size: 13px;
 }

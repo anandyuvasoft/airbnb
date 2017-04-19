@@ -41,10 +41,18 @@
       <div class="col-md-8">
         <h3>Biography</h3>
         <p><%= @room.biography %></p>
-        <h3>Education</h3>
+        <h3>Educations</h3>
         <p>LIST OF EDUCATION SCHOOL, YEAR</p>
-        <h2>Biography</h2>
-        <p><%= @room.biography %></p>
+        <h3>Conditions</h3>
+        <p>LIST OF CONDITIONS</p>
+        <h3>Insurances</h3>
+        <p>LIST OF INSURANCES</p>
+        <h3>Procedures</h3>
+        <p>LIST OF PROCEDURES</p>
+        <h3>Languages</h3>
+        <p>LIST OF LANGUAGES</p>
+        <h3>Gender</h3>
+        <p><%= @room.gender %></p>
 
 
 
@@ -88,29 +96,7 @@
 </div>
     </div>
 
-    <!-- Amenities -->
-    <div class="row">
-      <div class="col-md-2">
-        <p>Amenities</p>
-      </div>
-      <div class="col-md-10">
-        <div class="row">
-          <div class="col-md-6">
-            <ul class="amenities">
-              <li class="<%= 'text-line-through' if !@room.is_tv %>">TV</li>
-              <li class="<%= 'text-line-through' if !@room.is_kitchen %>">Kitchen</li>
-              <li class="<%= 'text-line-through' if !@room.is_internet %>">Internet</li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul class="amenities">
-              <li class="<%= 'text-line-through' if !@room.is_heating %>">Heating</li>
-              <li class="<%= 'text-line-through' if !@room.is_air %>">Air Conditioning</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- Carousel -->
     <div class="row">
