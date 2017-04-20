@@ -1,6 +1,5 @@
-<div class="row dashboard">
-     <h1 class="text-center">Dashboard</h1>
-     <div class="col-md-12 panel text-center">
+<div class="row dashboard panel text-center">
+
      	<div class="col-md-3 borderright task">
      		<h3>1. List your practice</h3>
      		<p>Submit your practice to the directory. Our approval team will review your application and notify you when it's live.</p>
@@ -21,84 +20,67 @@
      		<p>Want to be featured and increase your leads? Get your listing featured, earn more patients, all in a matter of minutes.</p>
      		<a href="" class="btn btn-default">Upgrade account</a>
      	</div>
-     </div>
+
+</div>
 
 
 
+<div class="col-md-12 nopadding">
 
-
-      <div class="col-md-12 nopadding">
-
-      <!-- show the total all time # of reservations related to rhis room. if there is 0 then dont show this div-->
       	<div class="col-md-4 nopadding">
-	      	<div class="panel">
-	      	<h2>Leads created</h2>
-	      	<div class="col-md-6">
-	      		<a href="" class="btn btn-block btn-dark">All time</a>
-	      	</div>
-	      	<div class="col-md-6 nopadding">
-	      		<a href="" class="btn btn-block btn-default">Last 30 days</a>
-	      	</div>
-	      	
-	      		<p class="leads text-center"><%= current_user.reservations.count(:all) %></p>
-	      		<a href="" class="btn btn-block btn-default">See all appointments</a>
-	      	</div>
-      	</div>
+      	<div class="panel task">
+		      	<h2>Leads created</h2>
+			      	<div class="col-md-6 nopadding">
+			      		<a href="" class="btn btn-block btn-dark">All time</a>
+			      	</div>
+			      	<div class="col-md-6 nopadding">
+			      		<a href="" class="btn btn-block btn-default">Last 30 days</a>
+			      	</div>
+			      	
+		      		<p class="leads text-center"><%= current_user.reservations.count(:all) %></p>
+		      		<a href="" class="btn btn-block btn-default">See all appointments</a>
+		      		</div>
+	    </div>
 
-      	<!-- show the last 5 messages related to this user. if there is 0 then dont show this div-->
-      	<div class="col-md-4">
-      		<div class="panel panel-default">
-	      		<h3 class="text-center">Messages</h3>
+
+
+      	<div class=" row col-md-5">
+<div class="col-md-12">
+      	  	<div class="panel task">
+	      		<h3>Messages</h3>
 	      		
-	      		<div class="row conv">
-  
 		          <% @conversations.each do |conversation| %>
 		            <% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
 		              <%= link_to conversation_messages_path(conversation) do %>
-		                
-			                  <div class="col-md-2 img-circle">
-			                    <%= image_tag avatar_url(other), class: 'image-circle' %>
+	
+			                 <div class="col-md-2">
+			                    <%= image_tag avatar_url(other) %><br/> 
+			                    <%= other.fullname %>
 			                  </div>
-			                  <div class="col-md-5 name">
-			                    <%= other.fullname %><br>
+			                  <div class="col-md-8">
+			                  		<%= conversation.messages.last.content %>
 			                  </div>
-			                   <div class="col-md-5 date">
-			                    
-			                    <%= conversation.messages.last.message_time %>
-			                  </div>
-			                  <div class="col-md-12 conv">
-			                    <%= conversation.messages.last.content %>
-			                  </div><br/><br/>
-		               
+			                  
+			                  <div class="col-md-2 date">
+			                    	<%= conversation.messages.last.message_time %>
+			                  </div>   
+
 		              <% end %>
           			<% end %>
-        
-      			</div>
-      			<a href="" class="btn btn-block btn-default">See all messages</a>
-      		</div>
-      	</div>
-
-				<!-- show the last 5 messages related to this user. if there is 0 then dont show this div-->
-	      	<div class="col-md-4">
-	      	<div class="panel panel-default">
-	      	<div class="row">
-		      	<div class="col-md-3">
-		      		<%= image_tag avatar_url(current_user), class: 'img-circle dashimage' %>
-		      		
-		      	</div>
-		      	<div class="col-md-5">
-		      		<h4><%= current_user.fullname %></h4>
-		      	</div>
-		      	<div class="col-md-4 nopadding">
-		      		<a href="" class="btn btn-block btn-default">View</a>
-		      		
-		      	</div>
-	      		
-		      </div>
-	      	</div>
-	      	</div>
       </div>
-        
-   
-  </div>
+      				</div>
+      		</div>
 
+
+
+
+      	<div class="col-md-3 nopadding text-center">
+  	<div class="panel task">
+		      		<%= image_tag avatar_url(current_user), class: 'img-circle dashimage' %><br/>
+		      		<h4><%= current_user.fullname %></h4>
+		      		<a href="" class="btn btn-block">View Profile</a>
+		      		<a href="" class="btn btn-block">Edit Profile</a>
+		      		</div>
+		    </div>
+
+</div>
