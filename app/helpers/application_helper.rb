@@ -9,7 +9,8 @@ module ApplicationHelper
         default_url = "https://thumb.ibb.co/jBGmFk/logo.png"  
       end
       gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
-      url = "http://gravatar.com/avatar/#{gravatar_id}.png?s=48&d=#{CGI.escape(default_url)}"
+      # url = "http://gravatar.com/avatar/#{gravatar_id}.png?s=48&d=#{CGI.escape(default_url)}"
+      url = "https://thumb.ibb.co/jBGmFk/logo.png"
     end
   end
 
