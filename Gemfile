@@ -41,3 +41,4 @@ group :development do
   gem 'spring'
 end
 gem 'rails_12factor', group: :production
+gem "paperclip-dropbox", ">= 1.1.7"
