@@ -16,8 +16,8 @@
 //= require jquery.raty.min
 //= require bootstrap-sprockets
 //= require toastr
-//= require private_pub
 //= require faye
+//= require private_pub
 //= require_tree .
 
 
