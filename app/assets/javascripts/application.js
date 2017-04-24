@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require private_pub
+//= require faye
 //= require_tree .
 
 
