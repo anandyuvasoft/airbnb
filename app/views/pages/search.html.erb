@@ -5,6 +5,7 @@
       <script>
         function initMap() {
           var mapDiv = document.getElementById('widget');
+          var infowindow = null;
           var map = new google.maps.Map(mapDiv, {
             <% if @arrRooms.length > 0 %>
               center: {lat: <%= @arrRooms[0].latitude %>, lng: <%= @arrRooms[0].longitude %>},
@@ -16,17 +17,68 @@
           });
 
           <% @arrRooms.each do |room| %>
+            <% @photos = room.photos%>
             var marker = new google.maps.Marker({
               position: {lat: <%= room.latitude %>, lng: <%= room.longitude %>},
-              title: "<%= room.listing_name %>"
-            });
+              title: "<%= room.listing_name %>",
+            
+             contentString: '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<div class="row">' +
+                '<div class="">' +
+                  '<div id="myCarousel" class="carousel slide" data-ride="carousel">' +
+                    '<% if @photos %>' +
+                      '<ol class="carousel-indicators">' +
+                        '<% @photos.each do |photo| %>' +
+                          '<li data-target="#myCarousel" data-slide-to="<%= photo.id %>"></li>' +
+                        '<% end %>' +
+                      '</ol>' +
+                    '<% end %>' +
 
+                    '<div class="carousel-inner" role="listbox">' +
+                      '<% if @photos %>' +
+                        '<% @photos.each do |photo| %>' +
+                          '<div class="item <%='active' if photo.id == @photos[0].id %>">' +
+                            '<img src="<%= photo.image.url()%>" alt="Mountain View" style="width:190px;height:150px;">' +
+                          '</div>' +
+                        '<% end %>' +
+                      '<% end %>' +
+                    '</div>' +
+                    '<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">' +
+                      '<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>' +
+                      '<span class="sr-only">Previous</span>'+
+                    '</a>'+
+                    '<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">'+
+                      '<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>' +
+                      '<span class="sr-only">Next</span>' +
+                    '</a>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '<h3 id="firstHeading" class="firstHeading"><%= room.listing_name %></h3>'+
+            '<h4 id="firstHeading" class="firstHeading"><%= room.category %></h4>'+
+            '<div id="bodyContent">'+
+            '</div>'
+          });
             marker.setMap(map);
+             marker.addListener('click', function() {
+                if (infowindow) {
+                infowindow.close();
+                }
+                infowindow = new google.maps.InfoWindow({
+                content: '<a href="/rooms">'+this.contentString+'</a>'
+              });
+              infowindow.open(map, this);
+             });
+            
           <% end %>
         }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
-          async defer></script>
+      <!-- <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+          async defer></script> -->
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANqUD_Cbr7IantIEZIEIHNYEZ9gRMemdw&callback=initMap"
+      type="text/javascript"></script>
     </div>
   </div>
 
@@ -83,7 +135,7 @@
   </div>
 </div>
 
-<script>
+<!-- <script>
   $(function() {
     $('#start_date').date_picker({
       dateFormat: 'dd-mm-yy',
@@ -104,7 +156,7 @@
       }
     });
   })
-</script>
+</script> -->
 
 <script>
 $(function(){ // document ready
