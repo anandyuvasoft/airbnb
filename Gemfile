@@ -6,7 +6,7 @@ group :production do
 	gem 'pg'
 end
 group :development do
-	gem 'sqlite3'
+	gem 'mysql2'
 end
 
 
@@ -42,3 +42,4 @@ group :development do
 end
 gem 'rails_12factor', group: :production
 gem "paperclip-dropbox", ">= 1.1.7"
+gem 'foreman'
