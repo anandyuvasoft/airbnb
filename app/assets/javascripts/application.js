@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require toastr
 //= require faye
+//= require jquery.slimscroll.min
 //= require private_pub
 //= require_tree .
 
@@ -34,3 +35,7 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+$(function(){
+	$('#main-navbar-notifications').slimScroll({ height: 250 });
+});

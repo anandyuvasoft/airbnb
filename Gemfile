@@ -45,4 +45,4 @@ gem "paperclip-dropbox", ">= 1.1.7"
 gem 'foreman'
 gem 'redis'
 gem 'faye-rails'
-
+gem 'public_activity'

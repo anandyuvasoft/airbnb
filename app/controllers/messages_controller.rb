@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages.order("created_at DESC")
 
     if @message.save
+      @message.create_activity :create, owner: current_user, recipient: @conversation.recipient
       respond_to do |format|
         format.js
       end

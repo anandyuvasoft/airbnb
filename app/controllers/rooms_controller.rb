@@ -35,6 +35,7 @@ class RoomsController < ApplicationController
         end
       end
       @photos = @room.photos
+      @room.create_activity :create, owner: current_user
       redirect_to edit_room_path(@room), notice: "Saved!"
     else
       render :new

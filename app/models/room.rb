@@ -10,10 +10,17 @@ class Room < ActiveRecord::Base
   has_many :insurances
   has_many :languages
   has_many :educations
+  after_update :send_notification
+
+  def send_notification
+    self.create_activity :update, owner: self.user  if (self.active_changed? && self.active == true)
+  end
+
 
   accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations
-  
-  
+    
+  include PublicActivity::Common
+  #tracked owner: ->(controller, model) { controller && controller.current_user }
 
   geocoded_by :full_street_address
   after_validation :geocode

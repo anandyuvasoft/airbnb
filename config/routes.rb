@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root 'pages#home'
 
   devise_for :users,
@@ -45,4 +44,7 @@ Rails.application.routes.draw do
   get '/search' => 'pages#search'
   get '/dashboard' => 'pages#dashboard'
   
+
+  resources :activities, only: [:index]
+
 end

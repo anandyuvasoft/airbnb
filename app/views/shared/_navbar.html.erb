@@ -23,7 +23,57 @@
           <% if(user_signed_in?) %>
             <li><%= link_to 'List My Practice', new_room_path %></li>
             <li><%= link_to icon('envelope', 'Messages'), conversations_path %></li>
-            <li><%= link_to icon('bell', 'Notifications'), conversations_path %></li>
+            <!-- <li><%= link_to icon('bell', 'Notifications'), activities_path %></li> -->
+
+
+            <li class="nav-icon-btn nav-icon-btn-danger dropdown">
+
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#notifications">
+                <span class="label"><%= notification.count %></span>
+                <i class="nav-icon fa fa-bullhorn"></i>
+                <span class="small-screen-text">Notifications</span>
+              </a>
+
+              <div style="width: 300px" class="dropdown-menu widget-notifications no-padding">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
+                  <div id="main-navbar-notifications" class="notifications-list" style="overflow: hidden; width: auto;">
+
+                  <% notification.first(10).each do |activity|%>
+                    <div class="notification">
+                    <!-- <div class="notification-title text-danger">SYSTEM</div> -->
+
+                    <div class="notification-description">
+                      <%= render_activity activity %>
+                    </div>
+                    <div class="notification-ago"><%= time_ago_in_words(activity.created_at)%></div>
+<!--                     <div class="notification-icon fa fa-hdd-o bg-danger"></div> -->
+                    </div> <!-- / .notification -->                  
+                  <% end %>
+
+
+                  </div>
+                  <div class="slimScrollBar" style="background: none repeat scroll 0% 0% rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 189.394px;">
+                    
+                  </div>
+                  <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;">
+                  </div>
+                </div> <!-- / .notifications-list -->
+                <a class="notifications-link" href="/activities">MORE NOTIFICATIONS</a>
+              </div> <!-- / .dropdown-menu -->
+            </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
