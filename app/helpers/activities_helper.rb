@@ -1,5 +1,5 @@
 module ActivitiesHelper
 	def notification
-		activities = PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.id)
+		PublicActivity::Activity.order("created_at desc").where(" owner_id = #{current_user.id} AND trackable_type = 'Room' OR recipient_id = #{current_user.id}")
 	end
 end

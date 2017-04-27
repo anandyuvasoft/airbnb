@@ -13,11 +13,11 @@ class Room < ActiveRecord::Base
   after_update :send_notification
 
   def send_notification
-    self.create_activity :update, owner: self.user  if (self.active_changed? && self.active == true)
+    self.create_activity :update, owner: self.user, recipient: self.user   if (self.active_changed? && self.active == true)
   end
 
 
-  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations
+  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos
     
   include PublicActivity::Common
   #tracked owner: ->(controller, model) { controller && controller.current_user }

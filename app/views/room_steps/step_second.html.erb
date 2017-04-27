@@ -1,0 +1,61 @@
+<div class="panel panel-default">
+    <div class="panel-body nopadding">
+           <h4>STEP 2:</h4>
+            <h2>Help patients find you by telling them more about:</h2><br/><br/>
+         <%= form_for(@room, url: wizard_path(:step_second), method: :put) do |f| %>
+          <%= hidden_field_tag :room_id , params[:room_id] %>
+              <%@room.conditions.build%>
+              <%@room.procedures.build%>
+              <%@room.insurances.build%>
+              <%@room.languages.build%>
+
+         <div class="row">
+          <div class="col-md-4">
+            <label>Conditons I'm experienced treating:</label>
+             <%= f.fields_for :conditions do |f| %>
+              <%= f.select :condition, [["White","White"],["Black","Black"]], prompt: "Select Conditions...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <label>Procedures I currently offer in my practice:</label>
+             <%= f.fields_for :procedures do |f| %>
+              <%= f.select :procedure, [['Red','Red'],['Orange','Orange']], prompt: "Select Procedures...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+           <label>Insurance plans I currently accept in my practice:</label>
+             <%= f.fields_for :insurances do |f| %>
+              <%= f.select :insurance_provider, [['American','American'],['Red Cross','Red Cross']], prompt: "Select Insurance Providers..", class: "form-control" %>
+            <% end %>
+          </div>
+        </div>
+<br/>
+         <div class="row">
+          <div class="col-md-4">
+            <label>Languages I speak:</label>
+             <%= f.fields_for :languages do |f| %>
+              <%= f.select :language, [['English','English'],['Spanish','Spanish']], prompt: "Select Conditions...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <label>My gender:</label>
+             
+              <%= f.select :gender, [['Male','Male'],['Female','Female']], prompt: "Select Gender...", class: "form-control" %>
+      
+          </div>
+          <div class="col-md-4">
+         
+              <label>Cost of initial consultation:</label>
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <%= f.text_field :price, placeholder: 'eg. $100', class: 'form-control' %>
+              </div>
+            </div>
+     
+        </div>
+    <div class="actions">
+        <%= f.submit "Continue" %>
+    </div>
+  <% end %>
+          </div>
+</div>

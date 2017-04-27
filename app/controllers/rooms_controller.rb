@@ -27,7 +27,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = current_user.rooms.build(room_params)
-
+    byebug
     if @room.save
       if params[:images]
         params[:images].each do |image|
@@ -35,7 +35,7 @@ class RoomsController < ApplicationController
         end
       end
       @photos = @room.photos
-      @room.create_activity :create, owner: current_user
+      @room.create_activity :create, owner: current_user, recipient: current_user
       redirect_to edit_room_path(@room), notice: "Saved!"
     else
       render :new

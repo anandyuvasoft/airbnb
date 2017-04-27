@@ -1,0 +1,75 @@
+
+<div class="panel panel-default">
+    <div class="panel-body nopadding">
+<h4>STEP 3:</h4>
+            <h2>Enhance your profile:</h2><br/>
+
+  <%= form_for(@room, url: wizard_path(:step_third), method: :put) do |f| %>
+  <%= hidden_field_tag :room_id , params[:room_id] %>
+      <%@room.educations.build%>
+      <%@room.photos.build%>
+        <div class="row">
+              <div class="col-md-12">
+                    <label>Upload your picture:</label>
+                    <span class="btn btn-default btn-file">
+                    <%= f.fields_for :photos do |f| %>
+                      <%= icon('upload', 'Upload Photo', class:'fa-lg') %>
+                      <%= f.file_field :image, onchange: "readURL(this);" %>
+                    <% end %>
+                    </span>
+                    <img id="image_preview" src="javascript:void(0)", class="hide"/>
+
+            
+
+            
+
+
+
+              </div>
+
+              <div class="col-md-12">
+              <div class="col-md-12"><label>Add your biography:</label>
+                  <%= f.text_area :biography, :cols => "10", :rows => "10", class: "form-control" %>
+                </div>
+              <div class="col-md-12"><label>Add your education:</label>
+              <div class="col-md-12"><label>Name of school:</label>
+                 <%= f.fields_for :educations do |f| %>
+              <%= f.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control' %>
+             <label>Graduation Year:</label>
+              <%= f.date_select :date  %>
+            <% end %>
+                  </div>
+                  
+              </div>
+        </div>
+
+        <div class="row">
+
+              <div class="col-md-4">
+                    <img id="image_preview" src="javascript:void(0)", class="hide"/>
+              </div>
+          
+          
+
+
+        </div>
+
+        <div id="photos">
+          <%= render 'photos/list' %>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.check_box :active %> Active
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-primary' %>
+        </div>
+
+      <% end %>
+    </div>
+</div></div>

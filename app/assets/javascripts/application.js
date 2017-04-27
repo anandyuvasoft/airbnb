@@ -37,5 +37,5 @@ function readURL(input) {
 }
 
 $(function(){
-	$('#main-navbar-notifications').slimScroll({ height: 250 });
+	//$('#main-navbar-notifications').slimScroll({ height: 250 });
 });

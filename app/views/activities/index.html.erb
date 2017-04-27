@@ -4,16 +4,13 @@
       <div class="panel-heading">
         Notifications
       </div>
-      <div class="panel-body">
+      <% @activities.each do |activity| %>
+        <div class="panel-body">
         <div class="container">
-          <% @activities.each do |activity| %>
-			<div class="activity">
-			    <%= render_activity activity %>
-		  	</div>
-          <% end %>
+          <%= render_activity activity %>
         </div>
-      </div>
+        </div>
+      <% end %>
     </div>
-
   </div>
 </div>
