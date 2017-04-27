@@ -3,7 +3,6 @@
     <div class="panel-body nopadding">
 <h4>STEP 3:</h4>
             <h2>Enhance your profile:</h2><br/>
-
   <%= form_for(@room, url: wizard_path(:step_third), method: :put) do |f| %>
   <%= hidden_field_tag :room_id , params[:room_id] %>
       <%@room.educations.build%>
@@ -17,13 +16,7 @@
                       <%= f.file_field :image, onchange: "readURL(this);" %>
                     <% end %>
                     </span>
-                    <img id="image_preview" src="javascript:void(0)", class="hide"/>
-
-            
-
-            
-
-
+                <img id="image_preview" src="javascript:void(0)", class="hide"/>
 
               </div>
 
@@ -66,7 +59,7 @@
           </div>
         </div>
 
-        <div class="actions">
+        <div class="actions pull-right">
           <%= f.submit "Save", class: 'btn btn-primary' %>
         </div>
 

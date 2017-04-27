@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
   root 'pages#home'
+
+  ActiveAdmin.routes(self)  
+
 
   devise_for :users,
              :path => '', :path_names => {:sign_in => 'sign-in', :sign_out => 'sign-out', :sign_up => 'sign-up',

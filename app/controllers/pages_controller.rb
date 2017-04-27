@@ -11,7 +11,6 @@ class PagesController < ApplicationController
 
 
   def search
-
   	if params[:search].present? && params[:search].strip != ""
   		session[:loc_search] = params[:search]
   	end
@@ -23,6 +22,8 @@ class PagesController < ApplicationController
   	else
   		@rooms_address = Room.where(active: true).all
   	end
+
+    @rooms_address = @rooms_address.where(category: params[:category]) if params[:category].present?
 
   	@search = @rooms_address.ransack(params[:q])
   	@rooms = @search.result

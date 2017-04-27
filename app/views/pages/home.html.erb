@@ -1,10 +1,13 @@
 <%= form_tag search_path, method: :get do %>
   <div class="row">
   <h1>Looking for a doctor? Enter your location to find the best near your:</h1>
-    <div class="col-md-10 nopadding">
+    <div class="col-md-6 nopadding">
       <%= text_field_tag :search, params[:search], placeholder: 'Where are you going?', class: 'form-control' %>
     </div>
-    
+    <div class="col-md-4">
+       <%= select_tag :category, options_for_select([["Acupuncturist","Acupuncturist"], ["Allergist","Allergist"], ["Audiologist","Audiologist"], ["Cardiologist","Cardiologist"], ["Chiropractor","Chiropractor"], ["Dentist","Dentist"], ["Dermatologist","Dermatologist"], ["Dietitian","Dietitian"], ["Doctor","Doctor"], ["Ear, Nose & Throat Doctor","Ear, Nose & Throat Doctor"], ["Emergency Medicine Physician","Emergency Medicine Physician"], ["Endocrinologist","Endocrinologist"], ["Endodontist","Endodontist"], ["Eye Doctor","Eye Doctor"], ["Family Physician","Family Physician"], ["Gastroenterologist","Gastroenterologist"], ["Hand Surgeon","Hand Surgeon"], ["Hearing Specialist","Hearing Specialist"], ["Hematologist","Hematologist"], ["Infectious Disease Specialist","Infectious Disease Specialist"], ["Infertility Specialist","Infertility Specialist"], ["Internist","Internist"], ["Naturopathic Doctor","Naturopathic Doctor"], ["Nephrologist","Nephrologist"], ["Neurologist","Neurologist"], ["Neurosurgeon","Neurosurgeon"], ["Nurse Practitioner","Nurse Practitioner"], ["Nutritionist","Nutritionist"], ["OB-GYN","OB-GYN"], ["Oncologist","Oncologist"], ["Ophthalmologist","Ophthalmologist"], ["Optometrist","Optometrist"], ["Oral Surgeon","Oral Surgeon"], ["Orthodontist","Orthodontist"], ["Orthopedic Surgeon","Orthopedic Surgeon"], ["Pain Management Specialist","Pain Management Specialist"], ["Pediatric Dentist","Pediatric Dentist"], ["Pediatric Urgent Care Specialist","Pediatric Urgent Care Specialist"], ["Pediatrician","Pediatrician"], ["Periodontist","Periodontist"], ["Physiatrist","Physiatrist"], ["Physical Therapist","Physical Therapist"], ["Plastic Surgeon","Plastic Surgeon"], ["Podiatrist","Podiatrist"], ["Prosthodontist","Prosthodontist"], ["Psychiatrist","Psychiatrist"], ["Psychologist","Psychologist"], ["Psychotherapist","Psychotherapist"], ["Pulmonologist","Pulmonologist"], ["Radiologist","Radiologist"], ["Rheumatologist","Rheumatologist"], ["Sleep Medicine Specialist","Sleep Medicine Specialist"], ["Sports Medicine Specialist","Sports Medicine Specialist"], ["Surgeon","Surgeon"], ["Therapists / Counselor","Therapists / Counselor"], ["Travel Medicine Specialist","Travel Medicine Specialist"], ["Urgent Care Specialist","Urgent Care Specialist"], ["Urologist","Urologist"], ["Other...","Other"]]), prompt: "Select a Category...", class: "form-control" %>
+    </div>
+
     <div class="col-md-2 nopadding">
       <%= submit_tag 'Search', :name => nil, class: 'btn btn-block btn-primary' %>
     </div>
@@ -18,7 +21,12 @@
     <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading preview">
-          <%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+         <%  if room.photos.length > 0 %>
+            <%= image_tag room.photos[0].image.url(:medium) %>
+          <% else %>
+            <%= image_tag("/assets/missing.png")%>
+          <% end %>
+
         </div>
         <div class="panel-body">
           
