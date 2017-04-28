@@ -43,13 +43,16 @@ Rails.application.routes.draw do
   post '/notify' => 'reservations#notify'
   post '/your-trips' => 'reservations#your_trips'
 
-  post '/notify' => 'purchases#notify'
-  post '/your-sales' => 'purchases#your_sales'
+  post '/purchase_notify' => 'purchases#notify'
+  #post '/your-sales' => 'purchases#your_sales'
 
   get '/search' => 'pages#search'
   get '/dashboard' => 'pages#dashboard'
   
 
   resources :activities, only: [:index]
-  resources :room_steps
+  resources :room_steps, only: [:show, :create, :update, :index]
+  
+  get '/family-members' => 'users#family_members'
+
 end

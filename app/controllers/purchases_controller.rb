@@ -1,9 +1,8 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, except: [:notify]
+  protect_from_forgery except: [:notify, :your_sales]
 
-
-
-def create
+  def create
     @purchase = current_user.purchases.create(purchase_params)
 
     if @purchase
@@ -11,42 +10,34 @@ def create
         business: 'ariefrizkyr-facilitator@gmail.com',
         cmd: '_xclick',
         upload: 1,
-        notify_url: 'http://e48c7fa9.ngrok.io/notify',
+        notify_url: 'http://fe17ae85.ngrok.io//purchase_notify',
         amount: @purchase.price,
         description: @purchase.name,
         item_name: @purchase.room.listing_name,
         item_number: @purchase.id,
         quantity: 1,
-        return: 'http://localhost:3000/'
+        return: "http://fe17ae85.ngrok.io/your-sales"
       }
-      flash[:notice] = "Payment Successfully Completed."
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
     else
       redirect_to @purchase.room, alert: "Something went wrong!"
     end
   end
 
- 
-
-    protect_from_forgery except: [:notify]
- 
   def notify
-    byebug
     params.permit!
-    status = params[:payment_status]
+    purhcase = Purchase.find(params[:item_number])
 
-    reservation = Purchase.find(params[:item_number])
-
-    if status = "Completed"
-      reservation.update_attributes status: true
+    if params[:payment_status].eql? "Completed"
+      purchase.update_attributes notification_params: params, status: true, transaction_id: params[:txn_id], purchased_at: Time.now
     else
-      reservation.destroy
+      purchase.destroy
     end
-
     render nothing: true
+
   end
 
- protect_from_forgery except: [:your_sales]
+ 
   def your_sales
     @sales = current_user.purchases.where("status = ?", true)
   end

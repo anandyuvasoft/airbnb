@@ -49,3 +49,6 @@ gem 'public_activity'
 gem 'wicked'
 gem 'activeadmin'
 gem "haml-rails"
+gem 'simple_form'
+gem 'whenever', :require => false
+#gem "squeel"

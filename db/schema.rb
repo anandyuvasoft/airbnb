@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170427113014) do
+ActiveRecord::Schema.define(version: 20170428101256) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -149,17 +149,35 @@ ActiveRecord::Schema.define(version: 20170427113014) do
   add_index "procedures", ["room_id"], name: "index_procedures_on_room_id", using: :btree
 
   create_table "purchases", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "room_id",    limit: 4
-    t.integer  "price",      limit: 4
-    t.string   "name",       limit: 255
+    t.integer  "user_id",             limit: 4
+    t.integer  "room_id",             limit: 4
+    t.integer  "price",               limit: 4
+    t.string   "name",                limit: 255
     t.boolean  "status"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.text     "notification_params", limit: 65535
+    t.string   "transaction_id",      limit: 255
+    t.datetime "purchased_at"
   end
 
   add_index "purchases", ["room_id"], name: "index_purchases_on_room_id", using: :btree
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
+
+  create_table "relatives", force: :cascade do |t|
+    t.string   "relation",      limit: 255
+    t.string   "name",          limit: 255
+    t.string   "email",         limit: 255
+    t.string   "phone",         limit: 255
+    t.string   "age",           limit: 255
+    t.string   "gender",        limit: 255
+    t.date     "date_of_birth"
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "relatives", ["user_id"], name: "index_relatives_on_user_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -270,6 +288,7 @@ ActiveRecord::Schema.define(version: 20170427113014) do
   add_foreign_key "procedures", "rooms"
   add_foreign_key "purchases", "rooms"
   add_foreign_key "purchases", "users"
+  add_foreign_key "relatives", "users"
   add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "rooms"

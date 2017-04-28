@@ -1,6 +1,12 @@
 = form_tag search_path, method: :get do
   .row
-    %h1 Looking for a doctor? Enter your location to find the best near your:
+    .text-center
+      %h1 
+        Looking for a doctor? 
+      %br
+      %h1 
+        Enter your location to find the best near your
+
     .col-md-6.nopadding
       = text_field_tag :search, params[:search], placeholder: 'Where are you going?', class: 'form-control'
     .col-md-4

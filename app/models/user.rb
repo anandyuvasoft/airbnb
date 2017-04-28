@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   has_many :reservations
   has_many :reviews
   has_many :purchases
+  has_many :relatives
+
+  accepts_nested_attributes_for :relatives, :allow_destroy => true
 
   def self.from_omniauth(auth)
     user = User.where(:email => auth.info.email).first

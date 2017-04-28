@@ -1,4 +1,5 @@
 .row
+
   .col-md-3
     .text-center
       = image_tag avatar_url(@user), class: 'avatar-full'
@@ -10,15 +11,17 @@
       .panel-heading Verification
       .panel-body
         Email Address
-        %br/
+        %br
         Phone Number
+
   .col-md-9
     %h2= @user.fullname
     .description.row-space-3
       = @user.description
+
     %h4
       Listings (#{@rooms.length})
-    %br/
+    %br
     .row
       - @rooms.each do |room|
         .col-md-4
@@ -27,19 +30,20 @@
               = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : nil)
             .panel-body.text-center
               = link_to room.listing_name, room_path(room)
+
     %h4 Reviews
-    %br/
+    %br
     - @rooms.each do |room|
       - if !room.reviews.blank?
         - room.reviews.each do |review|
           .row
             .col-md-2.text-center
               = image_tag avatar_url(review.user), class: 'img-circle avatar-medium'
-              %br/
+              %br
               = review.user.fullname
             .col-md-10
               = link_to room.listing_name, room
-              %br/
+              %br
               = review.comment
-              %br/
+              %br
               = review.created_at.strftime('%v')

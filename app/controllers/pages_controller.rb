@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
+
   def home
-    @rooms = Room.all
+    @rooms = Room.upgraded
   end
 
     def dashboard

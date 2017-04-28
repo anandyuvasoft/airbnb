@@ -1,16 +1,11 @@
 <div class="panel panel-default">
-  
-  <h3 class="text-center">
-  Hello <%= current_user.fullname %>! Let's get you ready to list your practice.
-  </h3>
-
-  <br/>
+  <h1>Hello <%= current_user.fullname %>! Let's get you ready to list your practice.</h1><br/><br/>
   <h4>STEP 1:</h4>
   <h2>Tell us about yourself & your practice:</h2><br/><br/>
   <div class="panel-body nopadding">
 
-      <%= form_for @room, url: room_steps_path, method: :post do |f| %>
-      <%= f.hidden_field :user_id, value: current_user.id %>
+      <%= form_for @room, html: {multipart: true} do |f| %>
+
 
        
         <div class="row">
@@ -61,9 +56,121 @@
            </div>
             
         </div>
-    <div class="actions pull-right">
-        <%= f.submit "Continue" , class: "btn btn-default" %>
-    </div>
-  <% end %>        
   </div>
 </div>
+
+
+<div class="panel panel-default">
+    <div class="panel-body nopadding">
+           <h4>STEP 2:</h4>
+            <h2>Help patients find you by telling them more about:</h2><br/><br/>
+
+         <div class="row">
+          <div class="col-md-4">
+            <label>Conditons I'm experienced treating:</label>
+             <%= f.fields_for :conditions do |f| %>
+              <%= f.select :condition, [["White","White"],["Black","Black"]], prompt: "Select Conditions...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <label>Procedures I currently offer in my practice:</label>
+             <%= f.fields_for :procedures do |f| %>
+              <%= f.select :procedure, [['Red','Red'],['Orange','Orange']], prompt: "Select Procedures...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+           <label>Insurance plans I currently accept in my practice:</label>
+             <%= f.fields_for :insurances do |f| %>
+              <%= f.select :insurance_provider, [['American','American'],['Red Cross','Red Cross']], prompt: "Select Insurance Providers..", class: "form-control" %>
+            <% end %>
+          </div>
+        </div>
+<br/>
+         <div class="row">
+          <div class="col-md-4">
+            <label>Languages I speak:</label>
+             <%= f.fields_for :languages do |f| %>
+              <%= f.select :language, [['English','English'],['Spanish','Spanish']], prompt: "Select Conditions...", class: "form-control" %>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <label>My gender:</label>
+             
+              <%= f.select :gender, [['Male','Male'],['Female','Female']], prompt: "Select Gender...", class: "form-control" %>
+      
+          </div>
+          <div class="col-md-4">
+         
+              <label>Cost of initial consultation:</label>
+              <div class="input-group">
+                <div class="input-group-addon">$</div>
+                <%= f.text_field :price, placeholder: 'eg. $100', class: 'form-control' %>
+              </div>
+            </div>
+     
+        </div>
+
+          </div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-body nopadding">
+<h4>STEP 3:</h4>
+            <h2>Enhance your profile:</h2><br/>
+        <div class="row">
+              <div class="col-md-4">
+                    <label>Upload your picture:</label>
+                    <span class="btn btn-default btn-file">
+                      <%= icon('upload', 'Upload Photo', class:'fa-lg') %>
+                      <%= file_field_tag "images[]", type: :file, multiple: true, onchange: "readURL(this);" %>
+                    </span>
+                    <img id="image_preview" src="javascript:void(0)", class="hide"/>
+              </div>
+
+              <div class="col-md-8">
+              <div class="col-md-12"><label>Add your biography:</label>
+                  <%= f.text_area :biography, :cols => "10", :rows => "10", class: "form-control" %>
+                </div>
+              <div class="col-md-12"><label>Add your education:</label>
+              <div class="col-md-12"><label>Name of school:</label>
+                 <%= f.fields_for :educations do |f| %>
+              <%= f.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control' %>
+             <label>Graduation Year:</label>
+              <%= f.date_select :date  %>
+            <% end %>
+                  </div>
+                  
+              </div>
+        </div>
+
+        <div class="row">
+
+              <div class="col-md-4">
+                    <img id="image_preview" src="javascript:void(0)", class="hide"/>
+              </div>
+          
+          
+
+
+        </div>
+
+        <div id="photos">
+          <%= render 'photos/list' %>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <div class="form-group">
+              <%= f.check_box :active %> Active
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Save", class: 'btn btn-primary' %>
+        </div>
+
+      <% end %>
+    </div>
+</div></div>

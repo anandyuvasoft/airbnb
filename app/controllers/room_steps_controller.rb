@@ -11,7 +11,6 @@ class RoomStepsController < ApplicationController
   	room_params = params[:room].permit!
   	@room = Room.new(room_params)
   	if @room.save
-      @room.create_activity :create, owner: current_user, recipient: current_user
   		redirect_to wizard_path(:step_second, room_id: @room)
 		else
 			render_wizard
@@ -32,6 +31,6 @@ class RoomStepsController < ApplicationController
 private
 
   def redirect_to_finish_wizard
-    redirect_to root_url, notice: "Thank you for completing Room profile."
+    redirect_to root_url, notice: "Great! Room has been successfully created."
   end	
 end

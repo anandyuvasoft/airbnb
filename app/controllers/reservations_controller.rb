@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!, except: [:notify]
+  protect_from_forgery except: [:notify]
+  protect_from_forgery except: [:your_trips]
 
   def preload
     room = Room.find(params[:room_id])
@@ -41,8 +43,7 @@ class ReservationsController < ApplicationController
       redirect_to @reservation.room, alert: "Something went wrong!"
     end
   end
-
-  protect_from_forgery except: [:notify]
+  
   def notify
     params.permit!
     status = params[:payment_status]
@@ -58,7 +59,6 @@ class ReservationsController < ApplicationController
     render nothing: true
   end
 
-  protect_from_forgery except: [:your_trips]
   def your_trips
     @trips = current_user.reservations.where("status = ?", true)
   end

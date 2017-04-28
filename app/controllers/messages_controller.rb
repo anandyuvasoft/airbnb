@@ -14,9 +14,7 @@ class MessagesController < ApplicationController
   def create
     @message = @conversation.messages.new(messages_params)
     @messages = @conversation.messages.order("created_at DESC")
-
     if @message.save
-      @message.create_activity :create, owner: current_user, recipient: @conversation.recipient
       respond_to do |format|
         format.js
       end

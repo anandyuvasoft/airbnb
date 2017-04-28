@@ -4,9 +4,12 @@
     .panel.panel-default
       .panel-heading
         My Listings
-      .panel-body
+      .panel-body.box
         - @rooms.each do |room|
           .row
+            - if room.is_upgraded?
+              .ribbon
+                %span Featured
             .col-md-2
               = image_tag room.photos[0].image.url(:thumb) if room.photos.length > 0
             .col-md-7
@@ -15,4 +18,4 @@
             .col-md-3.right
               = link_to 'Edit', edit_room_path(room), class: 'btn btn-primary btn-block'
               = link_to 'View', room_path(room), class: 'btn btn-default btn-block'
-          %hr/
+          %hr

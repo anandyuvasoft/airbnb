@@ -1,7 +1,13 @@
 <div class="panel panel-default docprofile">
   <div class="panel-defaultpanel-body">
 
-    <div class="row">
+    <div class="row box">
+      <% if @room.is_upgraded? %>
+        <div class="ribbon">
+          <span>Featured</span> 
+        </div>
+      <%end%>
+
         <div class="col-md-12">
             
             <div class="col-md-8 nopadding">
@@ -191,7 +197,7 @@
 
     <br>
     <hr>
-    
+
     <!-- Near by Rooms -->
     <h3>Near By</h3>
     <div class="row">
@@ -209,6 +215,11 @@
         </div>
       <% end %>
     </div>
+
+<!-- owner -->
+<% if current_user == @room.user && !@room.is_upgraded? %>
+  <%= render 'purchases/form_enterprise' %>
+<%end%>
 
   </div>
 </div>

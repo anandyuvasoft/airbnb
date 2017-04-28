@@ -1,0 +1,22 @@
+.row
+
+  .col-md-12
+
+    - if @relatives.size > 0
+      %h4
+        Family Members (#{@relatives.size})
+      .row
+        - @relatives.each do |relative|
+          .col-md-4
+            .panel.panel-default
+              .panel-heading.preview
+                = image_tag("/assets/relative.jpg")
+              .panel-body.text-center
+                %strong= relative.name.titleize
+                %br
+                = relative.relation.titleize
+    - else
+      %h4.text-center 
+        There is no family members yet.
+        
+    = link_to "Add a Family Member", edit_user_registration_path(relative: true), class: 'pull-right'  
