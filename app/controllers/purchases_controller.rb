@@ -19,7 +19,7 @@ def create
         quantity: 1,
         return: 'http://localhost:3000/'
       }
-      flash[:notice] = "Payment Successfully done."
+      flash[:notice] = "Payment Successfully Completed."
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
     else
       redirect_to @purchase.room, alert: "Something went wrong!"
