@@ -1,0 +1,42 @@
+.panel.panel-default
+  .panel-body.nopadding
+    %h4 STEP 3:
+    %h2 Enhance your profile:
+    %br/
+    = form_for(@room, url: wizard_path(:step_third), method: :put) do |f|
+      = hidden_field_tag :room_id , params[:room_id]
+      - @room.educations.build
+      - @room.photos.build
+      .row
+        .col-md-12
+          %label Upload your picture:
+          %span.btn.btn-default.btn-file
+            = f.fields_for :photos do |f|
+              = icon('upload', 'Upload Photo', class:'fa-lg')
+              = f.file_field :image, onchange: "readURL(this);"
+          = succeed "," do
+            %img#image_preview.hide{:src => "javascript:void(0)"}/
+        .col-md-12
+          .col-md-12
+            %label Add your biography:
+            = f.text_area :biography, cols: '10', rows: '10', class: 'form-control'
+          .col-md-12
+            %label Add your education:
+            .col-md-12
+              %label Name of school:
+              = f.fields_for :educations do |f|
+                = f.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control'
+                %label Graduation Year:
+                = f.date_select :date
+        .row
+          .col-md-4
+            %img#image_preview.hide{:src => "javascript:void(0)"}
+        #photos
+          = render 'photos/list'
+        .row
+          .col-md-2
+            .form-group
+              = f.check_box :active
+              Active
+        .actions.pull-right
+          = f.submit 'Save', class: 'btn btn-primary'

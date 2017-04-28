@@ -1,0 +1,5 @@
+- unless resource.errors.empty?
+  :javascript
+    <haml_silent>     resource.errors.full_messages.each do |msg| 
+    </haml_silent><haml_block>      toastr.error('#{msg}')
+    </haml_block>

@@ -1,0 +1,49 @@
+.row.dashboard.panel.text-center
+  .col-md-3.borderright.task
+    %h3 1. List your practice
+    %p Submit your practice to the directory. Our approval team will review your application and notify you when it's live.
+    %i.fa.fa-check{"aria-hidden" => "true"}
+  .col-md-3.borderright.task
+    %h3 2. Raise your trustmeter
+    %p Our alongrithm ranks your profile based on a trust meter store. Follow these steps on how to get raise your score.
+    %a.btn.btn-default{:href => ""} Raise your score
+  .col-md-3.borderright.task
+    %h3 3. Connect your leads
+    %p Use our add-on tools to integrate your leads with your favorite lead management software. CRM, Email Marketing, Software...
+    %a.btn.btn-default{:href => ""} Connect Leads
+  .col-md-3.task
+    %h3 4. Upgrade your account
+    %p Want to be featured and increase your leads? Get your listing featured, earn more patients, all in a matter of minutes.
+    %a.btn.btn-default{:href => ""} Upgrade account
+.col-md-12.nopadding
+  .col-md-4.nopadding
+    .panel.task
+      %h2 Leads created
+      .col-md-6.nopadding
+        %a.btn.btn-block.btn-dark{:href => ""} All time
+      .col-md-6.nopadding
+        %a.btn.btn-block.btn-default{:href => ""} Last 30 days
+      %p.leads.text-center= current_user.reservations.count(:all)
+      %a.btn.btn-block.btn-default{:href => ""} See all appointments
+  .row.col-md-5
+    .col-md-12
+      .panel.task
+        %h3 Messages
+        - @conversations.each do |conversation|
+          - other = conversation.sender == current_user ? conversation.recipient : conversation.sender
+          = link_to conversation_messages_path(conversation) do
+            .col-md-2
+              = image_tag avatar_url(other)
+              %br/
+              = other.fullname
+            .col-md-8
+              = conversation.messages.last.content
+            .col-md-2.date
+              = conversation.messages.last.message_time
+  .col-md-3.nopadding.text-center
+    .panel.task
+      = image_tag avatar_url(current_user), class: 'img-circle dashimage'
+      %br/
+      %h4= current_user.fullname
+      %a.btn.btn-block{:href => ""} View Profile
+      %a.btn.btn-block{:href => ""} Edit Profile

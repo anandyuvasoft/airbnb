@@ -1,0 +1,71 @@
+/ Static navbar
+%nav.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'Doctors', root_path, class: 'navbar-brand'
+    #navbar.navbar-collapse.collapse
+      = form_tag search_path, class: 'nav navbar-nav navbar-form navbar-left', method: :get do
+        .form-group
+          = text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State', class: 'form-control'
+      %ul.nav.navbar-nav.navbar-right
+        - if(user_signed_in?)
+          / <li><haml_loud> link_to &#39;List My Practice&#39;, new_room_path </haml_loud></li>
+          %li= link_to 'List My Practice', room_steps_path
+          %li= link_to icon('envelope', 'Messages'), conversations_path
+          / <li><haml_loud> link_to icon(&#39;bell&#39;, &#39;Notifications&#39;), activities_path </haml_loud></li>
+          %li.nav-icon-btn.nav-icon-btn-danger.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#notifications"}
+              - count = notification.count
+              - if count > 0
+                %span.label= count
+              %i.nav-icon.fa.fa-bullhorn
+              %span.small-screen-text Notifications
+            .dropdown-menu.widget-notifications.no-padding{:style => "width: 300px"}
+              .slimScrollDiv{:style => "position: relative; overflow: hidden; width: auto;"}
+                #main-navbar-notifications.notifications-list{:style => "overflow: hidden; width: auto;"}
+                  - notification.first(10).each do |activity|
+                    .notification
+                      / <div class="notification-title text-danger">SYSTEM</div>
+                      .notification-description
+                        = render_activity activity
+                      .notification-ago= time_ago_in_words(activity.created_at)
+                      / <div class="notification-icon fa fa-hdd-o bg-danger"></div>
+                    / / .notification
+                .slimScrollBar{:style => "background: none repeat scroll 0% 0% rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 189.394px;"}
+                .slimScrollRail{:style => "width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: none repeat scroll 0% 0% rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"}
+              / / .notifications-list
+              %a.notifications-link{:href => "/activities"} MORE NOTIFICATIONS
+            / / .dropdown-menu
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = image_tag avatar_url(current_user), class: 'img-circle avatar-small'
+               
+              \#{current_user.fullname}
+              %span.caret
+            %ul.dropdown-menu
+              - if current_user.account_type == "doctor"
+                %li= link_to 'Dashboard', rooms_path
+                %li.divider{:role => "separator"}
+                %li= link_to 'My Listings', rooms_path
+                %li= link_to 'My Leads', your_reservations_path
+                %li= link_to 'My Reviews', your_reservations_path
+                %li.divider{:role => "separator"}
+                %li= link_to 'Edit Profile', edit_user_registration_path
+                %li= link_to 'Logout', destroy_user_session_path, method: :delete
+              - else
+                %li= link_to 'Dashboard', dashboard_path
+                %li= link_to 'Profile', user_path(current_user.id)
+                %li= link_to 'Appointments', your_trips_path
+                %li= link_to 'Reviews', your_trips_path
+                %li.divider{:role => "separator"}
+                %li= link_to 'Settings', edit_user_registration_path
+                %li= link_to 'Logout', destroy_user_session_path, method: :delete
+        - else
+          %li= link_to 'Sign In', new_user_session_path
+          %li= link_to 'Sign Up', new_user_registration_path
+    / /.nav-collapse

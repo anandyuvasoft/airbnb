@@ -48,3 +48,4 @@ gem 'faye-rails'
 gem 'public_activity'
 gem 'wicked'
 gem 'activeadmin'
+gem "haml-rails"

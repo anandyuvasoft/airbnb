@@ -11,15 +11,15 @@ def create
         business: 'ariefrizkyr-facilitator@gmail.com',
         cmd: '_xclick',
         upload: 1,
-        notify_url: 'http://5b7a64cd.ngrok.com/notify',
+        notify_url: 'http://e48c7fa9.ngrok.io/notify',
         amount: @purchase.price,
         description: @purchase.name,
         item_name: @purchase.room.listing_name,
         item_number: @purchase.id,
         quantity: 1,
-        return: 'http://5b7a64cd.ngrok.com/your-sales'
+        return: 'http://localhost:3000/'
       }
-
+      flash[:notice] = "Payment Successfully Completed."
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
     else
       redirect_to @purchase.room, alert: "Something went wrong!"
@@ -29,7 +29,9 @@ def create
  
 
     protect_from_forgery except: [:notify]
+ 
   def notify
+    byebug
     params.permit!
     status = params[:payment_status]
 

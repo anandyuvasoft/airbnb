@@ -1,0 +1,30 @@
+.row
+  .col-md-3
+    %ul.sidebar-list
+      %li.sidebar-item= link_to 'Edit Profile', edit_user_registration_path, class: 'sidebar-link active'
+    %br/
+    = link_to 'View My Profile', user_path(current_user.id), class: 'btn btn-default wide'
+  .col-md-9.text-center
+    .panel.panel-default
+      .panel-heading Your Profile
+      .panel-body
+        .container
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+            = render 'shared/devisemes'
+            .form-group
+              = f.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Full Name'
+            .form-group
+              = f.email_field :email, class: 'form-control', placeholder: 'Email'
+            .form-group
+              = f.text_field :phone_number, class: 'form-control', placeholder: 'Phone Number'
+            .form-group
+              = f.text_area :description, class: 'form-control', placeholder: 'Description', rows: 5, cols: 25
+            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+              %div
+                Currently waiting confirmation for: #{resource.unconfirmed_email}
+            .form-group
+              = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password (leave blank if you don't want to change it)"
+            .form-group
+              = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'
+            .actions
+              = f.submit "Update", class: 'btn btn-primary'

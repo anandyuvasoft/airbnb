@@ -1,0 +1,23 @@
+- if @reviews.count == 0
+  .text-center
+    %h4 There is no Review yet
+- else
+  - @reviews.order("id desc").each do |r|
+    %hr/
+    .row
+      .col-md-1
+        = image_tag avatar_url(r.user), class: "img-circle avatar-medium"
+      .col-md-11
+        %div
+          %strong
+            = r.user.fullname
+            %div{:id => "stars_#{r.id}"}
+          %span.pull-right
+            = link_to "Remove My Review", [@room, r], method: :delete, data: {confirm: "Are you sure?"} if current_user && current_user == r.user
+        %div= r.created_at.strftime("%v")
+        %div= r.comment
+    :javascript
+      $('#stars_#{r.id}').raty ({
+      	readOnly: true,
+      	score: #{r.star}
+      });
