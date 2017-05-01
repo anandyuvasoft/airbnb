@@ -22,20 +22,27 @@
 //= require_tree .
 
 
-function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-    $('#image_preview')
-      .attr('src', e.target.result)
-      .removeClass("hide")
-    };
-
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
 $(function(){
-	//$('#main-navbar-notifications').slimScroll({ height: 250 });
-});
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+      $('#image_preview')
+        .attr('src', e.target.result)
+        .removeClass("hide")
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+
+  //function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {center: {lat: -33.8688, lng: 151.2195},zoom: 13});
+  var input = document.getElementById('pac-input');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  //}
+
+})

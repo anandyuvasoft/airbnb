@@ -14,24 +14,27 @@ class Room < ActiveRecord::Base
   has_many :insurances
   has_many :languages
   has_many :educations
+  has_many :bookings
 
   accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos
 
   validates :listing_name, presence: true, length: {maximum: 50}
-  validates :city, presence: true
-  validates :state, presence: true
-  validates :zipcode, presence: true
-  validates :country, presence: true
+  #validates :city, presence: true
+  #validates :state, presence: true
+  #validates :zipcode, presence: true
+  #validates :country, presence: true
+  validates :address, presence: true
 
 
   after_update :send_notification_after_activated
   after_create :send_notification_after_create
   after_validation :geocode
   
-  scope :upgraded, -> { joins(:purchase).where('purchases.purchased_at <= ?', DateTime.now.to_date+30) }
+  scope :upgraded, -> { joins(:purchase).where('purchases.purchased_at <= ?', DateTime.now.to_date-30) }
 
   def full_street_address
-  [street, city, state, zipcode, country].compact.join(', ')
+    #[street, city, state, zipcode, country].compact.join(', ')
+    address
   end
 
   def average_rating
@@ -39,7 +42,7 @@ class Room < ActiveRecord::Base
   end
 
   def is_upgraded?
-    self.purchase.purchased_at.present? && (DateTime.now.to_date-self.purchase.purchased_at.to_date).to_i < 31
+    purchase && purchase.purchased_at.present? && (DateTime.now.to_date-self.purchase.purchased_at.to_date).to_i < 31
   end
   
   private

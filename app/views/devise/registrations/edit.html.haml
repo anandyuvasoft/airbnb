@@ -39,14 +39,27 @@
       - if params[:relative].eql? "true"    
           
         .panel.panel-default
-          .panel-heading Add Family Members
+          .panel-heading Add a Family Member
           .panel-body
             .container              
               = f.fields_for :relatives, f.object.relatives.build do |relative|
                 .form-group
                   = relative.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
                 .form-group
-                  = relative.text_field :relation, autofocus: true, class: 'form-control', placeholder: "What is your relation with #{current_user.fullname}?"                      
+                  = relative.text_field :relation, class: 'form-control', placeholder: "What is your relation with #{current_user.fullname}?"                      
+
+      - if params[:friend].eql? "true"    
+          
+        .panel.panel-default
+          .panel-heading Refer a Friend
+          .panel-body
+            .container              
+              = f.fields_for :friends, f.object.friends.build do |friend|
+                .form-group
+                  = friend.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
+                .form-group
+                  = friend.text_field :email, class: 'form-control', placeholder: 'Email'
+
 
 
       .actions

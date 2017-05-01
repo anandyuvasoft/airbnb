@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
   root 'pages#home'
-
+  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)  
 
 
@@ -54,5 +52,7 @@ Rails.application.routes.draw do
   resources :room_steps, only: [:show, :create, :update, :index]
   
   get '/family-members' => 'users#family_members'
+  get '/friends' => 'users#friends'
+  resources :bookings, only: [:create]
 
 end

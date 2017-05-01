@@ -1,0 +1,30 @@
+.panel.panel-default.docprofile
+  .panel-defaultpanel-body
+
+    .row.box
+      - if @room.is_upgraded?
+        .ribbon
+          %span Featured
+
+      .col-md-12
+        .col-md-8.nopadding
+
+          .col-md-3
+            .image-cropper
+              = image_tag @photos[0].image.url(), class: 'img-responsive rounded' if @photos.length > 0
+
+          .col-md-9
+            %h3
+              = @room.listing_name
+              , #{@room.degree}
+            %h6= @room.category
+            %h5
+              Practice: #{@room.practice}
+            %h4
+              Reviews
+              %span#average_rating
+              (#{@reviews.count})
+  
+        - if !@owner && user_booking.nil?
+          .col-md-4
+            = link_to 'Book An Appointment', bookings_path(room_id: @room.id), method: :post, class: 'btn btn-block btn-primary'

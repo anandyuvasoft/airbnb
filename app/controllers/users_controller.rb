@@ -9,4 +9,8 @@ class UsersController < ApplicationController
   	@relatives = current_user.relatives
   end
 
+  def friends
+  	@friends = current_user.friends
+  end
+
 end

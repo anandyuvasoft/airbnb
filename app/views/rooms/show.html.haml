@@ -1,0 +1,16 @@
+- @owner = (current_user == @room.user) ? true : false
+
+= render "card"
+= render "profile"
+= render "photos"
+= render "near_by"
+
+= render 'purchases/form_enterprise' if @owner && !@room.is_upgraded?
+
+  
+- content_for :javascript do 
+  :javascript
+    $('#average_rating').raty ({
+    readOnly: true,
+    score: #{@room.average_rating}
+    });

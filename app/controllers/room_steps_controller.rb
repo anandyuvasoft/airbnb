@@ -13,7 +13,7 @@ class RoomStepsController < ApplicationController
   	if @room.save
   		redirect_to wizard_path(:step_second, room_id: @room)
 		else
-			render_wizard
+			redirect_to wizard_path(:step_one, room_id: @room)
   	end
   end
 

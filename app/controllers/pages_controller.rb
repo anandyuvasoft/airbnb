@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
-
+  
+  skip_before_action :authenticate_user!
+  
   def home
     @rooms = Room.upgraded
   end
 
-    def dashboard
+  def dashboard
     @rooms = Room.all
     @users = User.all
     @conversations = Conversation.involving(current_user)
@@ -12,14 +14,15 @@ class PagesController < ApplicationController
 
 
   def search
-  	if params[:search].present? && params[:search].strip != ""
-  		session[:loc_search] = params[:search]
-  	end
+
+  	# if params[:search].present? && params[:search].strip != ""
+  	# 	session[:loc_search] = params[:search]
+  	# end
 
   	arrResult = Array.new
 
-  	if session[:loc_search] && session[:loc_search] != ""
-  		@rooms_address = Room.where(active: true).near(session[:loc_search], 200, order: 'distance')
+  	if params[:search].present?
+  		@rooms_address = Room.where(active: true).near(params[:search], 200, order: 'distance')
   	else
   		@rooms_address = Room.where(active: true).all
   	end

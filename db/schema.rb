@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428101256) do
+ActiveRecord::Schema.define(version: 20170429080429) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 20170428101256) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "room_id",    limit: 4
+    t.boolean  "status"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "bookings", ["room_id"], name: "index_bookings_on_room_id", using: :btree
+  add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
   create_table "conditions", force: :cascade do |t|
     t.integer  "room_id",    limit: 4
     t.string   "condition",  limit: 255
@@ -88,6 +99,19 @@ ActiveRecord::Schema.define(version: 20170428101256) do
   end
 
   add_index "educations", ["room_id"], name: "index_educations_on_room_id", using: :btree
+
+  create_table "friends", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "email",         limit: 255
+    t.string   "phone",         limit: 255
+    t.string   "date_of_birth", limit: 255
+    t.string   "age",           limit: 255
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "insurances", force: :cascade do |t|
     t.integer  "room_id",            limit: 4
@@ -277,8 +301,11 @@ ActiveRecord::Schema.define(version: 20170428101256) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bookings", "rooms"
+  add_foreign_key "bookings", "users"
   add_foreign_key "conditions", "rooms"
   add_foreign_key "educations", "rooms"
+  add_foreign_key "friends", "users"
   add_foreign_key "insurances", "rooms"
   add_foreign_key "languages", "rooms"
   add_foreign_key "messages", "conversations"

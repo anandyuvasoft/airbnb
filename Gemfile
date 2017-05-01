@@ -34,6 +34,8 @@ gem 'ransack'
 
 group :development, :test do
   gem 'byebug'
+  gem 'capistrano'
+  gem 'capistrano-rails'
 end
 
 group :development do
@@ -51,4 +53,8 @@ gem 'activeadmin'
 gem "haml-rails"
 gem 'simple_form'
 gem 'whenever', :require => false
+gem 'omniauth-google-oauth2'
+gem 'omniauth-linkedin'
+#gem 'completeness-fu'
+gem "hubspot-ruby"
 #gem "squeel"

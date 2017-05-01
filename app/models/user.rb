@@ -1,6 +1,12 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  # define_completeness_scoring do
+  #   check :fullname,lambda { |per| per.fullname.present? }, :high
+  # end
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
@@ -12,8 +18,10 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :purchases
   has_many :relatives
+  has_many :friends
+  has_many :bookings
 
-  accepts_nested_attributes_for :relatives, :allow_destroy => true
+  accepts_nested_attributes_for :relatives, :friends,  :allow_destroy => true
 
   def self.from_omniauth(auth)
     user = User.where(:email => auth.info.email).first

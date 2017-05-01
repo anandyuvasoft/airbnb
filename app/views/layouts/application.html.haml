@@ -5,6 +5,7 @@
     %title Doctor
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyAnbnFGkkvozqfxTK5UULGNQE0P60YAv64&libraries=places"
     %link{:href => "//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css", :rel => "stylesheet"}/
     = csrf_meta_tags
     %link{:href => "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700", :rel => "stylesheet"}/
@@ -12,4 +13,8 @@
     = render 'shared/navbar'
     = render 'shared/message'
     .container
+      #map
       = yield
+    = render "shared/hubspot"      
+    = yield :javascript
+    
