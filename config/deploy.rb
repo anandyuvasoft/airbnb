@@ -12,7 +12,7 @@ set :scm, "git"
 set :repository, "git://github.com/edigitalbros/airbnb.git"
 set :branch, "master"
 
-namespace :deploy do
+ namespace :deploy do
   desc "Tell Passenger to restart the app."
   task :restart do
     run "touch #{current_path}/tmp/restart.txt"
