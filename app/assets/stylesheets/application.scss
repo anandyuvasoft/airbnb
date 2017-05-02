@@ -5,27 +5,18 @@
 @import "font-awesome";
 @import "notifications_box";
 @import "ribbon";
+@import "bootstrap_override";
+@import "common";
 
-body {
+
+/*body {
   color: #565a5c;
   background-color: #f8f8f8;
-}
+}*/
 
-.container {
-  width: 80%;
-}
 
-.navbar-default {
-  background-color: #fff;
 
-  .navbar-brand {
-    color: #0068DD;
-    font-size: 2em;
-    font-weight: 400;
-  }
-}
-
-.btn-primary.btn {
+/*.btn-primary.btn {
   border: 1px solid #0068DD;
   border-radius: 2px;
   font-weight: bold;
@@ -44,19 +35,19 @@ body {
     background-color: #e00007;
     outline: none;
   }
-}
+}*/
 
 .wide {
   width: 100%;
 }
 
-.btn-default.btn {
+/*.btn-default.btn {
   border-radius: 2px;
       background-color: #eaf0f6;
     border-color: #cbd6e2;
     color: #506e91;
     font-weight:400;font-size:13px;
-}
+}*/
 
 .panel-default {
   .panel-heading {
@@ -179,7 +170,7 @@ input[type="checkbox"] {
   }
 }
 
-.btn-file {
+/*.btn-file {
   position: relative;
   overflow: hidden;
 
@@ -198,7 +189,7 @@ input[type="checkbox"] {
     cursor: inherit;
     display: block;
   }
-}
+}*/
 
 .panel-heading.preview {
   padding: 0;
@@ -279,11 +270,13 @@ input[type="checkbox"] {
 .nopadding{
   padding:0;
 }
-.navbar-nav > li > a {
+
+/*.navbar-nav > li > a {
     padding-top: 20px;
     padding-bottom: 20px;
     border-top: 4px solid white;
-}
+}*/
+
 img.img-circle.avatar-small {
     margin-top: -5px;
     border: 1px solid #eaeaea;

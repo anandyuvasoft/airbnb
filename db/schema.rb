@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429080429) do
+ActiveRecord::Schema.define(version: 20170502122024) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -101,16 +101,18 @@ ActiveRecord::Schema.define(version: 20170429080429) do
   add_index "educations", ["room_id"], name: "index_educations_on_room_id", using: :btree
 
   create_table "friends", force: :cascade do |t|
-    t.string   "name",          limit: 255
-    t.string   "email",         limit: 255
-    t.string   "phone",         limit: 255
-    t.string   "date_of_birth", limit: 255
-    t.string   "age",           limit: 255
-    t.integer  "user_id",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "fullname",     limit: 255
+    t.string   "email",        limit: 255
+    t.string   "phone_number", limit: 255
+    t.datetime "birthday"
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "booking_id",   limit: 4
+    t.string   "gender",       limit: 255
   end
 
+  add_index "friends", ["booking_id"], name: "index_friends_on_booking_id", using: :btree
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "insurances", force: :cascade do |t|
@@ -294,7 +296,9 @@ ActiveRecord::Schema.define(version: 20170429080429) do
     t.string   "image",                  limit: 255
     t.string   "phone_number",           limit: 255
     t.text     "description",            limit: 65535
-    t.string   "account_type",           limit: 255
+    t.string   "gender",                 limit: 255
+    t.datetime "birthday"
+    t.string   "type",                   limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
@@ -305,6 +309,7 @@ ActiveRecord::Schema.define(version: 20170429080429) do
   add_foreign_key "bookings", "users"
   add_foreign_key "conditions", "rooms"
   add_foreign_key "educations", "rooms"
+  add_foreign_key "friends", "bookings"
   add_foreign_key "friends", "users"
   add_foreign_key "insurances", "rooms"
   add_foreign_key "languages", "rooms"

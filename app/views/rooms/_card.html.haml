@@ -25,6 +25,6 @@
               %span#average_rating
               (#{@reviews.count})
   
-        - if !@owner && user_booking.nil?
+        - unless @owner
           .col-md-4
-            = link_to 'Book An Appointment', bookings_path(room_id: @room.id), method: :post, class: 'btn btn-block btn-primary'
+            = link_to 'Book An Appointment', booking_steps_path(room_id: @room.id), class: 'btn btn-block btn-primary'

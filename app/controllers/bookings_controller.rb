@@ -1,9 +1,27 @@
 class BookingsController < ApplicationController
 
   def create
-  	booking = current_user.bookings.create(room_id: params[:room_id])
-  	flash[:notice] = "Appointment Booked Successfully!"
-  	redirect_to booking.room
+    booking = current_user.bookings.create(room_id: params[:room_id])
+
+    if params[:booking].present?
+      booking.update_attributes(booking_params)
+    else
+      current_user.update_attributes(user_params)
+    end
+
+    flash[:notice] = "Appointment Booked Successfully!"
+    redirect_to booking.room
   end
   
+
+  private
+
+  def booking_params
+    params.require(:booking).permit(friends_attributes: [:fullname, :email, :birthday, :gender])
+  end
+
+  def user_params
+    params.require(:user).permit(:fullname, :email, :gender, :birthday)
+  end
+
 end

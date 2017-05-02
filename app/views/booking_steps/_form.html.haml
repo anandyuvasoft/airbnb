@@ -1,0 +1,25 @@
+.form-group
+  = object.label :fullname, 'Full name'
+  = object.text_field :fullname, autofocus: true, class: 'form-control'
+.form-group
+  = object.label :email, 'Email'
+  = object.text_field :email, autofocus: true, class: 'form-control'
+.form-group
+  = object.label :gender, 'Gender', class: 'control-label'
+  .radio
+    %label
+      = object.radio_button :gender, 'male', :checked => true
+      Male
+  .radio
+    %label
+      = object.radio_button :gender, 'female', :checked => true
+      Female
+
+.form-group
+  = object.label :birthday, 'Date of Birth'
+  %br
+  = object.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true, class: 'col-md-3 mr-50'}
+  .clearfix
+
+.actions
+  = object.submit "Book appointment", class: 'btn btn-primary'  

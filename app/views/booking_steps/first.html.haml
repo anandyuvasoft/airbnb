@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-md-8
+      %h2.mb-30 
+        Review and book
+
+      %h5
+        %strong Who will be seeing the doctor? 
+
+      %ul
+        %li  
+          = link_to booking_step_path(:second, refer:false, room_id: @room.id) do
+            %p
+              = current_user.fullname.try(:capitalize)
+              (Me)
+        %li
+          = link_to booking_step_path(:second, refer:true, room_id: @room.id) do
+            %p Some one else
+
+    .col-md-4
