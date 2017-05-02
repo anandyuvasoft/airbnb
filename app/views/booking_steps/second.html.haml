@@ -1,0 +1,17 @@
+.container
+  .row
+ 
+    - if params["refer"]=='true'
+
+      %h2 Patient's details
+      = form_for Booking.new, url: bookings_path, method: :post do |booking|
+        = hidden_field_tag :room_id, @room.id
+        = booking.fields_for :friends, booking.object.friends.build do |friend|
+          = render "form", object:  friend
+
+    - if params["refer"]=='false'
+
+      %h2 Update Your Profile
+      = form_for current_user, url: bookings_path, method: :post do |user|
+        = hidden_field_tag :room_id, @room.id
+        = render "form" , object: user    

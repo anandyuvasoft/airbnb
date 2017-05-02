@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   validates :fullname, presence: true, length: {maximum: 50}
 
+  validates_presence_of :email
+
   has_many :rooms
   has_many :reservations
   has_many :reviews
@@ -36,6 +38,8 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.image = auth.info.image
         user.password = Devise.friendly_token[0,20]
+        user.date_of_birth = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
+        user.gender = auth.extra.raw_info.gender
       end
     end
   end

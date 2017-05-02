@@ -54,5 +54,8 @@ Rails.application.routes.draw do
   get '/family-members' => 'users#family_members'
   get '/friends' => 'users#friends'
   resources :bookings, only: [:create]
-
+  get '/rooms/:room_id/booking' => "bookings#step_first"
+  get '/sample' => "pages#sample"
+  resources :booking_steps
+  
 end

@@ -6,6 +6,8 @@ class PagesController < ApplicationController
     @rooms = Room.upgraded
   end
 
+  def sample;end
+
   def dashboard
     @rooms = Room.all
     @users = User.all
