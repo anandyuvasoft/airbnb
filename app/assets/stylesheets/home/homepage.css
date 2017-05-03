@@ -2544,12 +2544,12 @@ h2{
 	display:list-item
 }
 }
-@font-face {
+/*@font-face {
 	font-family:alegreya;
 	font-style:italic;
 	font-weight:900;
 	src:url(/assets/alegreya.c6f3bcbfc353.woff2) format("woff2"), url(/assets/alegreya.18e0c3921ad6.woff) format("woff"), url(/assets/alegreya.614ad8e76b61.ttf) format("truetype")
-}
+}*/
 @media (max-width:767px) {
 .demandbase-popup .modal-body .btn {
 	min-width:225px

@@ -13,4 +13,9 @@ class UsersController < ApplicationController
   	@friends = current_user.friends
   end
 
+  def remove_relative
+    relative = Relative.find(params[:id])
+    relative.destroy
+  end
+
 end

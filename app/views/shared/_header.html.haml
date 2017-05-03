@@ -55,15 +55,18 @@
                 %a.font-gotham-bold{:href => "javascript:void(0)"}
                   %strong Browse Hiring Resources
 
-
         %ul.user-links.list-inline.pull-right
-          %li
-            %a#signup.header-link-signup.text-uppercase{:href => "/sign-up"} Sign up
-          %li
-            %a.header-link-login.text-uppercase{:href => "/sign-in"} Login
-          %li
-            %a.btn.btn-default.header-cta-feh{:href => "/room_steps"}
-              List Your Practice
+          - if user_signed_in?          
+            %li
+              = link_to 'sign out', destroy_user_session_path, method: :delete, class: 'header-link-signup text-uppercase', id: 'signout'
+          - else
+            %li
+              %a#signup.header-link-signup.text-uppercase{:href => "/sign-up"} Sign up
+            %li
+              %a.header-link-login.text-uppercase{:href => "/sign-in"} Login
+            %li
+              %a.btn.btn-default.header-cta-feh{:href => "/room_steps"}
+                List Your Practice                        
 
 
 

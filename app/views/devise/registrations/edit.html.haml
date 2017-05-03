@@ -36,31 +36,13 @@
               .form-group
                 = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'
 
-      - if params[:relative].eql? "true"    
-          
-        .panel.panel-default
-          .panel-heading Add a Family Member
-          .panel-body
-            .container              
-              = f.fields_for :relatives, f.object.relatives.build do |relative|
-                .form-group
-                  = relative.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
-                .form-group
-                  = relative.text_field :relation, class: 'form-control', placeholder: "What is your relation with #{current_user.fullname}?"                      
 
-      - if params[:friend].eql? "true"    
+        = render 'edit_relative', f:f #if params[:relative].eql? "true"
+
+        = render 'edit_friends', f:f if params[:friend].eql? "true"
           
-        .panel.panel-default
-          .panel-heading Refer a Friend
-          .panel-body
-            .container              
-              = f.fields_for :friends, f.object.friends.build do |friend|
-                .form-group
-                  = friend.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
-                .form-group
-                  = friend.text_field :email, class: 'form-control', placeholder: 'Email'
-                .form-group
-                  = friend.date_select :date_of_birth
+          
+
 
       .actions
         = f.submit "Update", class: 'btn btn-primary'
