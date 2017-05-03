@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   end
 
   def remove_relative
+    @relative_id = params[:id]
     relative = Relative.find(params[:id])
     relative.destroy
   end

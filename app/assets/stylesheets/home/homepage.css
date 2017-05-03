@@ -796,10 +796,13 @@ input[type=checkbox].ng-dirty.ng-invalid+em {
 	color:#d50000!important;
 	border-color:#d50000!important
 }
+
+/* checkbox not coming on sign in page
 input[type=checkbox], input[type=radio] {
 	left:-999em;
 	position:absolute
-}
+}*/
+
 input[type=checkbox]+em, input[type=radio]+em {
 	display:inline-block;
 	height:18px;

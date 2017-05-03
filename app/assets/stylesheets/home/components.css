@@ -4733,10 +4733,11 @@ textarea.form-control {
 	min-height:50px;
 	max-height:600px
 }
-input[type="radio"], input[type="checkbox"] {
+
+/*input[type="radio"], input[type="checkbox"] {
 	left:-999em;
 	position:absolute
-}
+}*/
 .radio-inline, .checkbox-inline {
 	margin-top:10px
 }
@@ -5635,6 +5636,7 @@ color:#333
 	color:#e0e0e0;
 	padding-top:55px;
 	padding-bottom:64px;
+	border:1px solid #e0e0e0;
 }
 .page-footer p {
 	font-size:12px;
