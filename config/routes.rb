@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :bookings, only: [:create]
   get '/rooms/:room_id/booking' => "bookings#step_first"
   get '/sample' => "pages#sample"
+  get '/test' => "pages#test"
   resources :booking_steps
   
 end
