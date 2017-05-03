@@ -431,12 +431,6 @@ display:none;
 	margin-right:15px
 }
 }
-@font-face {
-	font-family:alegreya;
-	font-style:italic;
-	font-weight:900;
-	src:url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.c6f3bcbfc353.woff2) format("woff2"), url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.18e0c3921ad6.woff) format("woff"), url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.614ad8e76b61.ttf) format("truetype")
-}
 .__hero-section.__mod-bg-desk {
 	background:url(//www.upwork.com/static/marketing/adquiro-webpack/images/bg-desk.b7e07a405333.jpg) no-repeat center 58%;
 	background-size:cover
@@ -1425,12 +1419,6 @@ color:#7d7d7d
 .video-element .gallery-overlay {
 	background-size:50px 50px
 }
-}
-@font-face {
-	font-family:alegreya;
-	font-style:italic;
-	font-weight:900;
-	src:url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.c6f3bcbfc353.woff2) format("woff2"), url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.18e0c3921ad6.woff) format("woff"), url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.614ad8e76b61.ttf) format("truetype")
 }
 .ash-bg {
 	background-color:#f2f2f2;
@@ -2560,7 +2548,7 @@ h2{
 	font-family:alegreya;
 	font-style:italic;
 	font-weight:900;
-	src:url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.c6f3bcbfc353.woff2) format("woff2"), url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.18e0c3921ad6.woff) format("woff"), url(//www.upwork.com/static/marketing/adquiro-webpack/fonts/alegreya.614ad8e76b61.ttf) format("truetype")
+	src:url(/assets/alegreya.c6f3bcbfc353.woff2) format("woff2"), url(/assets/alegreya.18e0c3921ad6.woff) format("woff"), url(/assets/alegreya.614ad8e76b61.ttf) format("truetype")
 }
 @media (max-width:767px) {
 .demandbase-popup .modal-body .btn {
