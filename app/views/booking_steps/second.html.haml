@@ -1,7 +1,7 @@
 .container
   .row
  
-    - if params["refer"]=='true'
+    - if params["refer"].eql? 'true'
 
       %h2 Patient's details
       = form_for Booking.new, url: bookings_path, method: :post do |booking|
@@ -9,7 +9,7 @@
         = booking.fields_for :friends, booking.object.friends.build do |friend|
           = render "form", object:  friend
 
-    - if params["refer"]=='false'
+    - if params["refer"].eql? 'false'
 
       %h2 Update Your Profile
       = form_for current_user, url: bookings_path, method: :post do |user|

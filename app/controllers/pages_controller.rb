@@ -8,6 +8,8 @@ class PagesController < ApplicationController
 
   def sample;end
 
+  def test;end
+
   def dashboard
     @rooms = Room.all
     @users = User.all

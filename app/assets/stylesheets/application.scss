@@ -7,6 +7,11 @@
 @import "ribbon";
 @import "bootstrap_override";
 @import "common";
+@import "home/homepage";
+@import "home/components";
+@import "home/font-awesome.min";
+@import "home/fonts-base";
+@import "home/fonts-async";
 
 
 /*body {
@@ -298,9 +303,10 @@ h1, .h1, h2, .h2, h3, .h3 {
     padding: 0;
 }
 
-.col-md-4 img {
+/*.col-md-4 img {
     width: 100%;
-}
+}*/
+
 .image-cropper {
     width: 110px;
     height: 110px;

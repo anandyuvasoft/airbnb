@@ -1,0 +1,30 @@
+.panel.panel-default
+  .panel-heading Add a Family Member
+  .panel-body
+    .container              
+      = f.fields_for :relatives, f.object.relatives.build do |relative|
+        .form-group
+          = relative.label :name, 'Full Name'
+          = relative.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
+        .form-group
+          = relative.label :relation, 'Relation'
+          = relative.text_field :relation, class: 'form-control', placeholder: "What is your relation with #{current_user.fullname}?" 
+        .form-group
+          = relative.label :email, 'Email'
+          = relative.text_field :email, autofocus: true, class: 'form-control'
+        .form-group
+          = relative.label :gender, 'Gender', class: 'control-label'
+          .radio
+            %label
+              = relative.radio_button :gender, 'male', :checked => true
+              Male
+          .radio
+            %label
+              = relative.radio_button :gender, 'female', :checked => true
+              Female
+
+        .form-group
+          = relative.label :date_of_birth, 'Date of Birth'
+          %br
+          = relative.date_select :date_of_birth, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
+          .clearfix          

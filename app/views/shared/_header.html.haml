@@ -1,55 +1,204 @@
-%nav.navbar.navbar-default.navbar-static-top
-
+%header.header-navbar.__mod-.ng-scope{:role => "banner"}
   .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to 'Doctors', root_path, class: 'navbar-brand'
 
-    #navbar.navbar-collapse.collapse
-      = form_tag search_path, class: 'nav navbar-nav navbar-form navbar-left', method: :get do
-        .form-group
-          = text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State', class: 'form-control'
+    %a.logo{:href => "/"}
+      %img{:alt => "Upwork", :src => "assets/home/gotdoc-logo.png", :width => "106"}/
 
 
-      %ul.nav.navbar-nav.navbar-right
+    .search.visible-md.visible-lg.ng-scope{"data-ng-controller" => "uiSearchController"}
+      %form.ng-pristine.ng-valid.ng-isolate-scope.ng-valid-maxlength{:action => "/o/profiles/browse/", :method => "get", "ng-action" => "action", "ng-init" => "context = 'client'", "ng-submit" => "search()", :role => "search"}
+        .input-group
+          .dropdown{"ng-class" => "{active: isOpen}"}
+            %input#search-freelancers.ng-pristine.ng-untouched.ng-valid.ng-not-empty{:name => "5", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "client"}/
+            %label{:for => "search-freelancers", "ng-click" => "context = 'client'"} Doctor
+            %input#search-jobs.ng-pristine.ng-untouched.ng-valid.ng-not-empty{:name => "6", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "freelancer"}/
+            %label{:for => "search-jobs", "ng-click" => "context = 'freelancer'"} Dentist
+          %span.button{"ng-click" => "toggleDropDown()"}
+          %input#q.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope.ng-empty.ng-valid-maxlength{:autocomplete => "off", "eo-focus" => "focus", :maxlength => "100", :name => "q", "ng-model" => "query", "ng-placeholder" => "placeholder", :placeholder => "Find Doctors", :type => "text"}/
 
-        - if user_signed_in?
+    .visible-md.visible-lg.desktop-navbar
+      %nav.nav.font-gotham-medium
+        %ul.site-links.list-inline.pull-left
+          %li.ng-isolate-scope{"ui-sub-menu" => ""}
+            %a.text-uppercase{"ng-click" => "toggle()", "ng-transclude" => "", "ui-menu-active" => ""}
+              %span.ng-scope.hidden Browse
+            %ul.sub-menu.list-unstyled.font-gotham-book
+              %li.tile.active
+                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
+                  %strong.ng-scope Browse Categories
+                %ul.list-unstyled
+                  %li
+                    %a{:href => "javascript:void(0)"}
+                      Web Developers
+              %li.tile
+                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
+                  %strong.ng-scope Browse Freelancers
+                %ul.list-unstyled
+                  %li
+                    %a{:href => "javascript:void(0)"}
+                      Web, Mobile & Software Dev
+              %li.tile
+                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
+                  %strong.ng-scope Browse Jobs
+                %ul.list-unstyled
+                  %li
+                    %a{:href => "javascript:void(0)"} Web, Mobile & Software Dev
+                  %li
+                    %a{:href => "javascript:void(0)"} IT & Networking
+              %li.tile
+                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
+                  %strong.ng-scope Trending Skills
+                %ul.list-unstyled
+                  %li
+                    %a{:href => "javascript:void(0)"} Android Developers
+              %li
+                %a.font-gotham-bold{:href => "javascript:void(0)"}
+                  %strong Browse Hiring Resources
 
-          %li= link_to 'List My Practice', room_steps_path
-          %li= link_to icon('envelope', 'Messages'), conversations_path
-          %li.nav-icon-btn.nav-icon-btn-danger.dropdown
-            = render "shared/notifications"
+        %ul.user-links.list-inline.pull-right
+          - if user_signed_in?          
+            %li
+              = link_to 'sign out', destroy_user_session_path, method: :delete, class: 'header-link-signup text-uppercase', id: 'signout'
+          - else
+            %li
+              %a#signup.header-link-signup.text-uppercase{:href => "/sign-up"} Sign up
+            %li
+              %a.header-link-login.text-uppercase{:href => "/sign-in"} Login
+            %li
+              %a.btn.btn-default.header-cta-feh{:href => "/room_steps"}
+                List Your Practice                        
 
 
-          %li.dropdown
-            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "javascript:void(0)", :role => "button"}
-              = image_tag avatar_url(current_user), class: 'img-circle avatar-small'
-              = current_user.fullname
-              %span.caret
 
-            %ul.dropdown-menu
-              - if doctor_logged_in?
-                %li= link_to 'Dashboard', rooms_path
-                %li.divider{:role => "separator"}
-                %li= link_to 'My Listings', rooms_path
-                %li= link_to 'My Leads', your_reservations_path
-                %li= link_to 'My Reviews', your_reservations_path
-                %li.divider{:role => "separator"}
-              - else
-                %li= link_to 'Dashboard', dashboard_path
-                %li= link_to 'Profile', user_path(current_user.id)
-                %li= link_to 'Appointments', your_trips_path
-                %li= link_to 'Reviews', your_trips_path
+    %a.right-off-canvas-toggle.menu-icon.pull-right{"aria-expanded" => "false", "ui-off-canvas-toggle" => ""}
+      %span
+  .hidden-md.hidden-lg.mobile-navbar
+    %aside.right-off-canvas-menu
+      %header
+        %a.btn.btn-primary{:href => "javascript:void(0)"} List Your Practice
+        .close.pull-right
+          %a.exit-off-canvas{"ui-off-canvas-hide" => ""} ×
+      %nav{:role => "navigation"}
+        %ul.list-unstyled.font-gotham-medium
+          %li
+            %a{:href => "/"} HOME
+          %li.with-submenu.ng-isolate-scope{"ui-expand-list" => ""}
+            %span.ng-scope{"ng-click" => "toggleExpand()"} BROWSE CATEGORIES
+            %ul.font-gotham-book.ng-scope
+              %li
+                %a{:href => "javascript:void(0)"}
+                  Web Developers
+              %li
+                %a{:href => "/i/freelancer-categories/"} View All Categories
+          %li
+            %a{:href => "javascript:void(0)"} HOW IT WORKS
+          %li
+            %a{:href => "javascript:void(0)"} BECOME A FREELANCER
+          %li.with-submenu.ng-isolate-scope{"ui-expand-list" => ""}
+            %span.ng-scope{"ng-click" => "toggleExpand()"} ABOUT US
+            %ul.font-gotham-book.ng-scope
+              %li
+                %a{:href => "javascript:void(0)"} About Us
+              %li
+                %a{:href => "javascript:void(0)"} Careers
+              %li
+                %a{:href => "javascript:void(0)"} Team
+              %li
+                %a{:href => "javascript:void(0)"} Board of Directors
+              %li
+                %a{:href => "javascript:void(0)"} Press
+              %li
+                %a{:href => "javascript:void(0)"} Contact Us
+          %li
+            %a.header-link-signup{:href => "javascript:void(0)"}
+              SIGN UP
+          %li
+            %a.header-link-login{:href => "/login"} LOGIN
+      .search
+        .input-group
+          .dropdown{"ng-class" => "{active: isOpen}"}
+            %input#search-freelancers.ng-pristine.ng-untouched.ng-valid.ng-empty{:name => "20", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "client"}/
+            %label{:for => "search-freelancers", "ng-click" => "context = 'client'"} Doctor
+            %input#search-jobs.ng-pristine.ng-untouched.ng-valid.ng-empty{:name => "21", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "freelancer"}/
+            %label{:for => "search-jobs", "ng-click" => "context = 'freelancer'"} Dentist
+          %span.button{"ng-click" => "toggleDropDown()"}
+          %input.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope.ng-empty.ng-valid-maxlength{:autocomplete => "off", :maxlength => "100", :name => "q", "ng-model" => "query", "ng-placeholder" => "placeholder", :placeholder => "undefined", "set-focus" => "focus", :type => "text"}/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ %nav.navbar.navbar-default.navbar-static-top
+
+/   .container
+/     .navbar-header
+/       %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+/         %span.sr-only Toggle navigation
+/         %span.icon-bar
+/         %span.icon-bar
+/         %span.icon-bar
+/       = link_to 'Doctors', root_path, class: 'navbar-brand'
+
+/     #navbar.navbar-collapse.collapse
+/       = form_tag search_path, class: 'nav navbar-nav navbar-form navbar-left', method: :get do
+/         .form-group
+/           = text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State', class: 'form-control'
+
+
+/       %ul.nav.navbar-nav.navbar-right
+
+/         - if user_signed_in?
+
+/           %li= link_to 'List My Practice', room_steps_path
+/           %li= link_to icon('envelope', 'Messages'), conversations_path
+/           %li.nav-icon-btn.nav-icon-btn-danger.dropdown
+/             = render "shared/notifications"
+
+
+/           %li.dropdown
+/             %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "javascript:void(0)", :role => "button"}
+/               = image_tag avatar_url(current_user), class: 'img-circle avatar-small'
+/               = current_user.fullname
+/               %span.caret
+
+/             %ul.dropdown-menu
+/               - if doctor_logged_in?
+/                 %li= link_to 'Dashboard', rooms_path
+/                 %li.divider{:role => "separator"}
+/                 %li= link_to 'My Listings', rooms_path
+/                 %li= link_to 'My Leads', your_reservations_path
+/                 %li= link_to 'My Reviews', your_reservations_path
+/                 %li.divider{:role => "separator"}
+/               - else
+/                 %li= link_to 'Dashboard', dashboard_path
+/                 %li= link_to 'Profile', user_path(current_user.id)
+/                 %li= link_to 'Appointments', your_trips_path
+/                 %li= link_to 'Reviews', your_trips_path
                 
-              %li.divider{:role => "separator"}
-              %li= link_to 'Edit Profile', edit_user_registration_path(personal: true)
-              %li= link_to 'Logout', destroy_user_session_path, method: :delete
+/               %li.divider{:role => "separator"}
+/               %li= link_to 'Edit Profile', edit_user_registration_path(personal: true)
+/               %li= link_to 'Logout', destroy_user_session_path, method: :delete
         
-        - else
-          %li= link_to 'Sign In', new_user_session_path
-          %li= link_to 'Sign Up', new_user_registration_path
+/         - else
+/           %li= link_to 'Sign In', new_user_session_path
+/           %li= link_to 'Sign Up', new_user_registration_path
 

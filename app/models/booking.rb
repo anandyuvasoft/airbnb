@@ -5,5 +5,5 @@ class Booking < ActiveRecord::Base
   has_many	:friends #referes
 
   accepts_nested_attributes_for :friends, :friends,  :allow_destroy => true
-
+  
 end

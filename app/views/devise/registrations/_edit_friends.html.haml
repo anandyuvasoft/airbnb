@@ -1,0 +1,11 @@
+.panel.panel-default
+  .panel-heading Refer a Friend
+  .panel-body
+    .container              
+      = f.fields_for :friends, f.object.friends.build do |friend|
+        .form-group
+          = friend.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
+        .form-group
+          = friend.text_field :email, class: 'form-control', placeholder: 'Email'
+        .form-group
+          = friend.date_select :date_of_birth

@@ -7,7 +7,7 @@
         Family Members (#{@relatives.size})
       .row
         - @relatives.each do |relative|
-          .col-md-4
+          .col-md-4{id: "relative_#{relative.id}"}
             .panel.panel-default
               .panel-heading.preview
                 = image_tag("/assets/relative.jpg")
@@ -15,6 +15,8 @@
                 %strong= relative.name.titleize
                 %br
                 = relative.relation.titleize
+                %br
+                = link_to 'Delete',"/relative/#{relative.id}", method: :delete, remote: true
     - else
       %h4.text-center 
         There is no family members yet.

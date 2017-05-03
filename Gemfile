@@ -55,5 +55,5 @@ gem 'simple_form'
 gem 'whenever', :require => false
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
-#gem 'completeness-fu'
+gem 'zapier_ruby'
 gem "hubspot-ruby"

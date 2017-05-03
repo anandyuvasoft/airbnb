@@ -25,6 +25,13 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :relatives, :friends,  :allow_destroy => true
 
+  after_create :entries
+
+  def entries
+    ZapierRuby::Zapper.new(:hook_to_excel).zap({fullname:fullname, email: email})
+  end
+
+
   def self.from_omniauth(auth)
     user = User.where(:email => auth.info.email).first
 
