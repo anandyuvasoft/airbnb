@@ -1,50 +1,58 @@
-.row
+.container
 
-  .col-md-3
-    %ul.sidebar-list
-      %li.sidebar-item= link_to 'Edit Profile', edit_user_registration_path, class: 'sidebar-link active'
-    %br
+  .my-50
 
-    = link_to 'View My Profile', user_path(current_user.id), class: 'btn btn-default wide'
+    .row
 
+      .col-md-3
+        %ul.sidebar-list
+          %li.sidebar-item= link_to 'Edit profile', edit_user_registration_path, class: 'sidebar-link active'
+        %br
 
-  .col-md-9.text-center
-
-    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-
-      = render 'shared/devisemes'
-
-      - if params[:personal].eql?("true")
-       
-        .panel.panel-default
-          .panel-heading Your Profile
-          .panel-body
-            .container
-              .form-group
-                = f.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Full Name'
-              .form-group
-                = f.email_field :email, class: 'form-control', placeholder: 'Email'
-              .form-group
-                = f.text_field :phone_number, class: 'form-control', placeholder: 'Phone Number'
-              .form-group
-                = f.text_area :description, class: 'form-control', placeholder: 'Description', rows: 5, cols: 25
-              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-                %div
-                  Currently waiting confirmation for: #{resource.unconfirmed_email}
-              .form-group
-                = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password (leave blank if you don't want to change it)"
-              .form-group
-                = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'
+        = link_to 'View my profile', user_path(current_user.id), class: 'btn btn-default wide'
 
 
-        = render 'edit_relative', f:f #if params[:relative].eql? "true"
+      .col-md-9
 
-        = render 'edit_friends', f:f if params[:friend].eql? "true"
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |user|
+
           
-          
+          = render 'shared/devisemes'
+
+          - if params[:personal].eql?("true")
+           
+            .panel.panel-default
+              .panel-heading Update profile
+              .panel-body
+                .container
+
+                  = hidden_field_tag :personal, true
+                  .form-group
+                    = user.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Full Name'
+                  .form-group
+                    = user.email_field :email, class: 'form-control', placeholder: 'Email'
+                  .form-group
+                    = user.text_field :phone_number, class: 'form-control', placeholder: 'Phone Number'
+                  .form-group
+                    = user.text_area :description, class: 'form-control', placeholder: 'Description', rows: 5, cols: 25
+                  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                    %div
+                      Currently waiting confirmation for: #{resource.unconfirmed_email}
+                  -#.form-group
+                    = user.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password (leave blank if you don't want to change it)"
+                  -#.form-group
+                    = user.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'
+
+          - if params[:relative].eql? "true"
+            = render 'edit_relative', user:user 
+
+          - if params[:friend].eql? "true"
+            = render 'edit_friends', user:user 
+              
+              
 
 
-      .actions
-        = f.submit "Update", class: 'btn btn-primary'
+          .actions
+            = user.submit "Update", class: 'btn btn-primary'
 
 

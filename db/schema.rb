@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502122024) do
+ActiveRecord::Schema.define(version: 20170504122225) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -74,6 +74,12 @@ ActiveRecord::Schema.define(version: 20170502122024) do
   add_index "bookings", ["room_id"], name: "index_bookings_on_room_id", using: :btree
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "conditions", force: :cascade do |t|
     t.integer  "room_id",    limit: 4
     t.string   "condition",  limit: 255
@@ -86,6 +92,12 @@ ActiveRecord::Schema.define(version: 20170502122024) do
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",    limit: 4
     t.integer  "recipient_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "degrees", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -191,16 +203,15 @@ ActiveRecord::Schema.define(version: 20170502122024) do
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
 
   create_table "relatives", force: :cascade do |t|
-    t.string   "relation",      limit: 255
-    t.string   "name",          limit: 255
-    t.string   "email",         limit: 255
-    t.string   "phone",         limit: 255
-    t.string   "age",           limit: 255
-    t.string   "gender",        limit: 255
-    t.date     "date_of_birth"
-    t.integer  "user_id",       limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "relation",     limit: 255
+    t.string   "fullname",     limit: 255
+    t.string   "email",        limit: 255
+    t.string   "phone_number", limit: 255
+    t.string   "gender",       limit: 255
+    t.datetime "birthday"
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "relatives", ["user_id"], name: "index_relatives_on_user_id", using: :btree

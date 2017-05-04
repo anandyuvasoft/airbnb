@@ -1,30 +1,37 @@
 .panel.panel-default
-  .panel-heading Add a Family Member
+  .panel-heading Add a new family member
   .panel-body
-    .container              
-      = f.fields_for :relatives, f.object.relatives.build do |relative|
-        .form-group
-          = relative.label :name, 'Full Name'
-          = relative.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
-        .form-group
-          = relative.label :relation, 'Relation'
-          = relative.text_field :relation, class: 'form-control', placeholder: "What is your relation with #{current_user.fullname}?" 
-        .form-group
-          = relative.label :email, 'Email'
-          = relative.text_field :email, autofocus: true, class: 'form-control'
-        .form-group
-          = relative.label :gender, 'Gender', class: 'control-label'
-          .radio
-            %label
-              = relative.radio_button :gender, 'male', :checked => true
-              Male
-          .radio
-            %label
-              = relative.radio_button :gender, 'female', :checked => true
-              Female
+    - user.object.relatives.build
+    = user.fields_for :relatives, user.object.relatives do |relative|
+      = hidden_field_tag :relative, true
+      .form-group.mt-20
+        = relative.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Fullname'
+      .form-group
+        = relative.text_field :relation, class: 'form-control', placeholder: "What is your relation with #{current_user.fullname}?" 
+      .form-group
+        = relative.text_field :email,class: 'form-control', placeholder: "Email"
+      .form-group
+        = relative.text_field :phone_number, class: 'form-control', placeholder: "+91-7869352927"
+      .form-group
+        = relative.label :gender, "Gender"
+        .radio
+          %label
+            = relative.radio_button :gender, 'male'
+            Male
+        .radio
+          %label
+            = relative.radio_button :gender, 'female'
+            Female
 
-        .form-group
-          = relative.label :date_of_birth, 'Date of Birth'
-          %br
-          = relative.date_select :date_of_birth, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
-          .clearfix          
+      .form-group
+        = relative.label :birthday, "Date of birth"
+        %br
+        = relative.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
+        .clearfix
+
+      - unless relative.object.new_record?                 
+        = relative.check_box :_destroy
+        = relative.label :_destroy, "Remove" , class: 'remove' 
+        -#%button.btn.btn-danger{:type => "button"}
+          %span.glyphicon.glyphicon-remove
+          Remove        

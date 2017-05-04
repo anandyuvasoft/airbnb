@@ -63,13 +63,35 @@ class ApplicationController < ActionController::Base
       end
     end
 
-
-
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:fullname, :gender, :phone_number, :birthday])
 			devise_parameter_sanitizer.permit(:account_update) do |u| 
-				u.permit(:email, :password, :password_confirmation, :fullname, :phone_number, :description, relatives_attributes: [:name,:relation], friends_attributes: [:name,:email]) 
+				u.permit(
+          :email, 
+          :fullname, 
+          :phone_number, 
+          :description, 
+          relatives_attributes: [
+            :fullname,
+            :relation,
+            :phone_number,
+            :gender,
+            :birthday,
+            :email,
+            :_destroy,
+            :id            
+          ], 
+          friends_attributes: [
+            :fullname,
+            :phone_number,
+            :gender,
+            :birthday,
+            :email,
+            :_destroy,
+            :id
+          ]
+        ) 
 			end
     end
 end

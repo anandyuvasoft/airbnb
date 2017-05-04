@@ -1,49 +1,13 @@
-.row
+- @owner = (current_user == @user) ? true : false
 
-  .col-md-3
-    .text-center
-      = image_tag avatar_url(@user), class: 'avatar-full'
-      - if current_user != @user
-        .row-space-2
-          = link_to 'Send Message', conversations_path(sender_id: current_user.id, recipient_id: @user.id), |
-            method: 'post', class: 'btn btn-primary wide'                                                   |
-    .panel.panel-default
-      .panel-heading Verification
-      .panel-body
-        Email Address
-        %br
-        Phone Number
+.container
 
-  .col-md-9
-    %h2= @user.fullname
-    .description.row-space-3
-      = @user.description
+  .my-50
 
-    %h4
-      Listings (#{@rooms.length})
-    %br
-    .row
-      - @rooms.each do |room|
-        .col-md-4
-          .panel.panel-default
-            .panel-heading.preview
-              = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : nil)
-            .panel-body.text-center
-              = link_to room.listing_name, room_path(room)
+    = render "card"
+    = render "rooms"
+    = render "reviews"
+    = render "friends"
+    = render "relatives"
 
-    %h4 Reviews
-    %br
-    - @rooms.each do |room|
-      - if !room.reviews.blank?
-        - room.reviews.each do |review|
-          .row
-            .col-md-2.text-center
-              = image_tag avatar_url(review.user), class: 'img-circle avatar-medium'
-              %br
-              = review.user.fullname
-            .col-md-10
-              = link_to room.listing_name, room
-              %br
-              = review.comment
-              %br
-              = review.created_at.strftime('%v')
+   

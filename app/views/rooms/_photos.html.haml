@@ -1,28 +1,24 @@
 / Carousel
-.row
-  .col-md-10.col-md-offset-1
-    #myCarousel.carousel.slide{"data-ride" => "carousel"}
-      / Indicators
-      - if @photos
-        %ol.carousel-indicators
-          - @photos.each do |photo|
-            %li{"data-slide-to" => "#{photo.id}", "data-target" => "#myCarousel"}
-      / Wrapper for slides
-      .carousel-inner{:role => "listbox"}
+.mb-20
+  .row
+    .col-md-10.col-md-offset-1
+      #myCarousel.carousel.slide{"data-ride" => "carousel"}
+        / Indicators
         - if @photos
-          - @photos.each do |photo|
-            %div{:class => "item #{'active' if photo.id == @photos[0].id}"}
-              = image_tag photo.image.url()
-      / Left and right controls
-      %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
-        %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
-        %span.sr-only Previous
-      %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
-        %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
-        %span.sr-only Next
-%br/
-%hr/
-%br/
-%hr/
-%br/
-%hr/
+          %ol.carousel-indicators
+            - @photos.each do |photo|
+              %li{"data-slide-to" => "#{photo.id}", "data-target" => "#myCarousel"}
+        / Wrapper for slides
+        .carousel-inner{:role => "listbox"}
+          - if @photos
+            - @photos.each do |photo|
+              %div{:class => "item #{'active' if photo.id == @photos[0].id}"}
+                = image_tag photo.image.url()
+        / Left and right controls
+        %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+          %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+          %span.sr-only Previous
+        %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+          %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+          %span.sr-only Next
+

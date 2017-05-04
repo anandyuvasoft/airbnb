@@ -1,11 +1,32 @@
 .panel.panel-default
-  .panel-heading Refer a Friend
+  .panel-heading Add a new friend
   .panel-body
-    .container              
-      = f.fields_for :friends, f.object.friends.build do |friend|
-        .form-group
-          = friend.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Full Name'
-        .form-group
-          = friend.text_field :email, class: 'form-control', placeholder: 'Email'
-        .form-group
-          = friend.date_select :date_of_birth
+    - user.object.friends.build
+    = user.fields_for :friends, user.object.friends do |friend|
+      = hidden_field_tag :friend, true
+      .form-group
+        = friend.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Fullname'
+      .form-group
+        = friend.text_field :email, class: 'form-control', placeholder: "Email"
+      .form-group
+        = friend.text_field :phone_number, class: 'form-control', placeholder: "+91-7869352927"
+      .form-group
+        = friend.label :gender, "Gender"
+        .radio
+          %label
+            = friend.radio_button :gender, 'male'
+            Male
+        .radio
+          %label
+            = friend.radio_button :gender, 'female'
+            Female
+
+      .form-group
+        = friend.label :birthday, "Date of birth"
+        %br
+        = friend.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
+        .clearfix
+        
+      - unless friend.object.new_record?                 
+        = friend.check_box :_destroy
+        = friend.label :_destroy, "Remove" , class: 'remove'          

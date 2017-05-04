@@ -12,7 +12,7 @@
 @import "home/font-awesome.min";
 @import "home/fonts-base";
 @import "home/fonts-async";
-
+@import "users";
 
 /*body {
   color: #565a5c;
@@ -298,6 +298,8 @@ h1, .h1, h2, .h2, h3, .h3 {
     border-radius: 0.2em;
     box-shadow: 0 1px 5px 0 rgba(45,62,80,0.12);
     border:0px;
+    border: 1.5px solid #e0e0e0;
+    padding: 20px;
 }
 .dashboard .panel {
     padding: 0;

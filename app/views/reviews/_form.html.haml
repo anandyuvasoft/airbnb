@@ -5,8 +5,10 @@
   = f.hidden_field :room_id, value: @room.id
   .actions
     = f.submit 'Create', class: 'btn btn-primary'
-:javascript
-  $('#user_stars').raty({
-  	scoreName: 'review[star]',
-  	score: 3
-  });
+
+- content_for :javascript do
+  :javascript
+    $('#user_stars').raty({
+    scoreName: 'review[star]',
+    score: 3
+    });

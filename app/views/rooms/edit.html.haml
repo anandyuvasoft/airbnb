@@ -1,1 +1,117 @@
-= render 'form'
+=# render 'form'
+
+
+
+.container
+
+  .my-50
+
+    .row
+
+      .col-md-3
+        %ul.sidebar-list
+          %li.sidebar-item= link_to 'Edit profile', edit_user_registration_path, class: 'sidebar-link active'
+        %br
+
+        = link_to 'View my profile', user_path(current_user.id), class: 'btn btn-default wide'
+
+
+      .col-md-9
+
+        = form_for(@room) do |room|
+          
+          - if params[:personal].eql?("true")
+            = hidden_field_tag :personal, true
+            .panel.panel-default
+              .panel-heading Tell us about your practice
+              .panel-body
+                .form-group
+                  %label Upload your profile picture
+                  = file_field_tag 'images[]', type: :file, multiple: true, onchange: 'readURL(this)'
+
+                .form-group
+                  = room.text_field :practice, placeholder: 'Enter the name of your practice', class: 'form-control'                    
+                .form-group
+                  = room.text_field :listing_name, placeholder: 'Enter your full name', class: 'form-control'
+                .form-group
+                  = room.text_area :biography, cols:10, rows:10, class: 'form-control', placeholder: 'Describe about yourself'
+                .form-group
+                  = room.select :gender, [['Male','Male'],['Female','Female']], include_blank: 'Select gender', class: 'form-control'
+                .form-group
+                  = room.text_field :address, placeholder: 'Enter a location', class: 'form-control'
+                .form-group
+                  = room.select :degree, Degree.all.map{|degree| [degree.name, degree.name]}, include_blank: 'Select your professional degree', placeholder: 'Select your professional degree'
+                .form-group
+                  = room.select :category, Category.all.map{|category| [category.name, category.name]}, placeholder: 'I am an experienced', include_blank: 'I am an experienced'
+
+
+          - if params[:education].eql?("true")
+            = hidden_field_tag :education, true
+
+            %label Add your education:
+            
+            = room.fields_for :educations do |education|
+
+              .form-group
+                = education.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control'
+              .form-group                
+                = education.date_select :date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
+                .clearfix
+
+              - unless education.object.new_record?                 
+                = education.check_box :_destroy
+                = education.label :_destroy, "Remove" , class: 'remove' 
+
+          - if params[:condition].eql?("true")
+            = hidden_field_tag :condition, true
+            %label Conditons I'm experienced treating:
+            
+            = room.fields_for :conditions do |condition|
+              .form-group
+                = condition.select :condition, Condition::TYPES , prompt: "Select Conditions..", class: 'form-control'
+              - unless condition.object.new_record?                 
+                = condition.check_box :_destroy
+                = condition.label :_destroy, "Remove" , class: 'remove' 
+
+
+          - if params[:procedure].eql?("true")
+            = hidden_field_tag :procedure, true
+
+            %label Procedures I currently offer in my practice:
+            
+            = room.fields_for :procedures do |procedure|
+              .form-group
+                = procedure.select :procedure, Procedure::TYPES , prompt: "Select Procedures..", class: 'form-control'
+
+              - unless procedure.object.new_record?                 
+                = procedure.check_box :_destroy
+                = procedure.label :_destroy, "Remove" , class: 'remove'           
+
+          
+          - if params[:insurance].eql?("true")
+            = hidden_field_tag :insurance, true
+            %label Insurance plans I currently accept in my practice:          
+            
+            = room.fields_for :insurances do |insurance|
+              .form-group
+                = insurance.select :insurance_provider, Insurance::TYPES , prompt: "Select Insurances..", class: 'form-control'
+              - unless insurance.object.new_record?                 
+                = insurance.check_box :_destroy
+                = insurance.label :_destroy, "Remove" , class: 'remove'           
+
+          - if params[:language].eql?("true")  
+            = hidden_field_tag :language, true              
+            %label Languages I speak:
+            
+            = room.fields_for :languages do |language|
+              .form-group
+                = language.select :language, Language::TYPES , prompt: "Select Conditions..", class: 'form-control'
+              - unless language.object.new_record?                 
+                = language.check_box :_destroy
+                = language.label :_destroy, "Remove" , class: 'remove'           
+
+          .actions
+            = room.submit "Update", class: 'btn btn-primary'
+
+
+

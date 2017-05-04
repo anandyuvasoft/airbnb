@@ -2,7 +2,7 @@
   .container
 
     %a.logo{:href => "/"}
-      %img{:alt => "Upwork", :src => "assets/home/gotdoc-logo.png", :width => "106"}/
+      %img{:alt => "Upwork", :src => "/assets/home/gotdoc-logo.png", :width => "106"}
 
 
     .search.visible-md.visible-lg.ng-scope{"data-ng-controller" => "uiSearchController"}
@@ -21,7 +21,7 @@
         %ul.site-links.list-inline.pull-left
           %li.ng-isolate-scope{"ui-sub-menu" => ""}
             %a.text-uppercase{"ng-click" => "toggle()", "ng-transclude" => "", "ui-menu-active" => ""}
-              %span.ng-scope.hidden Browse
+              %span.ng-scope Browse
             %ul.sub-menu.list-unstyled.font-gotham-book
               %li.tile.active
                 %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
@@ -63,7 +63,7 @@
             %li
               %a#signup.header-link-signup.text-uppercase{:href => "/sign-up"} Sign up
             %li
-              %a.header-link-login.text-uppercase{:href => "/sign-in"} Login
+              %a.header-link-login.text-uppercase{:href => "/sign-in"} Sign in
             %li
               %a.btn.btn-default.header-cta-feh{:href => "/room_steps"}
                 List Your Practice                        

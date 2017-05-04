@@ -1,12 +1,8 @@
 .panel.panel-default
   %h1
     Hello #{current_user.fullname}! Let's get you ready to list your practice.
-  %br/
-  %br/
   %h4 STEP 1:
   %h2 Tell us about yourself  your practice:
-  %br/
-  %br/
   .panel-body.nopadding
     = form_for @room, html: {multipart: true} do |f|
       .row

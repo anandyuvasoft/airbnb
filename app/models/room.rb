@@ -4,25 +4,21 @@ class Room < ActiveRecord::Base
   geocoded_by :full_street_address
 
   belongs_to :user
-  has_many :photos
-  has_many :reservations
-  has_many :reviews
-  has_one  :purchase
-  has_many :specialities
-  has_many :procedures
-  has_many :conditions
-  has_many :insurances
-  has_many :languages
-  has_many :educations
-  has_many :bookings
+  has_many :photos, :dependent => :destroy
+  has_many :reservations, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
+  has_many :purchases, :dependent => :destroy
+  has_many :specialities, :dependent => :destroy
+  has_many :procedures, :dependent => :destroy
+  has_many :conditions, :dependent => :destroy
+  has_many :insurances, :dependent => :destroy
+  has_many :languages, :dependent => :destroy
+  has_many :educations, :dependent => :destroy
+  has_many :bookings, :dependent => :destroy
 
-  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos
+  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
   validates :listing_name, presence: true, length: {maximum: 50}
-  #validates :city, presence: true
-  #validates :state, presence: true
-  #validates :zipcode, presence: true
-  #validates :country, presence: true
   validates :address, presence: true
 
 
@@ -33,7 +29,6 @@ class Room < ActiveRecord::Base
   scope :upgraded, -> { joins(:purchase).where('purchases.purchased_at <= ?', DateTime.now.to_date-30) }
 
   def full_street_address
-    #[street, city, state, zipcode, country].compact.join(', ')
     address
   end
 
@@ -42,7 +37,10 @@ class Room < ActiveRecord::Base
   end
 
   def is_upgraded?
-    purchase && purchase.purchased_at.present? && (DateTime.now.to_date-self.purchase.purchased_at.to_date).to_i < 31
+    if purchases.present? 
+      last_upgrade = purchases.last
+      last_upgrade.purchased_at.present? && ( DateTime.now.to_date - last_upgrade.purchased_at.to_date).to_i < 31
+    end
   end
   
   private

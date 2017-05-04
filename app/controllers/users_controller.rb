@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @rooms = @user.rooms
+    @friends = @user.friends
+    @relatives = @user.relatives
   end
 
   def family_members

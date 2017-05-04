@@ -2,7 +2,7 @@
   .panel-defaultpanel-body
 
     .row.box
-      - if @room.is_upgraded?
+      - if @upgraded
         .ribbon
           %span Featured
 
@@ -17,14 +17,28 @@
             %h3
               = @room.listing_name
               , #{@room.degree}
+              
+              - if @owner
+                %a{href: edit_room_path(personal: true) }
+                  %button.btn-circle.btn.btn-primary{:type => "button"}
+                    %i.glyphicon.glyphicon-plus  
+
             %h6= @room.category
             %h5
               Practice: #{@room.practice}
+            .small= @room.address  
+            %p
+              = truncate(@room.biography,length: 50)
+              = link_to "Read more", "javascript:void(0)", class: 'small'
+
             %h4
               Reviews
               %span#average_rating
               (#{@reviews.count})
-  
-        - unless @owner
-          .col-md-4
+
+        .col-md-4
+
+          - if !@owner
             = link_to 'Book An Appointment', booking_steps_path(room_id: @room.id), class: 'btn btn-block btn-primary'
+          - else 
+            = render 'purchases/form_enterprise' if !@upgraded

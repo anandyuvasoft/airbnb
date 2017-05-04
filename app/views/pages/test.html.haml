@@ -1,0 +1,10 @@
+
+.container
+  .my-50
+
+    %ul    
+      %li= link_to "My Profile", user_path(current_user)
+      %li= link_to "Family members", '/family-members'
+      %li= link_to "Update profile", '/edit?personal=true'
+      %li= link_to "Add a new family member", '/edit?relative=true'
+      %li= link_to "Add a new friend", '/edit?friend=true'

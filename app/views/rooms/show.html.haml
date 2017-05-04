@@ -1,11 +1,14 @@
 - @owner = (current_user == @room.user) ? true : false
+- @upgraded = (@room.is_upgraded?) ? true : false
 
-= render "card"
-= render "profile"
-= render "photos"
-= render "near_by"
+.container
+  .my-50
 
-= render 'purchases/form_enterprise' if @owner && !@room.is_upgraded?
+    = render "card"
+    = render "profile"
+    = render "photos"
+    = render "near_by"
+    
 
   
 - content_for :javascript do 

@@ -1,0 +1,23 @@
+.row
+  .panel.panel-default.docprofile
+    .panel-defaultpanel-body
+      .row
+        .col-md-12
+          .col-md-8.nopadding
+
+            .col-md-3
+              .image-cropper
+                = image_tag avatar_url(@user), class: 'img-responsive rounded' 
+
+            .col-md-9
+              %h3
+                = @user.fullname.try(:capitalize)
+                %a{href: "/edit?personal=true"}
+                  %button.btn-circle.btn.btn-primary{:type => "button"}
+                    %i.glyphicon.glyphicon-plus                 
+              %h5
+                = @user.description
+    
+          - unless false
+            .col-md-4
+              = link_to 'Send message',conversations_path(sender_id: current_user.id, recipient_id: @user.id), class: 'btn btn-block btn-primary'

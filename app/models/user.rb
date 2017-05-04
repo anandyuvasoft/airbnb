@@ -15,15 +15,15 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
 
-  has_many :rooms
-  has_many :reservations
-  has_many :reviews
-  has_many :purchases
-  has_many :relatives
-  has_many :friends
-  has_many :bookings
+  has_many :rooms, :dependent => :destroy
+  has_many :reservations, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
+  has_many :purchases, :dependent => :destroy
+  has_many :relatives, :dependent => :destroy
+  has_many :friends, :dependent => :destroy
+  has_many :bookings, :dependent => :destroy
 
-  accepts_nested_attributes_for :relatives, :friends,  :allow_destroy => true
+  accepts_nested_attributes_for :relatives, :friends, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
 
   after_create :entries
 

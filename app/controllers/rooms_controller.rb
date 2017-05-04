@@ -43,14 +43,15 @@ class RoomsController < ApplicationController
   end
 
   def edit
-    if current_user.id == @room.user.id
-      @photos = @room.photos
-    else
-      redirect_to root_path, notice: "You don't have permission."
-    end
+    @room.conditions.build
+    @room.procedures.build
+    @room.insurances.build
+    @room.languages.build
+    @room.educations.build
   end
 
   def update
+    byebug
     if @room.update(room_params)
       if @room.save
         if params[:images]
@@ -59,8 +60,9 @@ class RoomsController < ApplicationController
           end
         end
       end
-        redirect_to edit_room_path(@room), notice: "Updated!"
+        redirect_to room_path(@room), notice: "Your room has been successfully updated"
     else
+      flash.now[:alert] = @room.errors.full_messages.try(:first)
       render :edit
     end
   end
@@ -72,7 +74,7 @@ class RoomsController < ApplicationController
 
     def room_params
       params.require(:room).permit(
-        :listing_name, :zipcode, :street, :city, :state, :country, :price, :active, :degree, :biography, :category, :practice, :gender,
+        :listing_name, :zipcode, :street, :city, :state, :country, :price, :active, :degree, :biography, :category, :practice, :gender,:address,
         :conditions_attributes => [:condition],
         :procedures_attributes => [:procedure],
         :insurances_attributes => [:insurance_provider],

@@ -1,0 +1,12 @@
+.row              
+  %h4 Listings (#{@rooms.length})
+  - @rooms.first(3).each do |room|
+    .col-md-4
+      = link_to room_path(room) do
+        .panel.panel-default
+          .panel-heading.preview
+            = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : '/assets/missing.png'), height: '200px'
+          .panel-body.text-center
+            %strong= room.listing_name.try(:capitalize)
+  .clearfix        
+  %strong= link_to "View more", "javascript:void(0)", class: 'pull-right'  if @rooms.length > 3
