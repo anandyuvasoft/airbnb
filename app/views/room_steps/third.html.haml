@@ -1,0 +1,21 @@
+.container
+  .my-50
+    .row
+
+      %h3.text-center
+        Hello #{current_user.fullname}! Let's get you ready to list your practice.
+
+      = form_for(@room, url: wizard_path(:third), method: :put) do |room|
+        = hidden_field_tag :room_id , params[:room_id]
+        .panel.panel-default
+          .panel-heading Step3: Enhance your profile
+          .panel-body
+          = room.fields_for :educations do |education|
+            .form-group
+              %label Add your education:              
+              = education.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control'
+            .form-group                
+              = education.date_select :date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
+          .clearfix
+        .actions.pull-right
+          = room.submit 'Save', class: 'btn btn-primary'            

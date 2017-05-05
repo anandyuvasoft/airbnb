@@ -2,6 +2,8 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!, except: [:notify]
   protect_from_forgery except: [:notify, :your_sales]
 
+  skip_before_action :authenticate_patient!
+
   def create
     @purchase = current_user.purchases.create(purchase_params)
 

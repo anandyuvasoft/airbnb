@@ -13,8 +13,6 @@ class User < ActiveRecord::Base
 
   validates :fullname, presence: true, length: {maximum: 50}
 
-  validates_presence_of :email
-
   has_many :rooms, :dependent => :destroy
   has_many :reservations, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
@@ -23,13 +21,15 @@ class User < ActiveRecord::Base
   has_many :friends, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
 
-  accepts_nested_attributes_for :relatives, :friends, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :relatives, :friends, :allow_destroy => true, :reject_if => lambda { |a| a[:fullname].blank? }
 
-  after_create :entries
+  #after_create :default_values
 
-  def entries
-    ZapierRuby::Zapper.new(:hook_to_excel).zap({fullname:fullname, email: email})
-  end
+  TYPE = [['Doctor','Doctor'],['Patient','Patient']]
+
+  # def default_values
+  #   update_attribute(:type, 'Patient')
+  # end
 
 
   def self.from_omniauth(auth)
@@ -45,8 +45,8 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.image = auth.info.image
         user.password = Devise.friendly_token[0,20]
-        user.date_of_birth = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
-        user.gender = auth.extra.raw_info.gender
+        #user.birthday = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
+        #user.gender = auth.extra.raw_info.gender
       end
     end
   end

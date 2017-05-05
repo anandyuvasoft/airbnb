@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
-  before_action :authenticate_user!
+
+  skip_before_action :authenticate_doctor!, :authenticate_patient!
+  
   before_action :set_conversation
 
   def index

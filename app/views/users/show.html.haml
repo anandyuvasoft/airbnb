@@ -5,9 +5,18 @@
   .my-50
 
     = render "card"
-    = render "rooms"
-    = render "reviews"
-    = render "friends"
-    = render "relatives"
+
+    - if @user.type.eql?("Doctor")
+      = render "rooms"
+      =# render "reviews"
+
+    - if @user.type.eql?("Patient")
+          
+      = render "bookings" if @owner
+      = render "friends"
+      = render "relatives"
+
+    
+
 
    

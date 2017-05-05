@@ -8,11 +8,11 @@
   = object.label :gender, 'Gender', class: 'control-label'
   .radio
     %label
-      = object.radio_button :gender, 'male', :checked => true
+      = object.radio_button :gender, 'male'
       Male
   .radio
     %label
-      = object.radio_button :gender, 'female', :checked => true
+      = object.radio_button :gender, 'female'
       Female
 
 .form-group
@@ -21,5 +21,4 @@
   = object.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true, class: 'col-md-3 mr-50'}
   .clearfix
 
-.actions
-  = object.submit "Book appointment", class: 'btn btn-primary'  
+

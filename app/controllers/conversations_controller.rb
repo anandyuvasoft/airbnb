@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
-  before_action :authenticate_user!
+  
+  skip_before_action :authenticate_doctor!, :authenticate_patient!
 
   def index
     @users = User.all

@@ -1,9 +1,10 @@
 .row
   %h4 
     Family members (#{@relatives.size})
-    %a{href: "/edit?relative=true"}
-      %button.btn-circle.btn.btn-primary{:type => "button"}
-        %i.glyphicon.glyphicon-plus  
+    - if @owner
+      %a{href: "/edit?relative=true"}
+        %button.btn-circle.btn.btn-primary{:type => "button"}
+          %i.glyphicon.glyphicon-plus  
   - @relatives.each do |relative|
     .col-md-4
       .panel.panel-default

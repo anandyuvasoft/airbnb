@@ -11,6 +11,13 @@
               %a{href: edit_room_path(education: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
                   %i.glyphicon.glyphicon-plus  
+          %ul        
+            - @room.educations.each do |education|
+              %li.small
+                = education.school
+                (
+                = education.date
+                )
 
 
         .col-md-6
@@ -19,8 +26,11 @@
             - if @owner
               %a{href: edit_room_path(condition: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus  
-
+                  %i.glyphicon.glyphicon-plus
+          %ul          
+            - @room.conditions.each do |condition|
+              %li.small
+                = condition.condition
 
       .row    
         .col-md-6
@@ -30,7 +40,10 @@
               %a{href: edit_room_path(insurance: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
                   %i.glyphicon.glyphicon-plus              
-
+          %ul                  
+            - @room.insurances.each do |insurance|
+              %li.small
+                = insurance.insurance_provider
 
         .col-md-6
           %h3 
@@ -39,6 +52,11 @@
               %a{href: edit_room_path(procedure: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
                   %i.glyphicon.glyphicon-plus              
+          %ul                  
+            - @room.procedures.each do |procedure|
+              %li.small
+                = procedure.procedure
+
 
       .row    
         .col-md-8
@@ -48,15 +66,23 @@
               %a{href: edit_room_path(language: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
                   %i.glyphicon.glyphicon-plus  
+          %ul        
+            - @room.languages.each do |language|
+              %li.small
+                = language.language
 
-        .col-md-8
-          %h3
-            Reviews
-            %span#average_rating
-            (#{@reviews.count})
-  
+      - if current_user && @owner          
+        .row    
+          .col-md-8
+            = render "bookings"
 
-          = render 'reviews/form' if @booked && !@hasReview
+      .col-md-8
+        %h3
+          Reviews
+          %span#average_rating
+          (#{@reviews.count})
+        = render 'reviews/form' if current_user && !@owner
+        .mt-20
           = render 'reviews/list'
 
 - content_for :javascript do

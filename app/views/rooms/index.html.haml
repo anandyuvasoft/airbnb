@@ -1,21 +1,31 @@
-.row
-  = render '/shared/sidebarnav'
-  .col-md-9
-    .panel.panel-default
-      .panel-heading
-        My Listings
-      .panel-body.box
-        - @rooms.each do |room|
-          .row
-            - if room.is_upgraded?
-              .ribbon
-                %span Featured
-            .col-md-2
-              = image_tag room.photos[0].image.url(:thumb) if room.photos.length > 0
-            .col-md-7
-              %h4= room.listing_name
-              %p= room.full_street_address
-            .col-md-3.right
-              = link_to 'Edit', edit_room_path(room), class: 'btn btn-primary btn-block'
-              = link_to 'View', room_path(room), class: 'btn btn-default btn-block'
-          %hr
+.container
+
+  .my-50
+
+  .row
+    = render 'sidebarnav'
+
+    .col-md-9
+      .panel.panel-default
+        .panel-heading
+          My Rooms
+        .panel-body.box
+          - @rooms.each do |room|
+            = link_to room_path(room) do
+              .row
+                - if room.is_upgraded?
+                  .ribbon
+                    %span Featured
+                .col-md-2
+                  = image_tag room.photos[0].image.url(:thumb) if room.photos.length > 0
+                .col-md-6
+                  %h4
+                    = room.listing_name
+                    %a{href: edit_room_path(room, personal:true) }
+                      %button.btn-circle.btn.btn-primary{:type => "button"}
+                        %i.glyphicon.glyphicon-plus                   
+                  %p= room.full_street_address
+                .col-md-4.right
+                  - @room = room
+                  = render 'purchases/form_enterprise' unless room.is_upgraded?
+            %hr

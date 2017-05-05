@@ -1,4 +1,5 @@
 - @owner = (current_user == @room.user) ? true : false
+
 - @upgraded = (@room.is_upgraded?) ? true : false
 
 .container
@@ -8,7 +9,6 @@
     = render "profile"
     = render "photos"
     = render "near_by"
-    
 
   
 - content_for :javascript do 

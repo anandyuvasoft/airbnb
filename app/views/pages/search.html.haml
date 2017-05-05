@@ -1,23 +1,16 @@
 .container
   .my-50
     .row
+      %h3 Search Results
 
-      .col-md-8
+      .col-md-12
         - @arrRooms.each do |room|
-          .col-md-4
-            .panel.panel-default
-              .panel-heading.preview
-                - if room.photos.length > 0
-                  = image_tag room.photos[0].image.url(:medium), height: '175px'
-                - else
-                  = image_tag("/assets/missing.png", height: '175px')
-              .panel-body
-                = link_to room.listing_name, room
-
-
-      .col-md-4
+          - @reviews = room.reviews 
+          - @room = room
+          - @photos = room.photos
+          = render "rooms/card"
 
 
 - content_for :javascript do
   :javascript
-    alert("Google Map is hide for now");    
+    alert("Google Map is hide for now added in to do list");    

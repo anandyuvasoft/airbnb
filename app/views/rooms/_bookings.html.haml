@@ -1,0 +1,13 @@
+.row              
+  %h4 Appointments (#{@bookings.length}) 
+  - @bookings.first(3).each do |booking|
+    - user = booking.user
+    .col-md-4
+      = link_to user_path(user) do
+        .panel.panel-default
+          .panel-heading.preview
+            = image_tag avatar_url(user)
+          .panel-body.text-center
+            %strong= user.fullname.try(:capitalize)
+  .clearfix        
+  %strong= link_to "View more", "javascript:void(0)", class: 'pull-right'  if @bookings.length > 3

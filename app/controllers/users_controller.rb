@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
 
+  skip_before_action :authenticate_doctor!, :authenticate_patient!
+
   def show
     @user = User.find(params[:id])
     @rooms = @user.rooms
     @friends = @user.friends
     @relatives = @user.relatives
+    @bookings = @user.bookings
   end
 
   def family_members

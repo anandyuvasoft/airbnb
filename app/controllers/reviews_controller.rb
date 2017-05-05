@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+  skip_before_action :authenticate_doctor!
+
   def create
     @review = current_user.reviews.create(review_params)
     redirect_to @review.room

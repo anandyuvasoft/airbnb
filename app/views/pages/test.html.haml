@@ -4,6 +4,8 @@
 
     %ul    
       %li= link_to "My Profile", user_path(current_user)
+      - if current_user.rooms.present?
+        %li= link_to "Room Profile", room_path(current_user.rooms.first)
       %li= link_to "Family members", '/family-members'
       %li= link_to "Update profile", '/edit?personal=true'
       %li= link_to "Add a new family member", '/edit?relative=true'

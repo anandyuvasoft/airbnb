@@ -16,7 +16,7 @@ class Room < ActiveRecord::Base
   has_many :educations, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
 
-  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos, :reject_if => lambda { |a| a[:content].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos, :allow_destroy => true
 
   validates :listing_name, presence: true, length: {maximum: 50}
   validates :address, presence: true

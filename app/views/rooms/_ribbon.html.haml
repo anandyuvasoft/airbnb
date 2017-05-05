@@ -1,0 +1,6 @@
+- if @upgraded
+  .ribbon
+    %span Featured
+- elsif current_patient && user_booking.present?
+  .ribbon
+    %span Booked

@@ -1,13 +1,12 @@
 class PagesController < ApplicationController
   
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_doctor!, :authenticate_patient!
   
   def home
     @rooms = Room.upgraded
   end
 
   def sample;end
-
   def test;end
 
   def dashboard
@@ -26,9 +25,9 @@ class PagesController < ApplicationController
   	arrResult = Array.new
 
   	if params[:search].present?
-  		@rooms_address = Room.where(active: true).near(params[:search], 200, order: 'distance')
+  		@rooms_address = Room.near(params[:search], 200, order: 'distance')
   	else
-  		@rooms_address = Room.where(active: true).all
+  		@rooms_address = Room.all
   	end
 
     @rooms_address = @rooms_address.where(category: params[:category]) if params[:category].present?

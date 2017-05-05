@@ -17,6 +17,8 @@
         .form-group
           = f.email_field :email, class: 'form-control', placeholder: 'Email'
         .form-group
+          = f.select :type, User::TYPE , class: 'form-control', include_blank: "Select profile type"
+        .form-group
           = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
         .form-group
           = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation'

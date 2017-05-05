@@ -1,29 +1,20 @@
-=# render 'form'
-
-
-
 .container
-
   .my-50
-
     .row
-
       .col-md-3
         %ul.sidebar-list
-          %li.sidebar-item= link_to 'Edit profile', edit_user_registration_path, class: 'sidebar-link active'
+          %li
+            %strong Setting
         %br
-
-        = link_to 'View my profile', user_path(current_user.id), class: 'btn btn-default wide'
-
+        = link_to 'View profile', room_path(@room), class: 'btn btn-primary wide'
 
       .col-md-9
-
         = form_for(@room) do |room|
-          
+
           - if params[:personal].eql?("true")
             = hidden_field_tag :personal, true
             .panel.panel-default
-              .panel-heading Tell us about your practice
+              .panel-heading Update room profile
               .panel-body
                 .form-group
                   %label Upload your profile picture
@@ -39,6 +30,9 @@
                   = room.select :gender, [['Male','Male'],['Female','Female']], include_blank: 'Select gender', class: 'form-control'
                 .form-group
                   = room.text_field :address, placeholder: 'Enter a location', class: 'form-control'
+                .form-group
+                  -#%i.fa.fa-dollar
+                  = room.text_field :price, placeholder: 'Consultation fees', class: 'form-control'                  
                 .form-group
                   = room.select :degree, Degree.all.map{|degree| [degree.name, degree.name]}, include_blank: 'Select your professional degree', placeholder: 'Select your professional degree'
                 .form-group

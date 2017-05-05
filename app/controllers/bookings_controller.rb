@@ -1,5 +1,7 @@
 class BookingsController < ApplicationController
 
+  skip_before_action :authenticate_doctor!
+
   def create
     booking = current_user.bookings.create(room_id: params[:room_id])
 
@@ -21,7 +23,7 @@ class BookingsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:fullname, :email, :gender, :birthday)
+    params.require(:patient).permit(:fullname, :email, :gender, :birthday)
   end
 
 end

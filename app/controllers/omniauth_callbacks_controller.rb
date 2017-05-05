@@ -1,5 +1,7 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
+  skip_before_action :authenticate_doctor!, :authenticate_patient!
+
   def facebook
     omniauth("Facebook")
   end
@@ -15,6 +17,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def omniauth(provider)
+
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication

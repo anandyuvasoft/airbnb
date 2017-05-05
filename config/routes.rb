@@ -11,6 +11,8 @@ Rails.application.routes.draw do
               :controllers => {:omniauth_callbacks => 'omniauth_callbacks', :registrations => 'registrations'}
 
   resources :users, only: [:show]
+  resources :doctors, only: [:show]
+  resources :patients, only: [:show]
   resources :rooms
   resources :photos
 
