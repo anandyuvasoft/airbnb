@@ -45,8 +45,7 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.image = auth.info.image
         user.password = Devise.friendly_token[0,20]
-        #user.birthday = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
-        #user.gender = auth.extra.raw_info.gender
+        user.type = 'Doctor'
       end
     end
   end
