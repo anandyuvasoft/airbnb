@@ -2785,11 +2785,12 @@ pointer-events:none
 	border-top-right-radius:0;
 	border-top-left-radius:0
 }
-.navbar {
+
+/*.navbar {
 	position:relative;
 	min-height:55px;
 	margin-bottom:22px
-}
+}*/
 .navbar:before, .navbar:after {
 	content:" ";
 	display:table
@@ -2952,7 +2953,7 @@ pointer-events:none
 .navbar-nav>li>a {
 	padding-top:10px;
 	padding-bottom:10px;
-	line-height:22px
+	line-height:31px
 }
 @media (max-width: 767px) {
 .navbar-nav .open .dropdown-menu {
@@ -3073,7 +3074,8 @@ pointer-events:none
 .navbar-nav>li>.dropdown-menu {
 	margin-top:0;
 	border-top-right-radius:0;
-	border-top-left-radius:0
+	border-top-left-radius:0;
+	line-height: 20px;
 }
 .navbar-fixed-bottom .navbar-nav>li>.dropdown-menu {
 	margin-bottom:0;
@@ -5020,7 +5022,7 @@ button.icon-close {
 .header-link-signup:before, .header-link-login:before {
 	content:"";
 	left:0;
-	top:11px;
+	top:24px;
 	position:absolute;
 	display:inline-block;
 	vertical-align:middle
@@ -5069,7 +5071,8 @@ button.icon-close {
 	height:40px;
 	width:100%
 }
-.header-navbar .dropdown {
+
+/*.header-navbar .dropdown {
 	display:none;
 	position:absolute;
 	width:100%;
@@ -5081,7 +5084,8 @@ button.icon-close {
 	top:38px;
 	margin:0;
 	font-weight:normal
-}
+}*/
+
 .header-navbar .dropdown input[type=radio] {
 	display:none
 }
@@ -5201,10 +5205,9 @@ color:#333
 .header-navbar .nav {
 	display:block;
 	height:70px;
-	font-size:12px
+	font-size:16px
 }
 .header-navbar .nav a:not(.btn) {
-	color:#7d7d7d;
 	text-decoration:none;
 	outline:none
 }
@@ -5345,7 +5348,7 @@ color:#333
 }
 .header-navbar .header-cta-feh {
 	position:relative;
-	top:-1px;
+	top:8px;
 	line-height:22px
 }
 @media (max-width: 480px) {

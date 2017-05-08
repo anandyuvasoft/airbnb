@@ -10,4 +10,7 @@
           .panel-body.text-center
             %strong= room.practice.try(:capitalize)
   .clearfix        
-  %strong= link_to "View more", "javascript:void(0)", class: 'pull-right'  if @bookings.length > 3
+  %strong= link_to "View more", "/users/#{@user.id}/bookings", class: 'pull-right'  if @bookings.length > 0
+
+
+

@@ -54,11 +54,16 @@ Rails.application.routes.draw do
   resources :room_steps, only: [:show, :create, :update, :index]
   
   get '/family-members' => 'users#family_members'
-  get '/friends' => 'users#friends'
+
+  get 'users/:id/friends' => 'users#friends'
+  get 'users/:id/relatives' => 'users#relatives'
+  get 'users/:id/bookings' => 'users#bookings'
   
   delete 'relative/:id' => "users#remove_relative"
+  delete 'friend/:id' => "users#remove_friend"
+  delete 'booking/:id' => "users#remove_booking"
 
-  resources :bookings, only: [:create]
+  resources :bookings, only: [:create,:index]
   get '/rooms/:room_id/booking' => "bookings#step_first"
   get '/sample' => "pages#sample"
   get '/test' => "pages#test"

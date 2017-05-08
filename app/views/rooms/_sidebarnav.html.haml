@@ -4,8 +4,9 @@
 
   .col-md-3
     %ul.sidebar-list
-      %li.sidebar-item= link_to 'Rooms', rooms_path, class: active_class(rooms_path)
-
+      %li.sidebar-item
+        %h4 Rooms
+      =# link_to 'Rooms', rooms_path, class: active_class(rooms_path)
       / %li.sidebar-item= link_to 'Your Reservations', "javascript:void(0)", class: active_class(your_reservations_path)
       / %li.sidebar-item= link_to 'Your Trips', "javascript:void(0)", class: active_class(your_trips_path)
       / %li.sidebar-item= link_to 'Your Sales', "javascript:void(0)", class: active_class(your_sales_path)

@@ -1,4 +1,90 @@
-%header.header-navbar.__mod-.ng-scope{:role => "banner"}
+%nav.navbar.navbar-default.header-navbar
+  .container
+    .navbar-header
+      -#%a.navbar-brand{:href => "javascript:void(0)"} WebSiteName
+      %a.logo{:href => "/"}
+        %img{:alt => "Upwork", :src => "/assets/home/gotdoc-logo.png", :width => "106"}      
+    %ul.nav.navbar-nav
+
+      %li
+        .search.visible-md.visible-lg.ng-scope{"data-ng-controller" => "uiSearchController"}
+          = form_tag search_path, method: :get do
+            .input-group
+              %span.button{"ng-click" => "toggleDropDown()"}
+              = text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State'      
+
+
+
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0)"}
+          Browse
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            %a{:href => "javascript:void(0)"} Categories
+          %li
+            %a{:href => "javascript:void(0)"} Symptoms
+          %li
+            %a{:href => "javascript:void(0)"} Procedures
+          %li
+            %a{:href => "javascript:void(0)"} Locations            
+    %ul.nav.navbar-nav.navbar-right
+      - unless user_signed_in?
+        %li
+          %a{:href => "/sign-up"}
+            %span.glyphicon.glyphicon-user
+            Sign Up
+        %li
+          %a{:href => "/sign-in"}
+            %span.glyphicon.glyphicon-log-in
+            Login
+        %li
+          %a.btn.btn-default.header-cta-feh{:href => "/room_steps"}
+            List Your Practice 
+
+      - else
+
+        -#%li= link_to 'List My Practice', new_room_path
+
+        %li= link_to icon('envelope'), conversations_path
+
+        %li= link_to icon('question'), "javascript:void(0)"
+
+        %li.nav-icon-btn.nav-icon-btn-danger.dropdown
+          = render "shared/notifications"
+
+
+
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = image_tag avatar_url(current_user), class: 'img-circle avatar-small'
+            = current_user.fullname
+            %span.caret
+          %ul.dropdown-menu
+            - if current_user.type == "Doctor"
+              %li= link_to 'Dashboard', dashboard_path
+              %li= link_to 'My profile', user_path(current_user.id)
+              %li= link_to 'Rooms', rooms_path
+              -#%li= link_to 'Leads', your_reservations_path
+              -#%li= link_to 'Reviews', your_reservations_path
+            - else
+              -#%li= link_to 'Dashboard', dashboard_path
+              %li= link_to 'My profile', user_path(current_user.id)
+              %li= link_to 'Appointments', bookings_path
+              -#%li= link_to 'Reviews', your_trips_path
+
+            %li= link_to 'Settings', edit_user_registration_path(personal:true)
+            %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+
+
+
+
+
+
+
+
+
+-#%header.header-navbar.__mod-.ng-scope{:role => "banner"}
   .container
 
     %a.logo{:href => "/"}
@@ -6,15 +92,11 @@
 
 
     .search.visible-md.visible-lg.ng-scope{"data-ng-controller" => "uiSearchController"}
-      %form.ng-pristine.ng-valid.ng-isolate-scope.ng-valid-maxlength{:action => "/o/profiles/browse/", :method => "get", "ng-action" => "action", "ng-init" => "context = 'client'", "ng-submit" => "search()", :role => "search"}
+      = form_tag search_path, method: :get do
         .input-group
-          .dropdown{"ng-class" => "{active: isOpen}"}
-            %input#search-freelancers.ng-pristine.ng-untouched.ng-valid.ng-not-empty{:name => "5", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "client"}/
-            %label{:for => "search-freelancers", "ng-click" => "context = 'client'"} Doctor
-            %input#search-jobs.ng-pristine.ng-untouched.ng-valid.ng-not-empty{:name => "6", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "freelancer"}/
-            %label{:for => "search-jobs", "ng-click" => "context = 'freelancer'"} Dentist
           %span.button{"ng-click" => "toggleDropDown()"}
-          %input#q.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope.ng-empty.ng-valid-maxlength{:autocomplete => "off", "eo-focus" => "focus", :maxlength => "100", :name => "q", "ng-model" => "query", "ng-placeholder" => "placeholder", :placeholder => "Find Doctors", :type => "text"}/
+          = text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State'
+
 
     .visible-md.visible-lg.desktop-navbar
       %nav.nav.font-gotham-medium
@@ -57,6 +139,12 @@
 
         %ul.user-links.list-inline.pull-right
           - if user_signed_in?          
+
+            %button.btn.btn-default.dropdown-toggle.tp-icon{"data-toggle" => "dropdown"}
+              %i.fa.fa-bell-o{"aria-hidden" => "true"}
+
+
+
             %li
               = link_to 'sign out', destroy_user_session_path, method: :delete, class: 'header-link-signup text-uppercase', id: 'signout'
           - else

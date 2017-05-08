@@ -1,5 +1,5 @@
 .panel.panel-default.docprofile.box
-  = render "rooms/ribbon"
+  =# render "rooms/ribbon"
 
   .panel-defaultpanel-body
 
@@ -10,8 +10,6 @@
 
           .col-md-3
             .image-cropper
-              =# image_tag @photos[0].image.url(), class: 'img-responsive rounded' if @photos.length > 0
-
               = image_tag @photos[0].try(:image) ? @photos[0].image.url(:medium) : "/assets/missing-room.jpg", class: 'img-responsive rounded'
 
           .col-md-9
@@ -47,7 +45,7 @@
               (#{@reviews.count})
 
         .col-md-4
-          - if !user_signed_in? || current_patient && !user_booking.present?
+          - if !user_signed_in? || current_patient
             = link_to 'Book An Appointment', booking_steps_path(room_id: @room.id), class: 'btn btn-block btn-primary'
        
           = render 'purchases/form_enterprise' if @owner && !@upgraded

@@ -6,7 +6,8 @@
 
       .col-md-3
         %ul.sidebar-list
-          %li.sidebar-item= link_to 'Edit profile', edit_user_registration_path, class: 'sidebar-link active'
+          %li.sidebar-item
+            %h4 Settings
         %br
 
         = link_to 'View my profile', user_path(current_user.id), class: 'btn btn-default wide'

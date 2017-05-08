@@ -9,8 +9,19 @@
           - @room = room
           - @photos = room.photos
           = render "rooms/card"
-
+          #search_results_on_google_map
 
 - content_for :javascript do
   :javascript
-    alert("Google Map is hide for now added in to do list");    
+    alert("Google map id hide due to some code cleaning issue added in to to list")
+    / var myLatLng = {lat: -25.363, lng: 131.044};
+    / var map = new google.maps.Map(document.getElementById('map'), {zoom: 2,center: myLatLng});
+    / for (var i = 0; i < #{@arrRooms.length} ; i++) {
+
+    / }
+    
+
+
+    
+
+

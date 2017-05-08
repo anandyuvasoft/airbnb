@@ -5,11 +5,12 @@
 
 $ ->
   # google autocomplete location input on room edit and first step
-  map = new (google.maps.Map)(document.getElementById('room_address'),
-    center:
-      lat: -33.8688
-      lng: 151.2195
-    zoom: 13)
-  input = document.getElementById('room_address')
-  autocomplete = new (google.maps.places.Autocomplete)(input)
-  return
+  if $("#room_address").length > 0
+    map = new (google.maps.Map)(document.getElementById('room_address'),
+      center:
+        lat: -33.8688
+        lng: 151.2195
+      zoom: 13)
+    input = document.getElementById('room_address')
+    autocomplete = new (google.maps.places.Autocomplete)(input)
+    return

@@ -1,0 +1,20 @@
+- @owner = (current_user == @user) ? true : false
+- @friends = @user.friends
+
+.container
+
+  .my-50
+    .row
+      %h4#count 
+        Friends (#{@friends.size})
+      - @friends.each do |friend|
+        .col-md-4{id: "friend_#{friend.id}"}
+          - if @owner
+            = link_to "/friend/#{friend.id}", method: :delete, remote: true, class: 'pull-right' do 
+              %button.btn-circle.btn.btn-danger{:type => "button"}
+                %i.glyphicon.glyphicon-remove
+          .panel.panel-default
+            .panel-heading.preview
+              = image_tag("/assets/default-friend.jpg")
+            .panel-body.text-center
+              %strong= friend.fullname.capitalize

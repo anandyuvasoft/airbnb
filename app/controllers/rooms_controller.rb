@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   before_action :resources, only: [:show]
   before_action :create_instance, only: [:edit]
 
-  skip_before_action :authenticate_patient!, :authenticate_doctor!, only: [:show]
+  skip_before_action :authenticate_patient!, :authenticate_doctor!
 
   def index
     @rooms = current_user.rooms

@@ -1,0 +1,25 @@
+.container
+  .my-50
+    .row 
+
+      %h4#count Appointments (#{@bookings.length}) 
+      - @bookings.each do |booking|
+        - room = booking.room
+        .col-md-4{id: "booking_#{booking.id}"}
+          = link_to "/booking/#{booking.id}", method: :delete, remote: true, class: 'pull-right' do 
+            %button.btn-circle.btn.btn-danger{:type => "button"}
+              %i.glyphicon.glyphicon-remove
+
+
+          = link_to room_path(room) do
+            .panel.panel-default
+              .panel-heading.preview
+                = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : '/assets/missing-room.jpg'), height: '200px'
+              .panel-body.text-center
+                %strong= room.practice.try(:capitalize)
+          
+
+
+
+
+

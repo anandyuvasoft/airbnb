@@ -35,3 +35,13 @@ categories = ["Acupuncturist", "Allergist",  "Audiologist",  "Cardiologist",  "C
  categories.each do |category|
   Category.find_or_create_by(name: category)
 end
+
+
+relations = ['Mother', 'Father' ,'Brother' ,'Sister' ,'Son' ,'Daughter','Grandfather','Grandmother',
+'Friend','Wife','Husband','Boyfriend','Girlfriend','Cousin','Aunt','Uncle','Grandson','Granddaughter',
+'Stepson','Stepdaughter','Nephew','Niece','Patient','Other']
+
+
+ relations.each do |relation|
+  Relation.find_or_create_by(name: relation)
+end

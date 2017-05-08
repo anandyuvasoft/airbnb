@@ -2,12 +2,13 @@
   .panel-heading Add a new family member
   .panel-body
     - user.object.relatives.build
+
     = user.fields_for :relatives, user.object.relatives do |relative|
       = hidden_field_tag :relative, true
       .form-group.mt-20
         = relative.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Fullname'
       .form-group
-        = relative.text_field :relation, class: 'form-control', placeholder: "What is your relation with #{current_user.fullname}?" 
+        = relative.select :relation, Relation.all.map{|relation| [relation.name, relation.name]}, include_blank: 'Select relation'
       .form-group
         = relative.text_field :email,class: 'form-control', placeholder: "Email"
       .form-group

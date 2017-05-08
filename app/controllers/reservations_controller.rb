@@ -2,6 +2,7 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!, except: [:notify]
   protect_from_forgery except: [:notify]
   protect_from_forgery except: [:your_trips]
+  skip_before_action :authenticate_doctor!, :authenticate_patient!
 
   def preload
     room = Room.find(params[:room_id])
