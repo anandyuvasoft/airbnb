@@ -13,4 +13,4 @@
         .panel-body.text-center
           %strong= relative.fullname.capitalize
   .clearfix        
-  %strong= link_to "View more","/users/#{@user.id}/relatives", class: 'pull-right'  if @relatives.length > 1
+  %strong= link_to "View more","/users/#{@user.id}/relatives", class: 'pull-right'  if @relatives.length > 3

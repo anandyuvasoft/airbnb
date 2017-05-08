@@ -13,4 +13,4 @@
         .panel-body.text-center
           %strong= friend.fullname.capitalize
   .clearfix        
-  %strong= link_to "View more", "/users/#{@user.id}/friends" , class: 'pull-right'  if @friends.length > 1
+  %strong= link_to "View more", "/users/#{@user.id}/friends" , class: 'pull-right'  if @friends.length > 3
