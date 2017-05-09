@@ -5,7 +5,7 @@
       %a{href: "/edit?friend=true"}
         %button.btn-circle.btn.btn-primary{:type => "button"}
           %i.glyphicon.glyphicon-plus
-  - @friends.each do |friend|
+  - @friends.last(3).each do |friend|
     .col-md-4
       .panel.panel-default
         .panel-heading.preview

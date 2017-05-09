@@ -7,9 +7,14 @@
     .row
       %h4#count
         Relatives (#{@relatives.size})
-      - @relatives.each do |relative|
+      - @relatives.order('updated_at desc').each do |relative|
         .col-md-4{id: "relative_#{relative.id}"}
           - if @owner
+
+            = link_to "/edit?relative=true&relative_id=#{relative.id}", class: 'pull-right' do 
+              %button.btn-circle.btn.btn-primary{:type => "button"}
+                %i.glyphicon.glyphicon-edit
+
             = link_to "/relative/#{relative.id}", method: :delete, remote: true, class: 'pull-right' do 
               %button.btn-circle.btn.btn-danger{:type => "button"}
                 %i.glyphicon.glyphicon-remove

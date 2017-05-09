@@ -1,10 +1,13 @@
 .panel.panel-default
   .panel-heading Add a new family member
   .panel-body
-    - user.object.relatives.build
 
-    = user.fields_for :relatives, user.object.relatives do |relative|
+
+
+    = user.fields_for :relatives, get_relative_object_helper do |relative|
+
       = hidden_field_tag :relative, true
+
       .form-group.mt-20
         = relative.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Fullname'
       .form-group
@@ -30,9 +33,3 @@
         = relative.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
         .clearfix
 
-      - unless relative.object.new_record?                 
-        = relative.check_box :_destroy
-        = relative.label :_destroy, "Remove" , class: 'remove' 
-        -#%button.btn.btn-danger{:type => "button"}
-          %span.glyphicon.glyphicon-remove
-          Remove        

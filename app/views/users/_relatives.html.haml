@@ -5,12 +5,14 @@
       %a{href: "/edit?relative=true"}
         %button.btn-circle.btn.btn-primary{:type => "button"}
           %i.glyphicon.glyphicon-plus  
-  - @relatives.each do |relative|
+  - @relatives.order('updated_at desc').first(3).each do |relative|
     .col-md-4
       .panel.panel-default
         .panel-heading.preview
           = image_tag("/assets/default-family-member.jpg")
         .panel-body.text-center
           %strong= relative.fullname.capitalize
+          %br
+          = relative.relation.titleize          
   .clearfix        
   %strong= link_to "View more","/users/#{@user.id}/relatives", class: 'pull-right'  if @relatives.length > 3
