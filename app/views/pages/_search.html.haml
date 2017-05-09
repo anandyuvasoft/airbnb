@@ -1,0 +1,24 @@
+
+%section.__hero-section.jumbotron.text-left.takeover-hero.jumbotron-xlg.green-hero.with-cta
+  .container
+    .row
+      .col-md-8.col-md-offset-2
+        %center
+          %h1 Find a trusted doc near you
+          %p
+            From general medicine to plastic surgery, we bring
+            %br
+            you the best doctors to help you stay in great health
+
+          .my-50
+            %form.form-inline{:action => search_path, id: 'home_page_search_form'}
+
+              .form-group.col-md-3
+
+                = select_tag :category, options_from_collection_for_select(Category.all, "name", "name"), include_blank: "Select category"
+
+              .form-group.col-md-6.no-padding
+                = text_field_tag :location, params[:location], placeholder: 'City, Zip Code or State', class: 'form-control'
+
+              .col-md-3.no-padding
+                %button.btn.btn-search.btn-lg{:type => "submit"} Find a doctor

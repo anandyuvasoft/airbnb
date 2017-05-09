@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     return new_user_session_url unless user_signed_in?
     case current_user.class.name
     when "Doctor"
-      room_steps_path unless current_user.rooms.present?
+      dashboard_path
     else
       user_path(current_user)
     end if user_signed_in?

@@ -6,9 +6,14 @@
 body {
 	margin:0
 }
+
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-	display:block
+	/*display:block*/
+  /*display: inline-block;*/
+  display:-webkit-box;
+  width: 100%;
 }
+
 audio, canvas, progress, video {
 	display:inline-block;
 	vertical-align:baseline
@@ -1848,7 +1853,7 @@ top:0
 }
 .form-inline .form-control {
 	display:inline-block;
-	width:auto;
+	/*width:auto;*/
 	vertical-align:middle
 }
 .form-inline .form-control-static {
@@ -1961,7 +1966,7 @@ top:0
 	outline:5px auto -webkit-focus-ring-color;
 	outline-offset:-2px
 }
-.btn:hover, .btn:focus, .btn.focus {
+/*.btn:hover, .btn:focus, .btn.focus {
 	outline:0 none;
 	color:#333;
 	text-decoration:none
@@ -1969,7 +1974,7 @@ top:0
 .btn:active, .btn.active {
 	outline:0 none;
 	background-image:none
-}
+}*/
 .btn.disabled, .btn.disabled:hover, .btn.disabled:focus, .btn.disabled.focus, .btn.disabled:active, .btn.disabled.active, .btn[disabled], .btn[disabled]:hover, .btn[disabled]:focus, .btn[disabled].focus, .btn[disabled]:active, .btn[disabled].active, fieldset[disabled] .btn, fieldset[disabled] .btn:hover, fieldset[disabled] .btn:focus, fieldset[disabled] .btn.focus, fieldset[disabled] .btn:active, fieldset[disabled] .btn.active {
 	cursor:not-allowed;
 	pointer-events:none;
@@ -2706,16 +2711,21 @@ pointer-events:none
 	border-bottom-color:transparent;
 	cursor:default
 }
+
 .nav-pills {
 	border-bottom:1px solid #e0e0e0;
 	border-top:1px solid #e0e0e0;
 	font-size:0;
-	text-align:center
+/*	text-align:center*/
 }
+
+
 .nav-pills>li {
-	display:inline-block;
+/*	display:inline-block;*/
 	font-size:14px
 }
+
+
 .nav-pills>li>a {
 	padding-top:14px;
 	padding-bottom:14px;
@@ -5905,10 +5915,12 @@ color:#333
 	vertical-align:super;
 	top:-0.21em
 }
-.jumbotron .btn {
+
+/*.jumbotron .btn {
 	margin-top:24px;
 	margin-bottom:11px
-}
+}*/
+
 .jumbotron .row>div {
 	position:static
 }

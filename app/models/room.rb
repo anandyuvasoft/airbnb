@@ -26,7 +26,7 @@ class Room < ActiveRecord::Base
   after_create :send_notification_after_create
   after_validation :geocode
   
-  scope :upgraded, -> { joins(:purchase).where('purchases.purchased_at <= ?', DateTime.now.to_date-30) }
+  # scope :upgraded, -> { joins(:purchases).where('purchases.purchased_at <= ?', DateTime.now.to_date+30) }
 
   def full_street_address
     address

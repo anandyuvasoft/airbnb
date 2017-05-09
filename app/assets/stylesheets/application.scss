@@ -13,6 +13,7 @@
 @import "home/fonts-base";
 @import "home/fonts-async";
 @import "users";
+@import "dashboard";
 
 /*body {
   color: #565a5c;
@@ -129,6 +130,8 @@ label {
   margin-bottom: 10px;
 }
 
+
+/*
 select {
   color: #565a5c;
   background-color: #fff;
@@ -137,6 +140,18 @@ select {
   border-radius: 2px;
   padding: 10px;
   appearance: none;
+}*/
+
+
+
+select {
+  color: #565a5c;
+  background-color: #fff;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 10px;
+  appearance: none;  
   -moz-appearance: none; /* Mozilla Firefox */
   -webkit-appearance: none; /* Safari & Google Chrome */
 }
@@ -289,9 +304,9 @@ img.img-circle.avatar-small {
 .navbar-nav > li > a:hover {
     border-color: #0068DD;
 }
-h1, .h1, h2, .h2, h3, .h3 {
+/*h1, .h1, h2, .h2, h3, .h3 {
     margin-top: 0;
-}
+}*/
 .panel {
     margin-bottom: 20px;
     background-color: #fff;

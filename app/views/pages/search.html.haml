@@ -4,22 +4,17 @@
       %h3 Search Results
 
       .col-md-12
-        - @arrRooms.each do |room|
+        - @rooms.each do |room|
           - @reviews = room.reviews 
           - @room = room
           - @photos = room.photos
+          - @upgraded = (room.is_upgraded?) ? true : false
           = render "rooms/card"
           #search_results_on_google_map
 
 - content_for :javascript do
   :javascript
     alert("Google map id hide due to some code cleaning issue added in to to list")
-    / var myLatLng = {lat: -25.363, lng: 131.044};
-    / var map = new google.maps.Map(document.getElementById('map'), {zoom: 2,center: myLatLng});
-    / for (var i = 0; i < #{@arrRooms.length} ; i++) {
-
-    / }
-    
 
 
     

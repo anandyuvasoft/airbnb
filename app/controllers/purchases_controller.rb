@@ -1,34 +1,35 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate_user!, except: [:notify]
-  protect_from_forgery except: [:notify, :your_sales]
 
-  skip_before_action :authenticate_patient!
+  #before_action :authenticate_user!, except: [:notify]
+  protect_from_forgery except: [:notify, :your_sales]
+  skip_before_action :authenticate_patient!, :authenticate_doctor!
 
   def create
     @purchase = current_user.purchases.create(purchase_params)
+    room  = @purchase.room
 
     if @purchase
       values = {
         business: 'ariefrizkyr-facilitator@gmail.com',
         cmd: '_xclick',
         upload: 1,
-        notify_url: 'http://fe17ae85.ngrok.io//purchase_notify',
+        notify_url: 'http://b8c6a43c.ngrok.io/purchase_notify',
         amount: @purchase.price,
         description: @purchase.name,
-        item_name: @purchase.room.listing_name,
+        item_name: room.listing_name,
         item_number: @purchase.id,
         quantity: 1,
-        return: "http://fe17ae85.ngrok.io/your-sales"
+        return: 'http://b8c6a43c.ngrok.io/'
       }
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
     else
-      redirect_to @purchase.room, alert: "Something went wrong!"
+      redirect_to room, alert: "Something went wrong!"
     end
   end
 
   def notify
     params.permit!
-    purhcase = Purchase.find(params[:item_number])
+    purchase = Purchase.find(params[:item_number])
 
     if params[:payment_status].eql? "Completed"
       purchase.update_attributes notification_params: params, status: true, transaction_id: params[:txn_id], purchased_at: Time.now

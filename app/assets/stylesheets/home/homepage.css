@@ -1,3 +1,43 @@
+
+
+/*<................Home Page Search Form Start............>*/
+
+#home_page_search_form .form-group select, 
+#home_page_search_form .form-group input, 
+#home_page_search_form .form-group button {
+  height:62px;
+  font-size: 16px;
+  padding:6px;
+  width: 100%;
+}
+
+.btn-search {
+    color: #fff;
+    background-color: #00c41c;
+    border-color: #00c41c;
+}
+
+.btn-search:hover, .btn-search:focus, .btn-search:active, .btn-search.active, .open>.dropdown-toggle.btn-search {
+    color: #fff;
+    background-color: #00c41c;
+    border-color: #00c41c; /*set the color you want here*/
+}
+
+/*<................Home Page Search Form End............>*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*<................carousel slider............>*/
 #flexiselDemo1, #flexiselDemo2, #flexiselDemo3 {
 display:none;
