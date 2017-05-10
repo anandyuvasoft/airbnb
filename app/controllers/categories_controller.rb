@@ -4,8 +4,8 @@ class CategoriesController < ApplicationController
 
 
   def show
-    category_name = Category.friendly.find(params[:id]).name
-    @rooms = Room.where(category: category_name)
+    @category_name = Category.friendly.find(params[:id]).name
+    @rooms = Room.where(category: @category_name)
   end
 
 

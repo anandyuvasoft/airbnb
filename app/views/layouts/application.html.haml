@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title Doctor
+    %title= content_for?(:title) ? content_for(:title) : "Find a Doctor – Doctor Reviews &amp; Ratings | Book Online Instantly – Airbnb" 
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag "//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css"
