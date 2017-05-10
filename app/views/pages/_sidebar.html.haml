@@ -1,6 +1,61 @@
-.col-md-2
+.col-md-3
   .leftpanel
-    .logopanel
+
+    .profile-info
+      
+      .user-profile.media
+        .col-md-5
+          %a.pull-left.profile-thumb{:href => user_path(current_doctor)}
+            -#%img.img-circle{:alt => "", :src => "/assets/user1.png"}/
+            = image_tag avatar_url(current_doctor), class: 'img-circle' 
+        .col-md-2            
+          .media-body
+            %h4.media-heading Roberto
+            %small.text-muted
+              %a{:href => "/edit?personal=true"} Edit profile
+
+
+      %p Complete your profile:
+      %ul.profile-list
+        %li
+          %a{:href => "javascript:void(0)"} Email
+          - if current_doctor.email.present?
+            %i.fa.fa-check
+          - else
+            %a.pull-right.add{:href => "/edit?personal=true"} Add
+
+
+        %li
+          %a{:href => "javascript:void(0)"} Date of birth
+          - if current_doctor.birthday.present?
+            %i.fa.fa-check
+          - else
+            %a.pull-right.add{:href => "/edit?personal=true"} Add          
+
+        %li
+          %a{:href => "javascript:void(0)"} Gender
+          - if current_doctor.gender.present?
+            %i.fa.fa-check
+          - else
+            %a.pull-right.add{:href => "/edit?personal=true"} Add
+
+        %li
+          %a{:href => "javascript:void(0)"} Phone
+          - if current_doctor.phone_number.present?
+            %i.fa.fa-check
+          - else
+            %a.pull-right.add{:href => "/edit?personal=true"} Add
+
+        %li
+          %a{:href => "javascript:void(0)"} Where you live
+          - if false
+            %i.fa.fa-check
+          - else
+            %a.pull-right.add{:href => "/edit?personal=true"} Add          
+      %span Your personal profile information is private and will not be shared
+
+
+    -#.logopanel
       %h1
         %img{:src => "/assets/gotdoc-logo.png"}/
     / logopanel

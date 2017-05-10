@@ -21,7 +21,6 @@ Now after taking a fresh clone you need to do following things
 7) Go to the browser and open the url http://localhost:3000/admin
 8) you will see admin login screen enter the test email and password which is admin@example.com and password is password.
 9) now import all insurance providers and symptoms using csv sheets.
-10) project_folder_path$ rails c
 10) now open the url http://locahost:3000 
 
 

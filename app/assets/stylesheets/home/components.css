@@ -7,10 +7,10 @@ body {
 	margin:0
 }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+/*article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display:inline-block;
   width: 100%;
-}
+}*/
 
 audio, canvas, progress, video {
 	display:inline-block;
@@ -640,12 +640,6 @@ pre code {
 .container {
 	width:1170px
 }
-}
-.container-fluid {
-	margin-right:auto;
-	margin-left:auto;
-	padding-left:15px;
-	padding-right:15px
 }
 .container-fluid:before, .container-fluid:after {
 	content:" ";

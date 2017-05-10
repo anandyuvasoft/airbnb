@@ -1,8 +1,33 @@
-.container-fluid
-  .row
-    %section
-      = render "sidebar"
-      = render "main_panel"
+.row
+
+  .dark-menu.mb-30
+    %nav.navbar.navbar-default
+      .navbar-header
+        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => "/dashboard"} Dashboard
+          %li
+            %a{:href => friends_path(current_doctor)} Friends  Colleagues
+          %li
+            %a{:href => leads_path(current_doctor) } Bookings
+          %li
+            %a{:href => rooms_path } My Listings
+          %li
+            %a{:href => "javascript:void(0)"} My Reviews
+          %li
+            %a{:href => "javascript:void(0)"} Calendar
+
+
+
+  %section
+    = render "sidebar"
+    = render "main_panel"
 
 
 / -#.headerbar

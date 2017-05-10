@@ -1,6 +1,7 @@
 .container
   .my-50
     .row
+      %h4 Leads
       - current_doctor.booked_patients.each do |patient|
         - @user = patient
         = render "card"
