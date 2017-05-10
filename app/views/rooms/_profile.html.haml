@@ -10,7 +10,7 @@
             - if @owner
               %a{href: edit_room_path(education: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus  
+                  %i.glyphicon.glyphicon-plus 
           %ul        
             - @room.educations.each do |education|
               %li.small
@@ -26,7 +26,7 @@
             - if @owner
               %a{href: edit_room_path(condition: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus
+                  %i.glyphicon.glyphicon-edit
           %ul          
             - @room.conditions.each do |condition|
               %li.small
@@ -39,7 +39,7 @@
             - if @owner
               %a{href: edit_room_path(insurance: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus              
+                  %i.glyphicon.glyphicon-plus             
           %ul                  
             - @room.insurances.each do |insurance|
               %li.small
@@ -51,7 +51,7 @@
             - if @owner
               %a{href: edit_room_path(procedure: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus              
+                  %i.glyphicon.glyphicon-plus             
           %ul                  
             - @room.procedures.each do |procedure|
               %li.small
@@ -65,7 +65,7 @@
             - if @owner
               %a{href: edit_room_path(language: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus  
+                  %i.glyphicon.glyphicon-plus 
           %ul        
             - @room.languages.each do |language|
               %li.small

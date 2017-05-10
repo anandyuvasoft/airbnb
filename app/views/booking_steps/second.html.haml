@@ -11,6 +11,8 @@
           = hidden_field_tag :room_id, @room.id
           = booking.fields_for :friends, booking.object.friends.build do |friend|
             = render "form", object:  friend
+          .actions
+            = booking.submit "Book appointment", class: 'btn btn-primary'      
 
       - if params["refer"].eql? 'false'
         = form_for current_user, url: bookings_path, method: :post do |user|
