@@ -1,7 +1,7 @@
 class Room < ActiveRecord::Base
 
   include PublicActivity::Common
-  geocoded_by :full_street_address
+  geocoded_by :address
 
   belongs_to :user
   has_many :photos, :dependent => :destroy
@@ -26,11 +26,11 @@ class Room < ActiveRecord::Base
   after_create :send_notification_after_create
   after_validation :geocode
   
-  # scope :upgraded, -> { joins(:purchases).where('purchases.purchased_at <= ?', DateTime.now.to_date+30) }
+  scope :upgraded, -> { joins(:purchases).where('purchases.purchased_at >= ?', DateTime.now.to_date-30) }
 
-  def full_street_address
-    address
-  end
+  # def full_street_address
+  #   address
+  # end
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)

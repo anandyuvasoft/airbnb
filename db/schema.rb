@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508063045) do
+ActiveRecord::Schema.define(version: 20170510095619) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -78,7 +78,10 @@ ActiveRecord::Schema.define(version: 20170508063045) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "slug",       limit: 255
   end
+
+  add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
 
   create_table "conditions", force: :cascade do |t|
     t.integer  "room_id",    limit: 4
@@ -126,6 +129,12 @@ ActiveRecord::Schema.define(version: 20170508063045) do
 
   add_index "friends", ["booking_id"], name: "index_friends_on_booking_id", using: :btree
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
+
+  create_table "insurance_providers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "insurances", force: :cascade do |t|
     t.integer  "room_id",            limit: 4
@@ -290,6 +299,15 @@ ActiveRecord::Schema.define(version: 20170508063045) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "symptoms", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "slug",       limit: 255
+  end
+
+  add_index "symptoms", ["slug"], name: "index_symptoms_on_slug", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255,   default: "", null: false

@@ -59,6 +59,8 @@ Rails.application.routes.draw do
   get 'users/:id/relatives' => 'users#relatives'
   get 'users/:id/bookings' => 'users#bookings'
   
+  get 'doctor/:id/leads' => 'doctors#leads', as: :leads 
+  
   delete 'relative/:id' => "users#remove_relative"
   delete 'friend/:id' => "users#remove_friend"
   delete 'booking/:id' => "users#remove_booking"
@@ -68,5 +70,6 @@ Rails.application.routes.draw do
   get '/sample' => "pages#sample"
   get '/test' => "pages#test"
   resources :booking_steps
+  resources :categories, only: [:show]
   
 end

@@ -8,9 +8,7 @@ body {
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-	/*display:block*/
-  /*display: inline-block;*/
-  display:-webkit-box;
+  display:inline-block;
   width: 100%;
 }
 

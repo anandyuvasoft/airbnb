@@ -1,0 +1,6 @@
+.container
+  .my-50
+    .row
+      - current_doctor.booked_patients.each do |patient|
+        - @user = patient
+        = render "card"

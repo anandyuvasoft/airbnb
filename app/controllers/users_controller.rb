@@ -7,8 +7,10 @@ class UsersController < ApplicationController
 
   def show;end
 
+  # TODO move this def to patients controller
   def relatives;end
 
+  # TODO move this def to doctors controller
   def friends;end
 
    def remove_relative

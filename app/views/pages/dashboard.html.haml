@@ -1,379 +1,140 @@
 .container-fluid
   .row
     %section
-      .col-md-2
-        .leftpanel
-          -#.logopanel
-            %h1
-              %img{:src => "/assets/gotdoc-logo.png"}/
-          / logopanel
-          .leftpanelinner
-            %ul.nav.nav-pills.nav-stacked.nav-bracket
-              %li.active
-                %a{:href => "javascript:void(0)"}
-                  %i.fa.fa-home
-                  %span Dashboard
-              %li
-                %a{:href => "javascript:void(0)"}
-                  %i.fa.fa-map-marker
-                  %span Listings
-              %li
-                %a{:href => "javascript:void(0)"}
-                  %i.fa.fa-check
-                  %span Leads
-              %li
-                %a{:href => "javascript:void(0)"}
-                  %i.fa.fa-plus-circle
-                  %span Add-Ons
-              %li
-                %a{:href => "javascript:void(0)"}
-                  %i.fa.fa-calendar
-                  %span My Calendar
-              %li
-                %a{:href => "javascript:void(0)"}
-                  %i.fa.fa-comment-o
-                  %span Messages
-              %li
-                %a{:href => "javascript:void(0)"}
-                  %i.fa.fa-cog
-                  %span Account Setting
+      = render "sidebar"
+      = render "main_panel"
 
 
-
-      .col-md-10              
-        .mainpanel
-          -#.headerbar
-            %a.menutoggle
-              %i.fa.fa-bars
-            .header-right
-              %ul.headermenu
-                %li
-                  .btn-group
-                    %button.btn.btn-default.dropdown-toggle.tp-icon{"data-toggle" => "dropdown"}
-                      %i.fa.fa-question{"aria-hidden" => "true"}
-                    .dropdown-menu.dropdown-menu-head.pull-right
-                      %h5.title You Have 1 New Message
-                      %ul.dropdown-list.gen-list
-                        %li.new
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user1.png"}/
-                            %span.desc
-                              %span.name
-                                Draniem Daamul
-                                %span.badge.badge-success new
-                              %span.msg Lorem ipsum dolor sit amet...
-                        %li
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user2.png"}/
-                            %span.desc
-                              %span.name Nusja Nawancali
-                              %span.msg Lorem ipsum dolor sit amet...
-                        %li
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user3.png"}/
-                            %span.desc
-                              %span.name Weno Carasbong
-                              %span.msg Lorem ipsum dolor sit amet...
-                        %li
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user4.png"}/
-                            %span.desc
-                              %span.name Zaham Sindilmaca
-                              %span.msg Lorem ipsum dolor sit amet...
-                        %li
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user5.png"}/
-                            %span.desc
-                              %span.name Veno Leongal
-                              %span.msg Lorem ipsum dolor sit amet...
-                        %li.new
-                          %a{:href => ""} Read All Messages
-                %li
-                  .btn-group
-                    %button.btn.btn-default.dropdown-toggle.tp-icon{"data-toggle" => "dropdown"}
-                      %i.fa.fa-bell-o{"aria-hidden" => "true"}
-                    .dropdown-menu.dropdown-menu-head.pull-right
-                      %h5.title You Have 5 New Notifications
-                      %ul.dropdown-list.gen-list
-                        %li.new
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user4.png"}/
-                            %span.desc
-                              %span.name
-                                Zaham Sindilmaca
-                                %span.badge.badge-success new
-                              %span.msg is now following you
-                        %li.new
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user5.png"}/
-                            %span.desc
-                              %span.name
-                                Weno Carasbong
-                                %span.badge.badge-success new
-                              %span.msg is now following you
-                        %li.new
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user3.png"}/
-                            %span.desc
-                              %span.name
-                                Veno Leongal
-                                %span.badge.badge-success new
-                              %span.msg likes your recent status
-                        %li.new
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user3.png"}/
-                            %span.desc
-                              %span.name
-                                Nusja Nawancali
-                                %span.badge.badge-success new
-                              %span.msg downloaded your work
-                        %li.new
-                          %a{:href => ""}
-                            %span.thumb
-                              %img{:alt => "", :src => "/assets/user3.png"}/
-                            %span.desc
-                              %span.name
-                                Nusja Nawancali
-                                %span.badge.badge-success new
-                              %span.msg send you 2 messages
-                        %li.new
-                          %a{:href => ""} See All Notifications
-                %li
-                  .btn-group
-                    %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
-                      %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                      John Doe
-                      %span.caret
-                    %ul.dropdown-menu.dropdown-menu-usermenu.pull-right
-                      %li
-                        %a{:href => "profile.html"}
-                          %i.glyphicon.glyphicon-user
-                          My Profile
-                      %li
-                        %a{:href => "javascript:void(0)"}
-                          %i.glyphicon.glyphicon-cog
-                          Account Settings
-                      %li
-                        %a{:href => "javascript:void(0)"}
-                          %i.glyphicon.glyphicon-question-sign
-                          Help
-                      %li
-                        %a{:href => "signin.html"}
-                          %i.glyphicon.glyphicon-log-out
-                          Log Out
-            / header-right
-          / headerbar
-          .contentpanel
-            .green-header-box
-              .col-md-9
-                %h1
-                  Refer your colleagues and
-                  %span get free credits
-                %p Credits can get you more exposure, free add-ons, a higher trustmeter  much more!
-              .col-md-3
-                %a.btn.btn-default.btn-block.border-btn{:href => "javascript:void(0)"} Refer my colleagues
-            .row
-              .col-md-6
-                .content-left
-                  .form-group.list-1
-                    %h2.title-box My to-do list
-                    %ul.to-do-list
-                      %li
-                        .ckbox.ckbox-primary
-                          %input#check-1{:name => "int[]", :required => "", :type => "checkbox", :value => "m"}
-                            %label{:for => "check-1"} Submit your practice for approval
-                          / rdio
-                        %li
-                          .ckbox.ckbox-primary
-                            %input#check-2{:name => "int[]", :type => "checkbox", :value => "f"}
-                              %label{:for => "check-2"} Raise your trustmeter score and earn patients trust
-                            / rdio
-                          %li
-                            .ckbox.ckbox-primary
-                              %input#check-3{:name => "int[]", :type => "checkbox", :value => "f"}
-                                %label{:for => "check-3"} Refer your collagues to earn credits
-                              / rdio
-                            %li
-                              .ckbox.ckbox-primary
-                                %input#check-4{:name => "int[]", :type => "checkbox", :value => "f"}
-                                  %label{:for => "check-4"} Upgrade your listing to increse your exposure
-                                / rdio
-                          .form-group
-                            %h2.title-box My Listings
-                            %ul.to-do-list.my-listing
-                              %li
-                                %span.avatar-box-big
-                                  %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                                .extra-wrap
-                                  .col-md-6.clear-box
-                                    %p.messages-box
-                                      %h4 Roberto Casaras MD
-                                      %span Center for Health Medicine
-                                      %a{:href => "javascript:void(0)"} Plastic Surgeon
-                                      %address
-                                        %i.fa.fa-map-marker
-                                        12 W Alabama Rd California, Hollywood, 10029
-                                  .col-md-6.clear-box
-                                    %a.btn.btn-default.btn-block.fetured-btn{:href => "javascript:void(0)"}
-                                      Fetured
-                                      %span for $199/month
-                                    %a.btn.btn-default.btn-block.view-listing-btn{:href => "javascript:void(0)"} View Listing
-                                .clearfix
-                                %a{:href => "javascript:void(0)"} Edit Listing
-                              %center
-                                %a.see-all-link{:href => "javascript:void(0)"} See All My Listings
-                            .form-group
-                              %h2.title-box Recent Notifications
-                              %ul.to-do-list
-                                %li
-                                  %p
-                                    Congratulations!
-                                    %a{:href => "javascript:void(0)"} Your listing
-                                    was approved!
-                                  %span.hours-info About 4 hours ago
-                                %li
-                                  %p Your listing is under review. Please wait 24-48 hours.
-                                  %span.hours-info 2 days ago
-                                %li
-                                  %p
-                                    You've submitted a new listings for
-                                    %a{:href => "javascript:void(0)"} Reberto Carlos MD
-                                  %span.hours-info 3 days ago
-                                %li
-                                  %p
-                                    Welcome to GotDoc.com!
-                                    %a{:href => "javascript:void(0)"} Click here
-                                    to learn how to get started.
-                                  %span.hours-info 20 days ago
-                              %center
-                                %a.see-all-link{:href => "javascript:void(0)"} See All My Notifications
-                            .form-group
-                              %h2.title-box Recent Messages
-                              %ul.to-do-list.recent-messages
-                                %li
-                                  %span.avatar-box
-                                    %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                                  .extra-wrap
-                                    %p.messages-box
-                                      %a{:href => "javascript:void(0)"} Ana Carolina
-                                      Hey! I was wondering if could get the flue
-                                    %span.hours-info 20 days ago
-                                  %li
-                                    %span.avatar-box
-                                      %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                                    .extra-wrap
-                                      %p.messages-box
-                                        %a{:href => "javascript:void(0)"} Roy jhon
-                                        Are you available on the 5th sunday of april
-                                      %span.hours-info 20 days ago
-                                    %li
-                                      %span.avatar-box
-                                        %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                                      .extra-wrap
-                                        %p.messages-box
-                                          %a{:href => "javascript:void(0)"} Liliana Peters
-                                          I want to know how I can get in touch with you
-                                        %span.hours-info 20 days ago
-                                      %li
-                                        %span.avatar-box
-                                          %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                                        .extra-wrap
-                                          %p.messages-box
-                                            %a{:href => "javascript:void(0)"} May Feather
-                                            Wondering if you accept insurence because
-                                          %span.hours-info 20 days ago
-                                      %center
-                                        %a.see-all-link{:href => "javascript:void(0)"} See All My Messages
-              .col-md-6
-                .trust-meter-box
-                  %select#year.form-control{:name => "year"}
-                    %option{:value => "1"} Roberto Casaras MD
-                  %span
-                    %center
-                      Has a
-                      %b 20%
-                      Trust Meter Score
-                      -#%sup I
-                  .progress
-                    .progress-bar.progress-bar-primary{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "60", :role => "progressbar", :style => "width: 20%"}
-                  %span.blue-text
-                    %center Learn How to Raise Your TrustMeter Score
-                .leads-box
-                  %span Total Leads
-                  %select#year.form-control{:name => "year"}
-                    %option{:value => "1"} All Times
-                  %h1 187
-                  .leads-box-bottom
-                    %a{:href => "javascript:void(0)"} See All My Leads
-                .form-group
-                  %h2.title-box Recent Leads
-                  .leads-title
-                    User Requesting Appointment
-                    %span.pull-right Dates Created
-                  %ul.to-do-list.recent-leads
-                    %li
-                      %span.avatar-box
-                        %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                      .extra-wrap
-                        %p.messages-box
-                          %a{:href => "javascript:void(0)"} Ana Carolina
-                        %span.hours-info Apr 29
-                      %li
-                        %span.avatar-box
-                          %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                        .extra-wrap
-                          %p.messages-box
-                            %a{:href => "javascript:void(0)"} Roy jhon
-                          %span.hours-info Apr 29
-                        %li
-                          %span.avatar-box
-                            %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                          .extra-wrap
-                            %p.messages-box
-                              %a{:href => "javascript:void(0)"} Liliana Peters
-                              %span.hours-info Apr 29
-                          %li
-                            %span.avatar-box
-                              %img{:alt => "", :src => "/assets/loggeduser.png"}/
-                            .extra-wrap
-                              %p.messages-box
-                                %a{:href => "javascript:void(0)"} May Feather
-                              %span.hours-info Apr 29
-                          %center
-                            %a.see-all-link{:href => "javascript:void(0)"} See All My Leads
-                        .my-listing-box
-                          %h1 187
-                          %span People Have Visited on my profile
-                          %select#year.form-control{:name => "year"}
-                            %option{:value => "1"} All Times
-                          .my-listing-bottom
-                            %a{:href => "javascript:void(0)"}
-                              Unlock Marketing Insights
-                              %i.fa.fa-lock
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/ -#.headerbar
+/   %a.menutoggle
+/     %i.fa.fa-bars
+/   .header-right
+/     %ul.headermenu
+/       %li
+/         .btn-group
+/           %button.btn.btn-default.dropdown-toggle.tp-icon{"data-toggle" => "dropdown"}
+/             %i.fa.fa-question{"aria-hidden" => "true"}
+/           .dropdown-menu.dropdown-menu-head.pull-right
+/             %h5.title You Have 1 New Message
+/             %ul.dropdown-list.gen-list
+/               %li.new
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user1.png"}/
+/                   %span.desc
+/                     %span.name
+/                       Draniem Daamul
+/                       %span.badge.badge-success new
+/                     %span.msg Lorem ipsum dolor sit amet...
+/               %li
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user2.png"}/
+/                   %span.desc
+/                     %span.name Nusja Nawancali
+/                     %span.msg Lorem ipsum dolor sit amet...
+/               %li
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user3.png"}/
+/                   %span.desc
+/                     %span.name Weno Carasbong
+/                     %span.msg Lorem ipsum dolor sit amet...
+/               %li
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user4.png"}/
+/                   %span.desc
+/                     %span.name Zaham Sindilmaca
+/                     %span.msg Lorem ipsum dolor sit amet...
+/               %li
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user5.png"}/
+/                   %span.desc
+/                     %span.name Veno Leongal
+/                     %span.msg Lorem ipsum dolor sit amet...
+/               %li.new
+/                 %a{:href => ""} Read All Messages
+/       %li
+/         .btn-group
+/           %button.btn.btn-default.dropdown-toggle.tp-icon{"data-toggle" => "dropdown"}
+/             %i.fa.fa-bell-o{"aria-hidden" => "true"}
+/           .dropdown-menu.dropdown-menu-head.pull-right
+/             %h5.title You Have 5 New Notifications
+/             %ul.dropdown-list.gen-list
+/               %li.new
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user4.png"}/
+/                   %span.desc
+/                     %span.name
+/                       Zaham Sindilmaca
+/                       %span.badge.badge-success new
+/                     %span.msg is now following you
+/               %li.new
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user5.png"}/
+/                   %span.desc
+/                     %span.name
+/                       Weno Carasbong
+/                       %span.badge.badge-success new
+/                     %span.msg is now following you
+/               %li.new
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user3.png"}/
+/                   %span.desc
+/                     %span.name
+/                       Veno Leongal
+/                       %span.badge.badge-success new
+/                     %span.msg likes your recent status
+/               %li.new
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user3.png"}/
+/                   %span.desc
+/                     %span.name
+/                       Nusja Nawancali
+/                       %span.badge.badge-success new
+/                     %span.msg downloaded your work
+/               %li.new
+/                 %a{:href => ""}
+/                   %span.thumb
+/                     %img{:alt => "", :src => "/assets/user3.png"}/
+/                   %span.desc
+/                     %span.name
+/                       Nusja Nawancali
+/                       %span.badge.badge-success new
+/                     %span.msg send you 2 messages
+/               %li.new
+/                 %a{:href => ""} See All Notifications
+/       %li
+/         .btn-group
+/           %button.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+/             %img{:alt => "", :src => "/assets/loggeduser.png"}/
+/             John Doe
+/             %span.caret
+/           %ul.dropdown-menu.dropdown-menu-usermenu.pull-right
+/             %li
+/               %a{:href => "profile.html"}
+/                 %i.glyphicon.glyphicon-user
+/                 My Profile
+/             %li
+/               %a{:href => "javascript:void(0)"}
+/                 %i.glyphicon.glyphicon-cog
+/                 Account Settings
+/             %li
+/               %a{:href => "javascript:void(0)"}
+/                 %i.glyphicon.glyphicon-question-sign
+/                 Help
+/             %li
+/               %a{:href => "signin.html"}
+/                 %i.glyphicon.glyphicon-log-out
+/                 Log Out
+/   / header-right
+/ / headerbar
 
 
 

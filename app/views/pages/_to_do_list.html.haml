@@ -1,0 +1,32 @@
+.content-left
+
+  .form-group.list-1
+    %h2.title-box My to-do list
+    %ul.to-do-list
+      %li
+        .ckbox.ckbox-primary
+          %input#check-1{:name => "int[]", :required => "", :type => "checkbox", :value => "m"}
+            %label{:for => "check-1"} Submit your practice for approval
+          / rdio
+        %li
+          .ckbox.ckbox-primary
+            %input#check-2{:name => "int[]", :type => "checkbox", :value => "f"}
+              %label{:for => "check-2"} Raise your trustmeter score and earn patients trust
+            / rdio
+          %li
+            .ckbox.ckbox-primary
+              %input#check-3{:name => "int[]", :type => "checkbox", :value => "f"}
+                %label{:for => "check-3"} Refer your collagues to earn credits
+              / rdio
+            %li
+              .ckbox.ckbox-primary
+                %input#check-4{:name => "int[]", :type => "checkbox", :value => "f"}
+                  %label{:for => "check-4"} Upgrade your listing to increse your exposure
+                / rdio
+
+
+            = render 'listings'      
+            = render 'notifications'
+            = render 'messages'
+
+

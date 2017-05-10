@@ -11,7 +11,7 @@
           = form_tag search_path, method: :get do
             .input-group
               %span.button{"ng-click" => "toggleDropDown()"}
-              = text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State'      
+              = text_field_tag :location, params[:location], placeholder: 'City, Zip Code or State'      
 
 
 

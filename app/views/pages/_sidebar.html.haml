@@ -1,0 +1,36 @@
+.col-md-2
+  .leftpanel
+    .logopanel
+      %h1
+        %img{:src => "/assets/gotdoc-logo.png"}/
+    / logopanel
+    .leftpanelinner
+      %ul.nav.nav-pills.nav-stacked.nav-bracket
+        %li.active
+          %a{:href => "/dashboard"}
+            %i.fa.fa-home
+            %span Dashboard
+        %li
+          %a{:href => "/rooms"}
+            %i.fa.fa-map-marker
+            %span Listings
+        %li
+          %a{:href => leads_path(current_doctor)}
+            %i.fa.fa-check
+            %span Leads
+        %li
+          %a{:href => "javascript:void(0)"}
+            %i.fa.fa-plus-circle
+            %span Add-Ons
+        %li
+          %a{:href => "javascript:void(0)"}
+            %i.fa.fa-calendar
+            %span My Calendar
+        %li
+          %a{:href => "/conversations"}
+            %i.fa.fa-comment-o
+            %span Messages
+        %li
+          %a{:href => "/edit?personal=true"}
+            %i.fa.fa-cog
+            %span Account Setting

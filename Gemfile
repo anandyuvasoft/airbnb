@@ -57,3 +57,5 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin'
 gem 'zapier_ruby'
 gem "hubspot-ruby"
+gem "active_admin_import" , '3.0.0'
+gem 'friendly_id'

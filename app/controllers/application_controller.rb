@@ -5,11 +5,8 @@ class ApplicationController < ActionController::Base
   
   skip_before_filter :verify_authenticity_token 
   
-  before_action :authenticate_doctor!, unless: :devise_controller?
+  before_action :authenticate_doctor!, unless: :devise_controller? 
   before_action :authenticate_patient!, unless: :devise_controller?
-
-  #before_action :authenticate_user!
-  #before_action :authenticate_patient!
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   

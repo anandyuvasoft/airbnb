@@ -62,7 +62,7 @@
             
             = room.fields_for :conditions do |condition|
               .form-group
-                = condition.select :condition, Condition::TYPES , prompt: "Select Conditions..", class: 'form-control'
+                = condition.select :condition, Symptom.all.map{|symptom| [symptom.name, symptom.name]} , prompt: "Select Conditions..", class: 'form-control'
               - unless condition.object.new_record?                 
                 = condition.check_box :_destroy
                 = condition.label :_destroy, "Remove" , class: 'remove' 
@@ -88,7 +88,7 @@
             
             = room.fields_for :insurances do |insurance|
               .form-group
-                = insurance.select :insurance_provider, Insurance::TYPES , prompt: "Select Insurances..", class: 'form-control'
+                = insurance.select :insurance_provider, InsuranceProvider.all.map{|insurance_provider| [insurance_provider.name, insurance_provider.name]} , prompt: "Select Insurances..", class: 'form-control'
               - unless insurance.object.new_record?                 
                 = insurance.check_box :_destroy
                 = insurance.label :_destroy, "Remove" , class: 'remove'           
