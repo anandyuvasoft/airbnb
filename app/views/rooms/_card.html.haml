@@ -49,3 +49,11 @@
             = link_to 'Book An Appointment', booking_steps_path(room_id: @room.id), class: 'btn btn-block btn-primary'
        
           = render 'purchases/form_enterprise' if @owner && !@upgraded
+
+
+- content_for :javascript do 
+  :javascript
+    $('#average_rating').raty ({
+    readOnly: true,
+    score: #{@room.average_rating}
+    });

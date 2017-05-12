@@ -1,9 +1,11 @@
-.form-group
-  = object.label :fullname, 'Full name'
-  = object.text_field :fullname, autofocus: true, class: 'form-control'
-.form-group
-  = object.label :email, 'Email'
-  = object.text_field :email, autofocus: true, class: 'form-control'
+- unless object.object.kind_of? Patient
+  .form-group
+    = object.label :fullname, 'Full name'
+    = object.text_field :fullname, autofocus: true, class: 'form-control'
+  .form-group
+    = object.label :email, 'Email'
+    = object.text_field :email, autofocus: true, class: 'form-control'
+    
 .form-group
   = object.label :gender, 'Gender', class: 'control-label'
   .radio

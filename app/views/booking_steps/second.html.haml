@@ -1,25 +1,26 @@
 .container
- 
   .my-50
     .row
-   
+      = form_for Booking.new, url: bookings_path, method: :post do |booking|
+        = hidden_field_tag :room_id, @room.id
 
-      - if params["refer"].eql? 'true'
-
-        %h2 Patient's details
-        = form_for Booking.new, url: bookings_path, method: :post do |booking|
-          = hidden_field_tag :room_id, @room.id
-          = booking.fields_for :friends, booking.object.friends.build do |friend|
-            = render "form", object:  friend
-          .actions
-            = booking.submit "Book appointment", class: 'btn btn-primary'      
-
-      - if params["refer"].eql? 'false'
-        = form_for current_user, url: bookings_path, method: :post do |user|
-          = hidden_field_tag :room_id, @room.id
+        - if params[:refer].eql?('true')
           .panel.panel-default
-            .panel-heading Step1: Need below details
-            .panel-body      
-              = render "form" , object: user
-          .actions
-            = user.submit "Book appointment", class: 'btn btn-primary'      
+            .panel-heading
+              Step2: Patient's details
+            .panel-body.box
+              = booking.fields_for :friend, booking.object.build_friend do |friend|
+                = render "form", object:  friend
+        - else
+          .panel.panel-default
+            .panel-heading
+              Step2: Need more details
+            .panel-body.box
+              = booking.fields_for :user, current_patient do |patient|
+                = render "form", object:  patient              
+        .actions
+          = booking.submit "Book appointment", class: 'btn btn-primary'      
+
+
+
+

@@ -1,18 +1,62 @@
 .container
   .my-50
     .row
-      %h3 Search Results
 
-      .col-md-12
-        - @rooms.each do |room|
-          - @reviews = room.reviews 
-          - @room = room
-          - @photos = room.photos
-          - @upgraded = (room.is_upgraded?) ? true : false
-          = render "rooms/card"
-          #search_results_on_google_map
+      .panel.panel-default
+        .panel-heading
+          Search results
+        .panel-body.box
+          .col-md-12
+            - @rooms.each do |room|
+              - @reviews = room.reviews 
+              - @room = room
+              - @photos = room.photos
+              - @upgraded = (room.is_upgraded?) ? true : false
+              = render "rooms/card"
 
-- content_for :javascript do
+
+      .panel.panel-default
+        .panel-heading
+          Above rooms on map
+        .panel-body.box
+          #google_map{style: "height:600px;"}
+
+
+
+- content_for :javascript do 
   :javascript
-    alert("Google map id hide due to some code cleaning issue added in to to list")
+    var mapDiv = document.getElementById('google_map');
 
+    if (navigator.geolocation) {
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+    
+    var center = {lat: position.coords.latitude,lng: position.coords.longitude};
+
+    var map = new google.maps.Map(mapDiv, {center: center, zoom: 2});
+
+    var rooms = #{raw @rooms.to_json};
+
+    for(i = 0; i < rooms.length; i++) { 
+
+    var position = {lat: rooms[i].latitude , lng: rooms[i].longitude }
+
+    var marker = new google.maps.Marker( { position: position, title: rooms[i].practice , map:map });
+
+    var content = '<strong>'+rooms[i].listing_name+'</strong><br><b>'+rooms[i].practice+'</b>'
+
+    var infowindow = new google.maps.InfoWindow;
+
+    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+        return function() {
+            infowindow.setContent(content);
+            infowindow.open(map,marker);
+        };
+    })(marker,content,infowindow)); 
+   
+    }
+    });
+    }
+
+
+ 

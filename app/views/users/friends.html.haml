@@ -7,9 +7,12 @@
     .row
       %h4#count 
         Friends (#{@friends.size})
-      - @friends.each do |friend|
+      - @friends.order('updated_at desc').each do |friend|
         .col-md-4{id: "friend_#{friend.id}"}
           - if @owner
+            = link_to "/edit?friend=true&friend_id=#{friend.id}", class: 'pull-right' do 
+              %button.btn-circle.btn.btn-primary{:type => "button"}
+                %i.glyphicon.glyphicon-edit          
             = link_to "/friend/#{friend.id}", method: :delete, remote: true, class: 'pull-right' do 
               %button.btn-circle.btn.btn-danger{:type => "button"}
                 %i.glyphicon.glyphicon-remove

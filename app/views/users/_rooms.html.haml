@@ -6,7 +6,7 @@
         %button.btn-circle.btn.btn-primary{:type => "button"}
           %i.glyphicon.glyphicon-plus
 
-  - @rooms.first(3).each do |room|
+  - @rooms.order('updated_at desc').first(3).each do |room|
     .col-md-4
       = link_to room_path(room) do
         .panel.panel-default
@@ -15,4 +15,4 @@
           .panel-body.text-center
             %strong= room.practice.try(:capitalize)
   .clearfix        
-  %strong= link_to "View more", "javascript:void(0)", class: 'pull-right'  if @rooms.length > 3
+  %strong= link_to "View more", "/rooms", class: 'pull-right'  if @rooms.length > 3

@@ -26,7 +26,7 @@
             - if @owner
               %a{href: edit_room_path(condition: true) }
                 %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-edit
+                  %i.glyphicon.glyphicon-plus
           %ul          
             - @room.conditions.each do |condition|
               %li.small
@@ -81,10 +81,6 @@
           Reviews
           %span#average_rating
           (#{@reviews.count})
-        = render 'reviews/form' if current_user && !@owner
+        = render 'reviews/form' if current_patient && has_booked?
         .mt-20
           = render 'reviews/list'
-
-- content_for :javascript do
-  :javascript
-    alert("Google Map is hide for now added in to do task");  

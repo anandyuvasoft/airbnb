@@ -7,7 +7,6 @@
     - @leads.each do |patient|
       %li
         %span.avatar-box
-          -#%img{:alt => "", :src => "/assets/loggeduser.png"}/
           = image_tag avatar_url(patient), class: 'img-responsive rounded' 
         .extra-wrap
           %p.messages-box
@@ -15,5 +14,5 @@
               = patient.fullname
           %span.hours-info Apr 29
 
-      %center
-        %a.see-all-link{:href => leads_path(current_doctor) } See All My Leads
+    %center
+      %a.see-all-link{:href => leads_path(current_doctor) } See All My Leads

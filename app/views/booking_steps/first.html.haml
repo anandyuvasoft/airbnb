@@ -2,21 +2,30 @@
 
   .my-50
     .row
-      .col-md-8
-        %h3.mb-30 
-          Review and book
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            Step1: To whom?
+          .panel-body.box.text-center
+            %h3.mb-20 Is this for you or someone else?
 
-        %h5
-          %strong Who will be seeing the doctor? 
+            - if is_user_profile_incomplete?
+              = link_to booking_step_path(:second, refer:false, room_id: @room.id) do
+                .col-md-6
+                  = image_tag('missing-patient.jpg')
+                  %h4
+                    %strong You
+            - else
+              = link_to bookings_path(room_id: @room.id), method: :post do
+                .col-md-6
+                  = image_tag('missing-patient.jpg')
+                  %h4
+                    %strong You
 
-        %ul
-          %li  
-            = link_to booking_step_path(:second, refer:false, room_id: @room.id) do
-              %p
-                = current_user.fullname.try(:capitalize)
-                (Me)
-          %li
+
             = link_to booking_step_path(:second, refer:true, room_id: @room.id) do
-              %p Some one else
+              .col-md-6
+                = image_tag('plus-in-circle.png')
+                %h4 
+                  %strong Someone else
 
-    .col-md-4

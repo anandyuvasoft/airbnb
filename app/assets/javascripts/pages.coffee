@@ -6,7 +6,7 @@
 $ ->
 
   $(window).load ->
-    $('#flexiselDemo1').flexisel
+    $('#flexiselDemo').flexisel
       visibleItems: 4
       itemsToScroll: 3
       animationSpeed: 200

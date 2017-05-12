@@ -6,7 +6,7 @@
     .row 
 
       %h4#count Appointments (#{@bookings.length}) 
-      - @bookings.each do |booking|
+      - @bookings.order('updated_at desc').each do |booking|
         - room = booking.room
         .col-md-4{id: "booking_#{booking.id}"}
           - if @owner

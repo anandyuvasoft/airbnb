@@ -21,15 +21,10 @@ class User < ActiveRecord::Base
   has_many :friends, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
 
-  accepts_nested_attributes_for :relatives, :friends, :allow_destroy => true, :reject_if => lambda { |a| a[:fullname].blank? }
+  accepts_nested_attributes_for  :relatives, :friends, :allow_destroy => true, :reject_if => lambda { |a| a[:fullname].blank? }
 
-  #after_create :default_values
 
   TYPE = [['Doctor','Doctor'],['Patient','Patient']]
-
-  # def default_values
-  #   update_attribute(:type, 'Patient')
-  # end
 
 
   def self.from_omniauth(auth)
@@ -45,7 +40,7 @@ class User < ActiveRecord::Base
         user.email = auth.info.email
         user.image = auth.info.image
         user.password = Devise.friendly_token[0,20]
-        user.type = 'Doctor'
+        user.type = 'Doctor' # FIXME default role can not be a doctor
       end
     end
   end

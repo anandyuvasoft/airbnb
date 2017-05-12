@@ -3,26 +3,25 @@
   .my-50
 
   .row
-    = render 'sidebarnav'
+    =# render 'sidebarnav'
 
-    .col-md-9
+    .col-md-12
       .panel.panel-default
         .panel-heading
           My Rooms
         .panel-body.box
-          - @rooms.each do |room|
+          - @rooms.order('updated_at desc').each do |room|
             = link_to room_path(room) do
-              .row
+              .row.box
                 - if room.is_upgraded?
                   .ribbon
                     %span Featured
                 .col-md-2
-                  =# image_tag room.photos[0].image.url(:thumb) if room.photos.length > 0
                   - photos = room.photos
                   = image_tag photos[0].try(:image) ? photos[0].image.url(:medium) : "/assets/missing-room.jpg", class: 'img-responsive rounded'                  
                 .col-md-6
                   %h4
-                    = room.listing_name
+                    = room.practice
                     %a{href: edit_room_path(room, personal:true) }
                       %button.btn-circle.btn.btn-primary{:type => "button"}
                         %i.glyphicon.glyphicon-edit                   

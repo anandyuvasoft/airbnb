@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510095619) do
+ActiveRecord::Schema.define(version: 20170511130456) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20170510095619) do
     t.boolean  "status"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "friend_id",  limit: 4
   end
 
   add_index "bookings", ["room_id"], name: "index_bookings_on_room_id", using: :btree

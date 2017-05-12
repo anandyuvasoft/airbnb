@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   get '/family-members' => 'users#family_members'
 
   get 'users/:id/friends' => 'users#friends' , as: :friends
-  get 'users/:id/relatives' => 'users#relatives'
+  get 'patient/:id/relatives' => 'patients#relatives'
   get 'users/:id/bookings' => 'users#bookings'
   
   get 'doctor/:id/leads' => 'doctors#leads', as: :leads 

@@ -1,9 +1,8 @@
 class Booking < ActiveRecord::Base
   belongs_to :user
   belongs_to :room
+  belongs_to :friend
 
-  has_many	:friends #referes
-
-  accepts_nested_attributes_for :friends, :friends,  :allow_destroy => true
+  accepts_nested_attributes_for :friend, :user, :allow_destroy => true
   
 end

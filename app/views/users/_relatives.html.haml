@@ -15,4 +15,4 @@
           %br
           = relative.relation.titleize          
   .clearfix        
-  %strong= link_to "View more","/users/#{@user.id}/relatives", class: 'pull-right'  if @relatives.length > 3
+  %strong= link_to "View more","/patient/#{@user.id}/relatives", class: 'pull-right'  if @relatives.length > 3
