@@ -1,238 +1,73 @@
-%nav.navbar.navbar-default.header-navbar
-  .container
+%nav.navbar.navbar-default
+  .container-fluid
     .navbar-header
-      -#%a.navbar-brand{:href => "javascript:void(0)"} WebSiteName
-      %a.logo{:href => "/"}
-        %img{:alt => "Upwork", :src => "/assets/home/gotdoc-logo.png", :width => "106"}      
-    %ul.nav.navbar-nav
+      %button.navbar-toggle{"aria-controls" => "navbar", "aria-expanded" => "true", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"}
+        %img{:src => "/assets/home/gotdoc-logo.png"} 
 
-      %li
-        .search.visible-md.visible-lg.ng-scope{"data-ng-controller" => "uiSearchController"}
-          = form_tag search_path, method: :get do
-            .input-group
-              %span.button{"ng-click" => "toggleDropDown()"}
-              = text_field_tag :location, params[:location], placeholder: 'City, Zip Code or State'      
-
-
-
-      %li.dropdown
-        %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0)"}
-          Browse
-          %span.caret
-        %ul.dropdown-menu
-          %li
-            %a{:href => "javascript:void(0)"} Categories
-          %li
-            %a{:href => "javascript:void(0)"} Symptoms
-          %li
-            %a{:href => "javascript:void(0)"} Procedures
-          %li
-            %a{:href => "javascript:void(0)"} Locations            
-    %ul.nav.navbar-nav.navbar-right
-      - unless user_signed_in?
-        %li
-          %a{:href => "/sign-up"}
-            %span.glyphicon.glyphicon-user
-            Sign Up
-        %li
-          %a{:href => "/sign-in"}
-            %span.glyphicon.glyphicon-log-in
-            Login
-        %li
-          %a.btn.btn-default.header-cta-feh{:href => "/room_steps"}
-            List Your Practice 
-
-      - else
-
-        -#%li= link_to 'List My Practice', new_room_path
-
-        %li= link_to icon('envelope'), conversations_path
-
-        %li= link_to icon('question'), "javascript:void(0)"
-
-        %li.nav-icon-btn.nav-icon-btn-danger.dropdown
-          = render "shared/notifications"
-
-
-
+    #navbar.navbar-collapse.collapse.in{"aria-expanded" => "true"}
+      %ul.nav.navbar-nav
+        %li.header-navbar
+          .search.visible-md.visible-lg.ng-scope{"data-ng-controller" => "uiSearchController"}
+            = form_tag search_path, method: :get do
+              .input-group
+                %span.button{"ng-click" => "toggleDropDown()"}
+                = text_field_tag :location, params[:location], placeholder: 'City, Zip Code or State' 
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            = image_tag avatar_url(current_user), class: 'img-circle avatar-small'
-            = current_user.fullname
+            Browse
             %span.caret
           %ul.dropdown-menu
-            - if current_user.type == "Doctor"
-              %li= link_to 'Dashboard', dashboard_path
-              %li= link_to 'My profile', user_path(current_user.id)
-              %li= link_to 'Rooms', rooms_path
-              -#%li= link_to 'Leads', your_reservations_path
-              -#%li= link_to 'Reviews', your_reservations_path
-            - else
-              -#%li= link_to 'Dashboard', dashboard_path
-              %li= link_to 'My profile', user_path(current_user.id)
-              %li= link_to 'Appointments', bookings_path
-              -#%li= link_to 'Reviews', your_trips_path
-
-            %li= link_to 'Settings', edit_user_registration_path(personal:true)
-            %li= link_to 'Sign out', destroy_user_session_path, method: :delete
-
-
-
-
-
-
-
-
-
--#%header.header-navbar.__mod-.ng-scope{:role => "banner"}
-  .container
-
-    %a.logo{:href => "/"}
-      %img{:alt => "Upwork", :src => "/assets/home/gotdoc-logo.png", :width => "106"}
-
-
-    .search.visible-md.visible-lg.ng-scope{"data-ng-controller" => "uiSearchController"}
-      = form_tag search_path, method: :get do
-        .input-group
-          %span.button{"ng-click" => "toggleDropDown()"}
-          = text_field_tag :search, params[:search], placeholder: 'City, Zip Code or State'
-
-
-    .visible-md.visible-lg.desktop-navbar
-      %nav.nav.font-gotham-medium
-        %ul.site-links.list-inline.pull-left
-          %li.ng-isolate-scope{"ui-sub-menu" => ""}
-            %a.text-uppercase{"ng-click" => "toggle()", "ng-transclude" => "", "ui-menu-active" => ""}
-              %span.ng-scope Browse
-            %ul.sub-menu.list-unstyled.font-gotham-book
-              %li.tile.active
-                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
-                  %strong.ng-scope Browse Categories
-                %ul.list-unstyled
-                  %li
-                    %a{:href => "javascript:void(0)"}
-                      Web Developers
-              %li.tile
-                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
-                  %strong.ng-scope Browse Freelancers
-                %ul.list-unstyled
-                  %li
-                    %a{:href => "javascript:void(0)"}
-                      Web, Mobile & Software Dev
-              %li.tile
-                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
-                  %strong.ng-scope Browse Jobs
-                %ul.list-unstyled
-                  %li
-                    %a{:href => "javascript:void(0)"} Web, Mobile & Software Dev
-                  %li
-                    %a{:href => "javascript:void(0)"} IT & Networking
-              %li.tile
-                %a.tile-title.font-gotham-bold.ng-scope{"ng-click" => "toggleActive()", "ng-transclude" => "", "ui-sub-menu-item" => ""}
-                  %strong.ng-scope Trending Skills
-                %ul.list-unstyled
-                  %li
-                    %a{:href => "javascript:void(0)"} Android Developers
-              %li
-                %a.font-gotham-bold{:href => "javascript:void(0)"}
-                  %strong Browse Hiring Resources
-
-        %ul.user-links.list-inline.pull-right
-          - if user_signed_in?          
-
-            %button.btn.btn-default.dropdown-toggle.tp-icon{"data-toggle" => "dropdown"}
-              %i.fa.fa-bell-o{"aria-hidden" => "true"}
-
-
-
             %li
-              = link_to 'sign out', destroy_user_session_path, method: :delete, class: 'header-link-signup text-uppercase', id: 'signout'
-          - else
+              %a{:href => "javascript:void(0)"} Categories
             %li
-              %a#signup.header-link-signup.text-uppercase{:href => "/sign-up"} Sign up
+              %a{:href => "javascript:void(0)"} Procedures
             %li
-              %a.header-link-login.text-uppercase{:href => "/sign-in"} Sign in
+              %a{:href => "javascript:void(0)"} Symptoms
             %li
-              %a.btn.btn-default.header-cta-feh{:href => "/room_steps"}
-                List Your Practice                        
-
-
-
-    %a.right-off-canvas-toggle.menu-icon.pull-right{"aria-expanded" => "false", "ui-off-canvas-toggle" => ""}
-      %span
-  .hidden-md.hidden-lg.mobile-navbar
-    %aside.right-off-canvas-menu
-      %header
-        %a.btn.btn-primary{:href => "javascript:void(0)"} List Your Practice
-        .close.pull-right
-          %a.exit-off-canvas{"ui-off-canvas-hide" => ""} ×
-      %nav{:role => "navigation"}
-        %ul.list-unstyled.font-gotham-medium
+              %a{:href => "javascript:void(0)"} Locations
+      %ul.nav.navbar-nav.navbar-right
+        - unless user_signed_in?
           %li
-            %a{:href => "/"} HOME
-          %li.with-submenu.ng-isolate-scope{"ui-expand-list" => ""}
-            %span.ng-scope{"ng-click" => "toggleExpand()"} BROWSE CATEGORIES
-            %ul.font-gotham-book.ng-scope
-              %li
-                %a{:href => "javascript:void(0)"}
-                  Web Developers
-              %li
-                %a{:href => "/i/freelancer-categories/"} View All Categories
+            %a{:href => "/room_steps"}
+              List your practice 
+
           %li
-            %a{:href => "javascript:void(0)"} HOW IT WORKS
+            %a{:href => "/sign-up"}
+              %span.glyphicon.glyphicon-user
+              Sign Up
           %li
-            %a{:href => "javascript:void(0)"} BECOME A FREELANCER
-          %li.with-submenu.ng-isolate-scope{"ui-expand-list" => ""}
-            %span.ng-scope{"ng-click" => "toggleExpand()"} ABOUT US
-            %ul.font-gotham-book.ng-scope
-              %li
-                %a{:href => "javascript:void(0)"} About Us
-              %li
-                %a{:href => "javascript:void(0)"} Careers
-              %li
-                %a{:href => "javascript:void(0)"} Team
-              %li
-                %a{:href => "javascript:void(0)"} Board of Directors
-              %li
-                %a{:href => "javascript:void(0)"} Press
-              %li
-                %a{:href => "javascript:void(0)"} Contact Us
-          %li
-            %a.header-link-signup{:href => "javascript:void(0)"}
-              SIGN UP
-          %li
-            %a.header-link-login{:href => "/login"} LOGIN
-      .search
-        .input-group
-          .dropdown{"ng-class" => "{active: isOpen}"}
-            %input#search-freelancers.ng-pristine.ng-untouched.ng-valid.ng-empty{:name => "20", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "client"}/
-            %label{:for => "search-freelancers", "ng-click" => "context = 'client'"} Doctor
-            %input#search-jobs.ng-pristine.ng-untouched.ng-valid.ng-empty{:name => "21", "ng-disabled" => "actionSelectDisabled", "ng-model" => "context", :type => "radio", :value => "freelancer"}/
-            %label{:for => "search-jobs", "ng-click" => "context = 'freelancer'"} Dentist
-          %span.button{"ng-click" => "toggleDropDown()"}
-          %input.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope.ng-empty.ng-valid-maxlength{:autocomplete => "off", :maxlength => "100", :name => "q", "ng-model" => "query", "ng-placeholder" => "placeholder", :placeholder => "undefined", "set-focus" => "focus", :type => "text"}/
+            %a{:href => "/sign-in"}
+              %span.glyphicon.glyphicon-log-in
+              Login
 
+        - else
 
+          %li= link_to icon('envelope'), conversations_path
 
+          %li= link_to icon('question'), "javascript:void(0)"
 
+          %li.nav-icon-btn.nav-icon-btn-danger.dropdown
+            = render "shared/notifications"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = image_tag avatar_url(current_user), class: 'img-circle avatar-small'
+              = current_user.fullname
+              %span.caret
+            %ul.dropdown-menu
+              - if current_user.type == "Doctor"
+                %li= link_to 'Dashboard', dashboard_path
+                %li= link_to 'My profile', user_path(current_user.id)
+                %li= link_to 'Rooms', rooms_path
+              - else
+                %li= link_to 'My profile', user_path(current_user.id)
+                %li= link_to 'Appointments', bookings_path
+              %li= link_to 'Settings', edit_user_registration_path(personal:true)
+              %li= link_to 'Sign out', destroy_user_session_path, method: :delete
+    / /.nav-collapse
+  / /.container-fluid

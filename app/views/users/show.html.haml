@@ -8,14 +8,14 @@
 
     - if @user.type.eql?("Doctor")
       = render "rooms"
-      = render "friends"
+
 
     - if @user.type.eql?("Patient")
           
       = render "bookings" if @owner
       = render "relatives"
 
-    
+    = render "friends"    
 
 
    

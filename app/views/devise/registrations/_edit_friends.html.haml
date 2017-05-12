@@ -1,8 +1,7 @@
 .panel.panel-default
   .panel-heading Add a new friend
   .panel-body
-    - user.object.friends.build
-    = user.fields_for :friends, user.object.friends do |friend|
+    = user.fields_for :friends, get_friend_object_helper do |friend|
       = hidden_field_tag :friend, true
       .form-group
         = friend.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Fullname'
@@ -26,7 +25,5 @@
         %br
         = friend.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
         .clearfix
-        
-      - unless friend.object.new_record?                 
-        = friend.check_box :_destroy
-        = friend.label :_destroy, "Remove" , class: 'remove'          
+      
+     
