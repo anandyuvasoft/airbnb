@@ -59,3 +59,5 @@ gem 'zapier_ruby'
 gem "hubspot-ruby"
 gem "active_admin_import" , '3.0.0'
 gem 'friendly_id'
+gem 'nested_form'
+gem 'chosen-rails'

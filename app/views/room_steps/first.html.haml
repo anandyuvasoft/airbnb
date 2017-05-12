@@ -5,7 +5,7 @@
       %h3.text-center
         Hello #{current_user.fullname}! Let's get you ready to list your practice.
 
-      = form_for(@room, url: room_steps_path, method: :post) do |room|
+      = form_for(Room.new, url: room_steps_path, method: :post) do |room|
         .panel.panel-default
           .panel-heading Step1: Tell us about your practice
           .panel-body

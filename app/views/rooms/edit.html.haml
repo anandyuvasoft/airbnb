@@ -42,9 +42,9 @@
           - if params[:education].eql?("true")
             = hidden_field_tag :education, true
 
-            %label Add your education:
+            %label Add a education:
             
-            = room.fields_for :educations do |education|
+            = room.fields_for :educations, @room.educations.build do |education|
 
               .form-group
                 = education.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control'

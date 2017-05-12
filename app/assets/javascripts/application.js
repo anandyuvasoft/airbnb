@@ -19,6 +19,8 @@
 //= require faye
 //= require jquery.slimscroll.min
 //= require private_pub
+//= require nested_form
+//= require chosen-jquery
 //= require_tree .
 
 

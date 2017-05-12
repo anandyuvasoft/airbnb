@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511130456) do
+ActiveRecord::Schema.define(version: 20170512134739) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -85,13 +85,10 @@ ActiveRecord::Schema.define(version: 20170511130456) do
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
 
   create_table "conditions", force: :cascade do |t|
-    t.integer  "room_id",    limit: 4
-    t.string   "condition",  limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  add_index "conditions", ["room_id"], name: "index_conditions_on_room_id", using: :btree
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id",    limit: 4
@@ -124,11 +121,9 @@ ActiveRecord::Schema.define(version: 20170511130456) do
     t.integer  "user_id",      limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.integer  "booking_id",   limit: 4
     t.string   "gender",       limit: 255
   end
 
-  add_index "friends", ["booking_id"], name: "index_friends_on_booking_id", using: :btree
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
 
   create_table "insurance_providers", force: :cascade do |t|
@@ -165,15 +160,6 @@ ActiveRecord::Schema.define(version: 20170511130456) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
-
-  create_table "notifications", force: :cascade do |t|
-    t.string   "notification", limit: 255
-    t.integer  "user_id",      limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.integer  "room_id",            limit: 4
@@ -294,6 +280,16 @@ ActiveRecord::Schema.define(version: 20170511130456) do
 
   add_index "rooms", ["user_id"], name: "index_rooms_on_user_id", using: :btree
 
+  create_table "rooms_conditions", force: :cascade do |t|
+    t.integer  "room_id",      limit: 4
+    t.integer  "condition_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "rooms_conditions", ["condition_id"], name: "index_rooms_conditions_on_condition_id", using: :btree
+  add_index "rooms_conditions", ["room_id"], name: "index_rooms_conditions_on_room_id", using: :btree
+
   create_table "specialities", force: :cascade do |t|
     t.integer  "room_id",    limit: 4
     t.string   "speciality", limit: 255
@@ -343,15 +339,12 @@ ActiveRecord::Schema.define(version: 20170511130456) do
 
   add_foreign_key "bookings", "rooms"
   add_foreign_key "bookings", "users"
-  add_foreign_key "conditions", "rooms"
   add_foreign_key "educations", "rooms"
-  add_foreign_key "friends", "bookings"
   add_foreign_key "friends", "users"
   add_foreign_key "insurances", "rooms"
   add_foreign_key "languages", "rooms"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
-  add_foreign_key "notifications", "users"
   add_foreign_key "photos", "rooms"
   add_foreign_key "procedures", "rooms"
   add_foreign_key "purchases", "rooms"
@@ -362,4 +355,6 @@ ActiveRecord::Schema.define(version: 20170511130456) do
   add_foreign_key "reviews", "rooms"
   add_foreign_key "reviews", "users"
   add_foreign_key "rooms", "users"
+  add_foreign_key "rooms_conditions", "conditions"
+  add_foreign_key "rooms_conditions", "rooms"
 end

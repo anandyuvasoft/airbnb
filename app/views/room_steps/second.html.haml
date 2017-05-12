@@ -13,7 +13,11 @@
             .form-group
               %label Conditons I'm experienced treating:
               = room.fields_for :conditions do |condition|
-                = condition.select :condition, Symptom.all.map{|symptom| [symptom.name, symptom.name]} , prompt: "Select Conditions..", class: 'form-control'
+                =# condition.select(:condition, Symptom.all.map{|symptom| [symptom.name, symptom.name]} , { include_blank: true}, {multiple: true, class: 'chosen-select'})
+
+                =# condition.collection_select :condition, Symptom.all, :id, :name, { include_blank: true}, {multiple: true, class: 'chosen-select'}
+                - byebug
+                = room.collection_select :conditions, Symptom.all, :id, :name, { include_blank: true, selected: [1,2]}, {multiple: true, :data => { :placeholder => 'this' },class: 'chosen-select'}                 
             .form-group
               %label Procedures I currently offer in my practice:
               = room.fields_for :procedures do |procedure|

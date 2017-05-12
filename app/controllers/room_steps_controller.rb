@@ -5,18 +5,16 @@ class RoomStepsController < ApplicationController
   skip_before_action :authenticate_patient!
 
   def show
-    @room = Room.new
     case step
     when :second
+      @room = Room.find(params[:room_id])
       create_instance
-    when :third
-      @room.educations.build
     end
   	render_wizard
   end
   
   def create
-  	@room = current_user.rooms.build(room_params)
+  	@room = current_doctor.rooms.build(room_params)
   	if @room.save
   		redirect_to wizard_path(:second, room_id: @room)
 		else
@@ -27,7 +25,6 @@ class RoomStepsController < ApplicationController
 
   def update
   	@room = Room.find(params[:room_id])
-  	room_params = params[:room].permit!
    	@room.update_attributes(room_params)
     if params[:id].eql? "third"
       redirect_to_finish_wizard
@@ -39,15 +36,34 @@ class RoomStepsController < ApplicationController
 private
 
   def room_params
-    params.require(:room).permit(:listing_name,:degree, :biography, :category, :practice, :gender,:address)
+    params.require(:room).permit(
+      :listing_name,
+      :degree, 
+      :biography, 
+      :category, 
+      :practice, 
+      :gender,
+      :address,
+      :price,
+      :conditions=>[],
+      conditions_attributes: 
+        [:id, {:condition=>[]},:_destroy],
+      procedures_attributes: 
+        [:id, :procedure,:_destroy],
+      languages_attributes: 
+        [:id, :language, :_destroy],
+      insurances_attributes: 
+        [:id, :insurance_provider, :_destroy],            
+      educations_attributes: 
+        [:id, :school, :date ,:_destroy]
+      )
   end
 
   def create_instance
-    @room.conditions.build
-    @room.procedures.build
-    @room.insurances.build
-    @room.languages.build
-    @room.educations.build
+    #@room.conditions.build
+    # @room.procedures.build
+    # @room.insurances.build
+    # @room.languages.build
   end
 
   def redirect_to_finish_wizard

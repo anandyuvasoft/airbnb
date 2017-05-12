@@ -95,6 +95,10 @@ GEM
     capistrano-rails (1.2.3)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    chosen-rails (1.5.2)
+      coffee-rails (>= 3.2)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
     chronic (0.10.2)
     climate_control (0.1.0)
     cocaine (0.5.8)
@@ -229,6 +233,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mysql2 (0.4.5)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
@@ -404,6 +409,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-rails
+  chosen-rails
   coffee-rails (~> 4.1.0)
   devise
   faye-rails
@@ -419,6 +425,7 @@ DEPENDENCIES
   jquery-raty-rails!
   jquery-ui-rails
   mysql2
+  nested_form
   omniauth
   omniauth-facebook
   omniauth-google-oauth2

@@ -1,4 +1,4 @@
-ActiveAdmin.register Symptom do
+ActiveAdmin.register Condition do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -12,6 +12,4 @@ ActiveAdmin.register Symptom do
 #   permitted
 # end
 
-  active_admin_import
-  
 end
