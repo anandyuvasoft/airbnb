@@ -12,9 +12,6 @@
             .col-md-9
               %h3
                 = @user.fullname.try(:capitalize)
-                (
-                = @user.type
-                )
                 - if @owner
                   %a{href: "/edit?personal=true"}
                     %button.btn-circle.btn.btn-primary{:type => "button"}
