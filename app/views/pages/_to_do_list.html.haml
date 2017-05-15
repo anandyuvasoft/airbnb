@@ -25,7 +25,7 @@
                 / rdio
 
 
-            = render 'listings'      
+            = render 'listings' if @room.present?      
             = render 'notifications'
             = render 'messages'
 

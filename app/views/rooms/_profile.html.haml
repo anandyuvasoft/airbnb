@@ -16,46 +16,47 @@
               %li.small
                 = education.school
                 (
-                = education.date
+                = education.date.strftime('%Y')
                 )
+                - if @owner
+                  %a{href: edit_room_path(education: true, education_id: education.id) }
+                    %button.btn-circle.btn.btn-primary{:type => "button"}
+                      %i.glyphicon.glyphicon-edit
 
 
         .col-md-6
           %h3 
             Conditions
             - if @owner
-              %a{href: edit_room_path(condition: true) }
-                %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus
-          %ul          
-            - @room.conditions.each do |condition|
-              %li.small
-                = condition.condition
+              = render "edit_conditions"
+            - else
+              %ul
+                - @room.conditions.each do |condition|
+                  %li.small
+                    = condition.name
 
       .row    
         .col-md-6
           %h3 
             Insurances
             - if @owner
-              %a{href: edit_room_path(insurance: true) }
-                %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus             
-          %ul                  
-            - @room.insurances.each do |insurance|
-              %li.small
-                = insurance.insurance_provider
+              = render "edit_insurances"
+            - else                    
+              %ul
+                - @room.insurances.each do |insurance|
+                  %li.small
+                    = insurance.name
 
         .col-md-6
           %h3 
             Procedures
             - if @owner
-              %a{href: edit_room_path(procedure: true) }
-                %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus             
-          %ul                  
-            - @room.procedures.each do |procedure|
-              %li.small
-                = procedure.procedure
+              = render "edit_procedures"
+            - else
+              %ul
+                - @room.procedures.each do |procedure|
+                  %li.small
+                    = procedure.name
 
 
       .row    
@@ -63,13 +64,12 @@
           %h3 
             Languages
             - if @owner
-              %a{href: edit_room_path(language: true) }
-                %button.btn-circle.btn.btn-primary{:type => "button"}
-                  %i.glyphicon.glyphicon-plus 
-          %ul        
-            - @room.languages.each do |language|
-              %li.small
-                = language.language
+              = render "edit_languages"
+            - else
+              %ul        
+                - @room.languages.each do |language|
+                  %li.small
+                    = language.name
 
       - if current_user && @owner          
         .row    

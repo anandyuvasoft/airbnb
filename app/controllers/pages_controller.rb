@@ -9,7 +9,6 @@ class PagesController < ApplicationController
 
   def dashboard
     @room = current_doctor.rooms.first
-    @photos = @room.photos
     @conversations = Conversation.involving(current_doctor)
   end
 
@@ -22,13 +21,13 @@ class PagesController < ApplicationController
       rooms  = Room.all
     end
 
-      rooms = rooms.where(category: params[:category]) if params[:category].present?
+    rooms = rooms.where(category: params[:category]) if params[:category].present?
 
-      # OPTIMIZE improve the code 
-      # TODO photos of a room on google map
-      upgraded_rooms = rooms.upgraded
-      unupgraded_rooms = rooms - upgraded_rooms
-      @rooms = upgraded_rooms + unupgraded_rooms
+    # OPTIMIZE improve the code 
+    # TODO photos of a room on google map
+    upgraded_rooms = rooms.upgraded
+    unupgraded_rooms = rooms - upgraded_rooms
+    @rooms = upgraded_rooms + unupgraded_rooms
 
 
   end

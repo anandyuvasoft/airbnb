@@ -1,0 +1,6 @@
+= form_for(@room, url: room_path, method: :put) do |room|                  
+  .form-group
+    = room.select :condition_ids, Condition.all.map{|condition| [condition.name,condition.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
+  .pull-right
+    = room.submit "Save" , class: "btn btn-primary btn-sm"

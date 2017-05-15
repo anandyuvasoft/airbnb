@@ -7,8 +7,11 @@ class RoomStepsController < ApplicationController
   def show
     case step
     when :second
-      @room = Room.find(params[:room_id])
+      @room = Room.find(2)
       create_instance
+    when :third
+      @room = Room.find(2)
+      @room.educations.build
     end
   	render_wizard
   end
@@ -24,7 +27,7 @@ class RoomStepsController < ApplicationController
   end
 
   def update
-  	@room = Room.find(params[:room_id])
+  	@room = Room.find(2)
    	@room.update_attributes(room_params)
     if params[:id].eql? "third"
       redirect_to_finish_wizard
@@ -45,25 +48,25 @@ private
       :gender,
       :address,
       :price,
+      :condition_ids=>[],
+      :language_ids=>[],
+      :insurance_ids=>[],
+      :procedure_ids=>[],
       :conditions=>[],
-      conditions_attributes: 
-        [:id, {:condition=>[]},:_destroy],
-      procedures_attributes: 
-        [:id, :procedure,:_destroy],
-      languages_attributes: 
-        [:id, :language, :_destroy],
-      insurances_attributes: 
-        [:id, :insurance_provider, :_destroy],            
+      # conditions_attributes: 
+      #   [:id, {:condition=>[]},:_destroy, :name=>[]],
+      # procedures_attributes: 
+      #   [:id, :procedure,:_destroy],
+      # languages_attributes: 
+      #   [:id, :language, :_destroy],
+      # insurances_attributes: 
+      #   [:id, :insurance_provider, :_destroy],            
       educations_attributes: 
-        [:id, :school, :date ,:_destroy]
+         [:id, :school, :date ,:_destroy]
       )
   end
 
   def create_instance
-    #@room.conditions.build
-    # @room.procedures.build
-    # @room.insurances.build
-    # @room.languages.build
   end
 
   def redirect_to_finish_wizard

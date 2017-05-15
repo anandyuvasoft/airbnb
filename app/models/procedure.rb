@@ -1,6 +1,4 @@
 class Procedure < ActiveRecord::Base
-  belongs_to :room
-  validates :procedure, presence: true
-  TYPES = [['Red','Red'],['Orange','Orange']]
-
+  has_many :rooms_procedures
+  has_many :rooms, through: :rooms_procedures  
 end

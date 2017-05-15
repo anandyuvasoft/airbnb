@@ -1,6 +1,4 @@
 class Language < ActiveRecord::Base
-  belongs_to :room
-  validates :language, presence: true
-  TYPES = [['English','English'],['Spanish','Spanish']]
-
+  has_many :rooms_languages
+  has_many :rooms, through: :rooms_languages  
 end

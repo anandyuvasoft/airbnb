@@ -61,7 +61,12 @@ class RoomsController < ApplicationController
         :procedures_attributes => [:procedure,:_destroy,:id],
         :insurances_attributes => [:insurance_provider,:_destroy,:id],
         :languages_attributes => [:language,:_destroy,:id],
-        :educations_attributes => [:school, :date,:_destroy,:id ] )
+        :educations_attributes => [:school, :date,:_destroy,:id ],
+        :condition_ids=>[],
+        :language_ids=>[],
+        :insurance_ids=>[],
+        :procedure_ids=>[]
+         )
     end
 
     def create_instance

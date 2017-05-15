@@ -10,26 +10,23 @@
         .panel.panel-default
           .panel-heading Step2: Help patients find you by telling them more about:
           .panel-body
+
             .form-group
               %label Conditons I'm experienced treating:
-              = room.fields_for :conditions do |condition|
-                =# condition.select(:condition, Symptom.all.map{|symptom| [symptom.name, symptom.name]} , { include_blank: true}, {multiple: true, class: 'chosen-select'})
+              = room.select :condition_ids, Condition.all.map{|condition| [condition.name,condition.id] }, {}, {:multiple => true, class: 'chosen-select'}
 
-                =# condition.collection_select :condition, Symptom.all, :id, :name, { include_blank: true}, {multiple: true, class: 'chosen-select'}
-                - byebug
-                = room.collection_select :conditions, Symptom.all, :id, :name, { include_blank: true, selected: [1,2]}, {multiple: true, :data => { :placeholder => 'this' },class: 'chosen-select'}                 
             .form-group
               %label Procedures I currently offer in my practice:
-              = room.fields_for :procedures do |procedure|
-                = procedure.select :procedure, Procedure::TYPES , prompt: "Select Procedures..", class: 'form-control'
+              = room.select :procedure_ids, Procedure.all.map{|procedure| [procedure.name,procedure.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
             .form-group
-              %label Insurance plans I currently accept in my practice:          
-              = room.fields_for :insurances do |insurance|
-                = insurance.select :insurance_provider, InsuranceProvider.all.map{|insurance_provider| [insurance_provider.name, insurance_provider.name]}, prompt: "Select Insurances..", class: 'form-control'
+              %label Insurance plans I currently accept in my practice:
+              = room.select :insurance_ids, Insurance.all.map{|insurance_provider| [insurance_provider.name,insurance_provider.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
             .form-group
               %label Languages I speak:
-              = room.fields_for :languages do |language|
-                = language.select :language, Language::TYPES , prompt: "Select Conditions..", class: 'form-control'
+              = room.select :language_ids, Language.all.map{|language| [language.name, language.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
             .form-group
               %label Cost of initial consultation:
               .input-group

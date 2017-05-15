@@ -1933,7 +1933,7 @@ top:0
 	background-image:none;
 	border:2px solid transparent;
 	white-space:nowrap;
-	padding:12px 12px;
+	/*padding:12px 12px;*/
 	font-size:14px;
 	line-height:20px;
 	border-radius:2px;

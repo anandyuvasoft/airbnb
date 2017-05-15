@@ -44,12 +44,12 @@
 
             %label Add a education:
             
-            = room.fields_for :educations, @room.educations.build do |education|
+            = room.fields_for :educations, get_education_object_helper do |education|
 
               .form-group
                 = education.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control'
               .form-group                
-                = education.date_select :date, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
+                = education.date_select :date, {order: [:year], prompt: {year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
                 .clearfix
 
               - unless education.object.new_record?                 

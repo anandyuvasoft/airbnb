@@ -1,8 +1,4 @@
 class Condition < ActiveRecord::Base
-  belongs_to :room
-  
-  validates :condition, presence: true
-
-  TYPES = [['White','White'],['Black','Black']]
-
+  has_many :rooms_conditions
+  has_many :rooms, through: :rooms_conditions
 end

@@ -7,7 +7,7 @@
 .dropdown-menu.widget-notifications.no-padding{:style => "width: 300px"}
   .slimScrollDiv{:style => "position: relative; overflow: hidden; width: auto;"}
     #main-navbar-notifications.notifications-list{:style => "overflow: hidden; width: auto;"}
-      - notification.first(10).each do |activity|
+      - notification.first(5).each do |activity|
         .notification
           .notification-description
             = render_activity activity

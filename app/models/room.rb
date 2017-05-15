@@ -9,12 +9,21 @@ class Room < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :purchases, :dependent => :destroy
   has_many :specialities, :dependent => :destroy
-  has_many :procedures, :dependent => :destroy
-  has_many :conditions, :dependent => :destroy
-  has_many :insurances, :dependent => :destroy
-  has_many :languages, :dependent => :destroy
   has_many :educations, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
+
+  has_many :rooms_conditions
+  has_many :conditions, through: :rooms_conditions
+
+  has_many :rooms_procedures
+  has_many :procedures, through: :rooms_procedures
+
+  has_many :rooms_insurances
+  has_many :insurances, through: :rooms_insurances
+
+  has_many :rooms_languages
+  has_many :languages, through: :rooms_languages    
+
 
   accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos, :allow_destroy => true
 
@@ -28,9 +37,6 @@ class Room < ActiveRecord::Base
   
   scope :upgraded, -> { joins(:purchases).where('purchases.purchased_at >= ?', DateTime.now.to_date-30) }
 
-  # def full_street_address
-  #   address
-  # end
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)

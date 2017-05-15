@@ -8,5 +8,4 @@ module UsersHelper
     object = params[:friend_id].present? ? Friend.find(params[:friend_id]) : current_user.friends.build
   end
 
-
 end

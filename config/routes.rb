@@ -71,5 +71,5 @@ Rails.application.routes.draw do
   get '/test' => "pages#test"
   resources :booking_steps
   resources :categories, only: [:show]
-  
+   
 end

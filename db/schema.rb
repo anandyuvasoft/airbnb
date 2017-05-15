@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512134739) do
+ActiveRecord::Schema.define(version: 20170515105922) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170512134739) do
     t.string   "recipient_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_read",                      default: false
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
@@ -133,22 +134,16 @@ ActiveRecord::Schema.define(version: 20170512134739) do
   end
 
   create_table "insurances", force: :cascade do |t|
-    t.integer  "room_id",            limit: 4
-    t.string   "insurance_provider", limit: 255
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-  end
-
-  add_index "insurances", ["room_id"], name: "index_insurances_on_room_id", using: :btree
-
-  create_table "languages", force: :cascade do |t|
-    t.integer  "room_id",    limit: 4
-    t.string   "language",   limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  add_index "languages", ["room_id"], name: "index_languages_on_room_id", using: :btree
+  create_table "languages", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "messages", force: :cascade do |t|
     t.text     "content",         limit: 65535
@@ -174,13 +169,10 @@ ActiveRecord::Schema.define(version: 20170512134739) do
   add_index "photos", ["room_id"], name: "index_photos_on_room_id", using: :btree
 
   create_table "procedures", force: :cascade do |t|
-    t.integer  "room_id",    limit: 4
-    t.string   "procedure",  limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
-
-  add_index "procedures", ["room_id"], name: "index_procedures_on_room_id", using: :btree
 
   create_table "purchases", force: :cascade do |t|
     t.integer  "user_id",             limit: 4
@@ -290,6 +282,36 @@ ActiveRecord::Schema.define(version: 20170512134739) do
   add_index "rooms_conditions", ["condition_id"], name: "index_rooms_conditions_on_condition_id", using: :btree
   add_index "rooms_conditions", ["room_id"], name: "index_rooms_conditions_on_room_id", using: :btree
 
+  create_table "rooms_insurances", force: :cascade do |t|
+    t.integer  "room_id",      limit: 4
+    t.integer  "insurance_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "rooms_insurances", ["insurance_id"], name: "index_rooms_insurances_on_insurance_id", using: :btree
+  add_index "rooms_insurances", ["room_id"], name: "index_rooms_insurances_on_room_id", using: :btree
+
+  create_table "rooms_languages", force: :cascade do |t|
+    t.integer  "room_id",     limit: 4
+    t.integer  "language_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "rooms_languages", ["language_id"], name: "index_rooms_languages_on_language_id", using: :btree
+  add_index "rooms_languages", ["room_id"], name: "index_rooms_languages_on_room_id", using: :btree
+
+  create_table "rooms_procedures", force: :cascade do |t|
+    t.integer  "room_id",      limit: 4
+    t.integer  "procedure_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "rooms_procedures", ["procedure_id"], name: "index_rooms_procedures_on_procedure_id", using: :btree
+  add_index "rooms_procedures", ["room_id"], name: "index_rooms_procedures_on_room_id", using: :btree
+
   create_table "specialities", force: :cascade do |t|
     t.integer  "room_id",    limit: 4
     t.string   "speciality", limit: 255
@@ -341,12 +363,9 @@ ActiveRecord::Schema.define(version: 20170512134739) do
   add_foreign_key "bookings", "users"
   add_foreign_key "educations", "rooms"
   add_foreign_key "friends", "users"
-  add_foreign_key "insurances", "rooms"
-  add_foreign_key "languages", "rooms"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "photos", "rooms"
-  add_foreign_key "procedures", "rooms"
   add_foreign_key "purchases", "rooms"
   add_foreign_key "purchases", "users"
   add_foreign_key "relatives", "users"
@@ -357,4 +376,10 @@ ActiveRecord::Schema.define(version: 20170512134739) do
   add_foreign_key "rooms", "users"
   add_foreign_key "rooms_conditions", "conditions"
   add_foreign_key "rooms_conditions", "rooms"
+  add_foreign_key "rooms_insurances", "insurances"
+  add_foreign_key "rooms_insurances", "rooms"
+  add_foreign_key "rooms_languages", "languages"
+  add_foreign_key "rooms_languages", "rooms"
+  add_foreign_key "rooms_procedures", "procedures"
+  add_foreign_key "rooms_procedures", "rooms"
 end

@@ -1,6 +1,4 @@
 class Insurance < ActiveRecord::Base
-  belongs_to :room
-  validates :insurance_provider, presence: true
-  TYPES = [['American','American'],['Red Cross','Red Cross']]
-
+  has_many :rooms_insurances
+  has_many :rooms, through: :rooms_insurances    
 end
