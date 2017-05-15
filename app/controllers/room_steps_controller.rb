@@ -7,10 +7,10 @@ class RoomStepsController < ApplicationController
   def show
     case step
     when :second
-      @room = Room.find(2)
+      @room = Room.find(params[:room_id])
       create_instance
     when :third
-      @room = Room.find(2)
+      @room = Room.find(params[:room_id])
       @room.educations.build
     end
   	render_wizard
@@ -27,7 +27,7 @@ class RoomStepsController < ApplicationController
   end
 
   def update
-  	@room = Room.find(2)
+  	@room = Room.find(params[:room_id])
    	@room.update_attributes(room_params)
     if params[:id].eql? "third"
       redirect_to_finish_wizard
