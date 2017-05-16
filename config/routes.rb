@@ -65,11 +65,13 @@ Rails.application.routes.draw do
   delete 'friend/:id' => "users#remove_friend"
   delete 'booking/:id' => "users#remove_booking"
 
-  resources :bookings, only: [:create,:index]
+  resources :bookings, only: [:create,:index, :update]
   get '/rooms/:room_id/booking' => "bookings#step_first"
   get '/sample' => "pages#sample"
   get '/test' => "pages#test"
   resources :booking_steps
   resources :categories, only: [:show]
+
+  get '/unread_notifications' => "activities#unread_notifications", as: :unread_notifications
    
 end

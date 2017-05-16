@@ -13,5 +13,8 @@ module BookingsHelper
     !current_patient.gender.present? || !current_patient.birthday.present? 
   end
 
+  def is_friend_profile_incomplete?(friend)
+    !friend.gender.present? || !friend.birthday.present? 
+  end
 
 end

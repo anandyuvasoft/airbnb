@@ -3,16 +3,15 @@
 
   .panel-defaultpanel-body
 
-    .row
+    .row.text-center
 
       .col-md-12
-        .col-md-8.nopadding
+        .col-md-12.nopadding
 
-          .col-md-3
-            .image-cropper
-              = image_tag @photos[0].try(:image) ? @photos[0].image.url(:medium) : "/assets/missing-room.jpg", class: 'img-responsive rounded'
+          .col-md-12
+            = image_tag @photos[0].try(:image) ? @photos[0].image.url(:medium) : "/assets/missing-room.jpg", class: ''
 
-          .col-md-9
+          .col-md-12
             %h3
               = link_to room_path(@room) do 
                 = @room.listing_name 
@@ -29,13 +28,13 @@
                 $
                 = @room.price
 
-            %span.small
+            -#%span.small
               Address:
               = @room.address
             %h5
               Practice: #{@room.practice}
             
-            %p
+            -#%p
               = truncate(@room.biography,length: 30)
               = link_to "Read more", "javascript:void(0)", class: 'small'
 
@@ -44,7 +43,7 @@
               %span#average_rating
               (#{@reviews.count})
 
-        .col-md-4
+        -#.col-md-12
           - if !user_signed_in? || current_patient
             = link_to 'Book An Appointment', bookings_path(room_id: @room.id), class: 'btn btn-block btn-primary', method: :post
           = render 'purchases/form_enterprise' if @owner && !@upgraded

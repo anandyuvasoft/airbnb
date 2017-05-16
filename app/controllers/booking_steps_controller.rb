@@ -6,10 +6,21 @@ class BookingStepsController < ApplicationController
   
   
   def show
-  	@room = Room.find(params[:room_id])
+    @booking = Booking.find(params[:booking_id])
+    case step
+    when :second
+      @booking.update_attribute(:friend_id, params[:friend_id]) if params[:friend_id].present?  
+    end
     render_wizard
   end	
 
 
 
 end
+
+
+
+# case step
+# when :second
+#   @booking.update_attribute(:friend_id, params[:friend_id]) if params[:friend_id].present?
+# end  

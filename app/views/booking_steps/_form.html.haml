@@ -1,26 +1,36 @@
-- unless object.object.kind_of? Patient
+
+- if f.object.new_record?
+
   .form-group
-    = object.label :fullname, 'Full name'
-    = object.text_field :fullname, autofocus: true, class: 'form-control'
+    = f.label :fullname, 'Full name'
+    = f.text_field :fullname, autofocus: true, class: 'form-control'
+
   .form-group
-    = object.label :email, 'Email'
-    = object.text_field :email, autofocus: true, class: 'form-control'
-    
-.form-group
-  = object.label :gender, 'Gender', class: 'control-label'
-  .radio
-    %label
-      = object.radio_button :gender, 'male'
-      Male
-  .radio
-    %label
-      = object.radio_button :gender, 'female'
-      Female
+    = f.label :email, 'Email'
+    = f.text_field :email, autofocus: true, class: 'form-control'
+
+
+- unless f.object.gender.present?
+
+  .form-group
+    = f.label :gender, 'Gender', class: 'control-label'
+    .radio
+      %label
+        = f.radio_button :gender, 'male'
+        Male
+    .radio
+      %label
+        = f.radio_button :gender, 'female'
+        Female
+        
 
 .form-group
-  = object.label :birthday, 'Date of Birth'
-  %br
-  = object.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true, class: 'col-md-3 mr-50'}
-  .clearfix
+  = f.hidden_field :user_id, value: current_patient.id
 
+- unless f.object.birthday.present?
 
+  .form-group
+    = f.label :birthday, 'Date of Birth'
+    %br
+    = f.date_select :birthday, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: true, class: 'col-md-3 mr-50'}
+    .clearfix

@@ -5,27 +5,45 @@
       .col-md-12
         .panel.panel-default
           .panel-heading
-            Step1: To whom?
+            Step1: Appointment for whom?
           .panel-body.box.text-center
             %h3.mb-20 Is this for you or someone else?
 
             - if is_user_profile_incomplete?
-              = link_to booking_step_path(:second, refer:false, room_id: @room.id) do
-                .col-md-6
+              = link_to booking_step_path(:second, booking_id: @booking.id) do
+                .col-md-4
                   = image_tag('missing-patient.jpg')
                   %h4
                     %strong You
+
             - else
-              = link_to bookings_path(room_id: @room.id), method: :post do
-                .col-md-6
+              .col-md-4
+                = form_for @booking, method: :put do |booking|
                   = image_tag('missing-patient.jpg')
                   %h4
                     %strong You
+                  = hidden_field_tag 'booking[status]', true
 
 
-            = link_to booking_step_path(:second, refer:true, room_id: @room.id) do
-              .col-md-6
+
+            - if current_patient.friends.present?        
+              = link_to "javascript:void(0)", "data-target" => "#myModal", "data-toggle" => "modal" do
+                .col-md-4
+                  = image_tag('default-friend.jpg', class: 'img-circle')
+                  %h4
+                    %strong Your friend
+              = render "friends_modal"
+
+
+
+            = link_to booking_step_path(:second, refer:true, booking_id: @booking.id) do
+              .col-md-4
                 = image_tag('plus-in-circle.png')
                 %h4 
                   %strong Someone else
 
+- content_for :javascript do
+  :javascript
+    $('form.edit_booking').click(function(){
+    $(this).submit();
+    });

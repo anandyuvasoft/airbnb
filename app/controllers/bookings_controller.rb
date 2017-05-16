@@ -3,12 +3,22 @@ class BookingsController < ApplicationController
   skip_before_action :authenticate_doctor!
 
   def create
-    booking = current_patient.bookings.create(room_id: params[:room_id])
-    booking.update_attributes(booking_params) if params[:booking].present?
-    flash[:notice] = "Your appointment has been booked."
-    redirect_to booking.user
+    @booking = current_patient.bookings.create(room_id: params[:room_id])
+    redirect_to booking_steps_path(booking_id: @booking.id)
   end
   
+
+  def update
+    booking = Booking.find(params[:id])
+    if booking.update_attributes(booking_params) 
+      flash[:notice] = "Your appointment has been booked."
+      redirect_to booking.user
+    else
+      flash[:error] = "Something went wrong"
+      redirect_to booking.user
+    end
+  end
+
 
   def index
     @bookings = current_patient.bookings
@@ -18,7 +28,7 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(patient_attributes: [:birthday, :gender,:id], friend_attributes: [:fullname, :email, :birthday, :gender])
+    params.require(:booking).permit(:status, :friend_id, user_attributes: [:fullname, :email,:birthday, :gender,:id], friend_attributes: [:fullname, :email, :birthday, :gender,:id, :user_id])
   end
 
 end

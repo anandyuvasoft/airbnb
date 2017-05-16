@@ -27,49 +27,51 @@
         .col-md-6
           %h3 
             Conditions
-            - if @owner
-              = render "edit_conditions"
-            - else
-              %ul
-                - @room.conditions.each do |condition|
-                  %li.small
-                    = condition.name
+          - if @owner
+            = render "edit_conditions"
+            
+          - else
+            
+            %ul
+              - @room.conditions.each do |condition|
+                %li.small
+                  = condition.name
 
       .row    
         .col-md-6
           %h3 
             Insurances
-            - if @owner
-              = render "edit_insurances"
-            - else                    
-              %ul
-                - @room.insurances.each do |insurance|
-                  %li.small
-                    = insurance.name
+          - if @owner
+            = render "edit_insurances"
+          - else                    
+            %ul
+              - @room.insurances.each do |insurance|
+                %li.small
+                  = insurance.name
 
         .col-md-6
           %h3 
             Procedures
-            - if @owner
-              = render "edit_procedures"
-            - else
-              %ul
-                - @room.procedures.each do |procedure|
-                  %li.small
-                    = procedure.name
+          - if @owner
+            = render "edit_procedures"
+          - else
+            %ul
+              - @room.procedures.each do |procedure|
+                %li.small
+                  = procedure.name
 
 
       .row    
         .col-md-8
           %h3 
             Languages
-            - if @owner
-              = render "edit_languages"
-            - else
-              %ul        
-                - @room.languages.each do |language|
-                  %li.small
-                    = language.name
+          - if @owner
+            = render "edit_languages"
+          - else
+            %ul        
+              - @room.languages.each do |language|
+                %li.small
+                  = language.name
 
       - if current_user && @owner          
         .row    

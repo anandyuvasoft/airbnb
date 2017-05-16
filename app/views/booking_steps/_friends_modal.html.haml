@@ -1,0 +1,39 @@
+#myModal.modal.fade{:role => "dialog"}
+  .modal-dialog
+    / Modal content
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Friends
+      .modal-body
+        %h4 Select one of your friend for treatment.
+
+        - current_patient.friends.order('updated_at desc').each do |friend|
+          
+          - if is_friend_profile_incomplete?(friend)
+            = link_to booking_step_path(:second, refer:true, friend_id: friend.id, booking_id: @booking.id) do
+              .col-md-4
+                .panel.panel-default
+                  .panel-heading.preview
+                    = image_tag('missing-patient.jpg')
+                  .panel-body.text-center
+                    %strong= friend.fullname.capitalize
+
+          - else
+            = form_for @booking, method: :put do |booking|
+              = booking.hidden_field :status, value: true
+              = booking.hidden_field :friend_id, value: friend.id
+              .col-md-4
+                .panel.panel-default
+                  .panel-heading.preview
+                    = image_tag('missing-patient.jpg')
+                  .panel-body.text-center
+                    %strong= friend.fullname.capitalize
+
+          .clearfix        
+
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+
+
+
