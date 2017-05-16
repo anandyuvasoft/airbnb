@@ -5,4 +5,7 @@ class Booking < ActiveRecord::Base
 
   accepts_nested_attributes_for :friend, :user, :allow_destroy => true
   
+  default_scope { where(status: true) }
+
+
 end

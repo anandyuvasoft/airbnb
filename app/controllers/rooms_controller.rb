@@ -65,7 +65,8 @@ class RoomsController < ApplicationController
         :condition_ids=>[],
         :language_ids=>[],
         :insurance_ids=>[],
-        :procedure_ids=>[]
+        :procedure_ids=>[],
+        :photos_attributes => [:image]
          )
     end
 

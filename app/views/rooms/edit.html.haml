@@ -9,7 +9,7 @@
         = link_to 'View profile', room_path(@room), class: 'btn btn-primary wide'
 
       .col-md-9
-        = form_for(@room) do |room|
+        = form_for(@room, html: { multipart: true } ) do |room|
 
           - if params[:personal].eql?("true")
             = hidden_field_tag :personal, true
@@ -17,8 +17,12 @@
               .panel-heading Update room profile
               .panel-body
                 .form-group
+                  
                   %label Upload your profile picture
-                  = file_field_tag 'images[]', type: :file, multiple: true, onchange: 'readURL(this)'
+                  = room.fields_for :photos, @room.photos.build do |photo|
+                    = photo.file_field :image, onchange: 'readURL(this)'
+
+                  =# room.file_field 'images[]', type: :file, multiple: true, onchange: 'readURL(this)'
 
                 .form-group
                   = room.text_field :practice, placeholder: 'Enter the name of your practice', class: 'form-control'                    

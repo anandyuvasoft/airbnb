@@ -1,6 +1,11 @@
 .panel.panel-default
   .panel-heading
     Photos(#{@photos.size})
+    / - if @owner
+    /   %a{href: edit_room_path(photo: true) }
+    /     %button.btn-circle.btn.btn-primary{:type => "button"}
+    /       %i.glyphicon.glyphicon-plus 
+
   .panel-body.box
     / Carousel
     .mb-20

@@ -29,6 +29,13 @@ class PagesController < ApplicationController
     unupgraded_rooms = rooms - upgraded_rooms
     @rooms = upgraded_rooms + unupgraded_rooms
 
+    #@users = User.all
+    @hash = Gmaps4rails.build_markers(@rooms) do |room, marker|
+      marker.lat room.latitude
+      marker.lng room.longitude
+      marker.infowindow render_to_string(:partial => "/pages/content_string", :locals => {room: room})
+    end
+
 
   end
 end

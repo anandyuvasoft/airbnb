@@ -1,62 +1,52 @@
-.container
+.container-fluid
   .my-50
     .row
 
-      .panel.panel-default
-        .panel-heading
-          Search results
-        .panel-body.box
-          .col-md-12
-            - @rooms.each do |room|
-              - @reviews = room.reviews 
-              - @room = room
-              - @photos = room.photos
-              - @upgraded = (room.is_upgraded?) ? true : false
-              = render "rooms/card"
+      .col-md-7.no-padding
+        .panel.panel-default
+          .panel-heading
+            Search results
+          .panel-body.box
+            .col-md-12
+              - @rooms.each do |room|
+                - @reviews = room.reviews 
+                - @room = room
+                - @photos = room.photos
+                - @upgraded = (room.is_upgraded?) ? true : false
+                = render "rooms/room_card"
 
-
-      .panel.panel-default
-        .panel-heading
-          Above rooms on map
-        .panel-body.box
-          #google_map{style: "height:600px;"}
+      .col-md-5.no-padding         
+        .panel.panel-default
+          .panel-heading
+            Above rooms on map
+          .panel-body.box
+            #map
 
 
 
 - content_for :javascript do 
   :javascript
-    var mapDiv = document.getElementById('google_map');
+    var height = $('.col-md-7').height();
 
-    if (navigator.geolocation) {
-
-    navigator.geolocation.getCurrentPosition(function(position) {
+    $("#map").height(height);
     
-    var center = {lat: position.coords.latitude,lng: position.coords.longitude};
+    handler = Gmaps.build('Google');
+    handler.buildMap(
+    { 
+      provider:{
+          disableDefaultUI: true, zoom: 3
+      }, 
+      internal: {
+        id: 'map'
+      }
+    }, function(){
 
-    var map = new google.maps.Map(mapDiv, {center: center, zoom: 2});
-
-    var rooms = #{raw @rooms.to_json};
-
-    for(i = 0; i < rooms.length; i++) { 
-
-    var position = {lat: rooms[i].latitude , lng: rooms[i].longitude }
-
-    var marker = new google.maps.Marker( { position: position, title: rooms[i].practice , map:map });
-
-    var content = '<strong>'+rooms[i].listing_name+'</strong><br><b>'+rooms[i].practice+'</b>'
-
-    var infowindow = new google.maps.InfoWindow;
-
-    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-        return function() {
-            infowindow.setContent(content);
-            infowindow.open(map,marker);
-        };
-    })(marker,content,infowindow)); 
-   
-    }
+    markers = handler.addMarkers(#{raw @hash.to_json });
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    handler.getMap().setZoom(2)
     });
-    }
+
 
 
  
