@@ -2,7 +2,7 @@
 .form-group
   %h2.title-box Recent Notifications
   %ul.to-do-list
-    - notification.first(10).each do |activity|
+    - unread_notification.first(10).each do |activity|
       %li
         %p
           = render_activity activity
