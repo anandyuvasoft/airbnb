@@ -51,7 +51,7 @@
 
           %li= link_to icon('question'), "javascript:void(0)"
 
-          %li.nav-icon-btn.nav-icon-btn-danger.dropdown
+          %li.nav-icon-btn.nav-icon-btn-danger.dropdown#notifications
             = render "shared/notifications"
 
           %li.dropdown
@@ -71,3 +71,19 @@
               %li= link_to 'Sign out', destroy_user_session_path, method: :delete
     / /.nav-collapse
   / /.container-fluid
+
+
+- content_for :javascript do
+  :javascript
+
+    $('li#notifications').click(function(){
+      $.ajax({
+        url: '/mark_as_read',
+        type: "GET",
+        success: function(data) {
+        },
+        failure: function() {
+        }
+      }); 
+
+    })

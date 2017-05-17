@@ -72,6 +72,6 @@ Rails.application.routes.draw do
   resources :booking_steps
   resources :categories, only: [:show]
 
-  get '/unread_notifications' => "activities#unread_notifications", as: :unread_notifications
+  get '/mark_as_read' => "activities#mark_as_read"
    
 end
