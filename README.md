@@ -20,7 +20,10 @@ Now after taking a fresh clone you need to do following things
 6) project_folder_path$ rails s (to start rails server)
 7) Go to the browser and open the url http://localhost:3000/admin
 8) you will see admin login screen enter the test email and password which is admin@example.com and password is password.
-9) now import all insurances, conditions, laguages, procedures using csv sheets.
+9) now import all insurances, conditions, languages, procedures, degrees, categories, relations using csv sheets.
+
+You can download the format of csv files from [Download CSV] (https://github.com/edigitalbros/airbnb/tree/staging-airbnb/public)
+
 10) project_folder_path$ rackup private_pub.ru -s thin -E production (without to run this command send message will not reflect in the page)
 11) Great! now you are ready open the url http://locahost:3000
 
