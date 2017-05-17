@@ -30,7 +30,6 @@ class UsersController < ApplicationController
     @count = current_user.bookings.size
   end
 
-
   private
 
   def get_user
