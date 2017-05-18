@@ -1,0 +1,57 @@
+.container
+
+  .my-50
+
+    .row
+
+      .col-md-3
+        %ul.sidebar-list
+          %li.sidebar-item
+            %h4 Settings
+        %br
+
+        = link_to 'View my profile', user_path(current_user.id), class: 'btn btn-default wide'
+
+
+      .col-md-9
+
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |user|
+
+          
+          = render 'shared/devisemes'
+
+          - if params[:personal].eql?("true")
+           
+            .panel.panel-default
+              .panel-heading Update profile
+              .panel-body
+                = hidden_field_tag :personal, true
+                .form-group
+                  = user.text_field :fullname, autofocus: true, class: 'form-control', placeholder: 'Full Name'
+                .form-group
+                  = user.email_field :email, class: 'form-control', placeholder: 'Email'
+                .form-group
+                  = user.text_field :phone_number, class: 'form-control', placeholder: 'Phone Number'
+                .form-group
+                  = user.text_area :description, class: 'form-control', placeholder: 'Description', rows: 5, cols: 25
+                - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                  %div
+                    Currently waiting confirmation for: #{resource.unconfirmed_email}
+                -#.form-group
+                  = user.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "Password (leave blank if you don't want to change it)"
+                -#.form-group
+                  = user.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'
+
+          - if params[:relative].eql? "true"
+            = render 'edit_relative', user:user 
+
+          - if params[:friend].eql? "true"
+            = render 'edit_friends', user:user 
+              
+              
+
+
+          .actions
+            = user.submit "Update", class: 'btn btn-primary'
+
+

@@ -1,0 +1,29 @@
+-# if current_user.rooms.where(:active => 't').empty?
+
+- if true
+
+  .col-md-3
+    %ul.sidebar-list
+      %li.sidebar-item
+        %h4 Rooms
+      =# link_to 'Rooms', rooms_path, class: active_class(rooms_path)
+      / %li.sidebar-item= link_to 'Your Reservations', "javascript:void(0)", class: active_class(your_reservations_path)
+      / %li.sidebar-item= link_to 'Your Trips', "javascript:void(0)", class: active_class(your_trips_path)
+      / %li.sidebar-item= link_to 'Your Sales', "javascript:void(0)", class: active_class(your_sales_path)
+      / %li.sidebar-item= link_to 'Family Members', "javascript:void(0)", class: active_class(your_sales_path)
+      / %li.sidebar-item= link_to 'Friends', "javascript:void(0)" , class: active_class(your_sales_path)
+
+/ - if false
+/   .col-md-3
+/     %ul.sidebar-list
+/       %li.sidebar-item= link_to 'Dashboard', dashboard_path, class: active_class(dashboard_path)
+/       %li.sidebar-item= link_to 'Leads', your_reservations_path, class: active_class(your_reservations_path)
+/       %li.sidebar-item= link_to 'Reviews', your_reservations_path, class: active_class(your_reservations_path)
+/       %li.sidebar-item= link_to 'Purchase History', your_purchases_path, class: active_class(your_purchases_path)
+/       %br
+/       %li.sidebar-item= link_to 'Add-ons', your_purchases_path, class: active_class(your_purchases_path)
+/       %br
+/       %li.btn.btn-primary.btn-block= link_to 'Upgrade Listing', your_trips_path, class: active_class(your_trips_path)
+/       %br
+/       %li.btn.btn-default.btn-block= link_to 'View My Listings', rooms_path, class: active_class(rooms_path)
+/       %br

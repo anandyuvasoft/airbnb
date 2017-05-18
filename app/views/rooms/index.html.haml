@@ -1,0 +1,32 @@
+.container
+
+  .my-50
+
+  .row
+    =# render 'sidebarnav'
+
+    .col-md-12
+      .panel.panel-default
+        .panel-heading
+          My Rooms
+        .panel-body.box
+          - @rooms.order('updated_at desc').each do |room|
+            = link_to room_path(room) do
+              .row.box
+                - if room.is_upgraded?
+                  .ribbon
+                    %span Featured
+                .col-md-2
+                  - photos = room.photos
+                  = image_tag photos[0].try(:image) ? photos[0].image.url(:medium) : "/assets/missing-room.jpg", class: 'img-responsive rounded'                  
+                .col-md-6
+                  %h4
+                    = room.practice
+                    %a{href: edit_room_path(room, personal:true) }
+                      %button.btn-circle.btn.btn-primary{:type => "button"}
+                        %i.glyphicon.glyphicon-edit                   
+                  %p= room.address
+                .col-md-4.right
+                  - @room = room
+                  = render 'purchases/form_enterprise' unless room.is_upgraded?
+            %hr

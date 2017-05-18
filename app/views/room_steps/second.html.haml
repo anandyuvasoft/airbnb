@@ -1,0 +1,36 @@
+.container
+  .my-50
+    .row
+
+      %h3.text-center
+        Hello #{current_user.fullname}! Let's get you ready to list your practice.
+
+      = form_for(@room, url: wizard_path(:second), method: :put) do |room|
+        = hidden_field_tag :room_id , params[:room_id]
+        .panel.panel-default
+          .panel-heading Step2: Help patients find you by telling them more about:
+          .panel-body
+
+            .form-group
+              %label Conditons I'm experienced treating:
+              = room.select :condition_ids, Condition.all.map{|condition| [condition.name,condition.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
+            .form-group
+              %label Procedures I currently offer in my practice:
+              = room.select :procedure_ids, Procedure.all.map{|procedure| [procedure.name,procedure.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
+            .form-group
+              %label Insurance plans I currently accept in my practice:
+              = room.select :insurance_ids, Insurance.all.map{|insurance_provider| [insurance_provider.name,insurance_provider.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
+            .form-group
+              %label Languages I speak:
+              = room.select :language_ids, Language.all.map{|language| [language.name, language.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
+            .form-group
+              %label Cost of initial consultation:
+              .input-group
+                .input-group-addon $
+                = room.text_field :price, placeholder: 'eg. $100', class: 'form-control'
+        .actions.pull-right
+          = room.submit "Continue" , class: "btn btn-primary"

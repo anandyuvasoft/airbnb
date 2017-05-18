@@ -1,0 +1,25 @@
+.container
+  .my-50
+    .row
+
+      %h3.text-center
+        Hello #{current_user.fullname}! Let's get you ready to list your practice.
+
+      = nested_form_for(@room, url: wizard_path(:third), method: :put) do |room|
+        = hidden_field_tag :room_id , params[:room_id]
+        .panel.panel-default
+          .panel-heading Step3: Enhance your profile
+          .panel-body
+          = room.fields_for :educations do |education|
+            .mb-20
+              .row
+                .col-md-9
+                  = render 'education', education: education
+                .col-md-2    
+                  %div= education.link_to_remove("", class: 'glyphicon glyphicon-remove btn-circle btn-danger') 
+          = room.link_to_add( "Add more", :educations, class: "btn btn-sm btn-primary")
+
+        .actions.pull-right
+          = room.submit 'Save', class: 'btn btn-primary' 
+
+

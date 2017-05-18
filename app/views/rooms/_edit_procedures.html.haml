@@ -1,0 +1,6 @@
+= form_for(@room, url: room_path, method: :put) do |room|                  
+  .form-group 
+    = room.select :procedure_ids, Procedure.all.map{|procedure| [procedure.name,procedure.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
+  .pull-right
+    = room.submit "Save" , class: "btn btn-primary btn-sm"

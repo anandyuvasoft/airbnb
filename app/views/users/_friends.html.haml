@@ -1,0 +1,16 @@
+.row
+  %h4 
+    Friends (#{@friends.size})
+    - if @owner
+      %a{href: "/edit?friend=true"}
+        %button.btn-circle.btn.btn-primary{:type => "button"}
+          %i.glyphicon.glyphicon-plus
+  - @friends.order('updated_at desc').first(3).each do |friend|
+    .col-md-4
+      .panel.panel-default
+        .panel-heading.preview
+          = image_tag("/assets/default-friend.jpg")
+        .panel-body.text-center
+          %strong= friend.fullname.capitalize
+  .clearfix        
+  %strong= link_to "View more", "/users/#{@user.id}/friends" , class: 'pull-right'  if @friends.length > 3

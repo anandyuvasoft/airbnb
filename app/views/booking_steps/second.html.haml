@@ -1,0 +1,33 @@
+.container
+  .my-50
+    .row
+      = form_for @booking, method: :put do |booking|
+
+        = booking.hidden_field :status, value: true
+
+        - if params[:refer].eql?('true')
+
+          .panel.panel-default
+            .panel-heading
+              Step2: Patient's details
+            .panel-body.box
+              = booking.fields_for :friend, get_booking_friend_object_helper do |friend|
+                = render "form", f:  friend
+
+        - else
+          .panel.panel-default
+            .panel-heading
+              Step2: Need more details
+            .panel-body.box
+              = booking.fields_for :user, current_patient do |patient|
+                
+                = render "form", f:  patient              
+                   
+
+        
+        .actions
+          = booking.submit "Book appointment", class: 'btn btn-primary'      
+
+
+
+

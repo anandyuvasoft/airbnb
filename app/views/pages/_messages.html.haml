@@ -1,0 +1,67 @@
+.form-group
+  %h2.title-box Recent Messages
+  %ul.to-do-list.recent-messages
+    - @conversations.each do |conversation|
+      - other = conversation.sender == current_user ? conversation.recipient : conversation.sender
+      = link_to conversation_messages_path(conversation) do
+        %li
+          %span.avatar-box
+            = image_tag avatar_url(other)
+          .extra-wrap
+            %p.messages-box
+              %a{:href => user_path(other.id)}
+                = other.fullname
+              = conversation.messages.last.try(:content)
+            %span.hours-info= time_ago_in_words(conversation.messages.last.created_at) + " ago"
+
+
+/ %li
+/   %span.avatar-box
+/     %img{:alt => "", :src => "/assets/loggeduser.png"}/
+/   .extra-wrap
+/     %p.messages-box
+/       %a{:href => "javascript:void(0)"} Ana Carolina
+/       Hey! I was wondering if could get the flue
+/     %span.hours-info 20 days ago
+
+
+/   %li
+/     %span.avatar-box
+/       %img{:alt => "", :src => "/assets/loggeduser.png"}/
+/     .extra-wrap
+/       %p.messages-box
+/         %a{:href => "javascript:void(0)"} Roy jhon
+/         Are you available on the 5th sunday of april
+/       %span.hours-info 20 days ago
+/     %li
+/       %span.avatar-box
+/         %img{:alt => "", :src => "/assets/loggeduser.png"}/
+/       .extra-wrap
+/         %p.messages-box
+/           %a{:href => "javascript:void(0)"} Liliana Peters
+/           I want to know how I can get in touch with you
+/         %span.hours-info 20 days ago
+/       %li
+/         %span.avatar-box
+/           %img{:alt => "", :src => "/assets/loggeduser.png"}/
+/         .extra-wrap
+/           %p.messages-box
+/             %a{:href => "javascript:void(0)"} May Feather
+/             Wondering if you accept insurence because
+/           %span.hours-info 20 days ago
+/       %center
+/         %a.see-all-link{:href => "javascript:void(0)"} See All My Messages
+
+
+
+/           - @conversations.each do |conversation|
+/             - other = conversation.sender == current_user ? conversation.recipient : conversation.sender
+/             = link_to conversation_messages_path(conversation) do
+/               .col-md-3
+/                 = image_tag avatar_url(other)
+/                 %br/
+/                 = other.fullname
+/               .col-md-7
+/                 = conversation.messages.last.content
+/               .col-md-2.date
+/                 = conversation.messages.last.message_time

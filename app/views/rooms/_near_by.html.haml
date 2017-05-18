@@ -1,0 +1,14 @@
+.panel.panel-default
+  .panel-heading
+    Near By(#{@room.nearbys(10).size})
+  .panel-body.box
+    .row
+      - for room in @room.nearbys(10)
+        .col-md-4
+          .panel.panel-default
+            .panel-heading.preview
+              = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : "/assets/missing.png")
+            .panel-body
+              = link_to room.listing_name, room
+              %br/
+              (#{room.distance.round(2)} miles away)

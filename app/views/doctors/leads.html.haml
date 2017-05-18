@@ -1,0 +1,13 @@
+.container
+
+  .my-50
+
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            My Leads
+          .panel-body.box
+            - current_doctor.booked_patients.order('updated_at desc').each do |patient|
+              - @user = patient
+              = render "card"

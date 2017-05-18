@@ -1,0 +1,20 @@
+= form_for([@room, @room.reviews.new]) do |f|
+  .row
+    .col-md-2 
+      Ratings: 
+    .col-md-3 
+      #user_stars
+  %br
+  
+  .form-group
+    = f.text_area :comment, rows: 3, class: 'form-control'
+  = f.hidden_field :room_id, value: @room.id
+  .actions
+    = f.submit 'Submit review', class: 'btn btn-primary btn-sm'
+
+- content_for :javascript do
+  :javascript
+    $('#user_stars').raty({
+    scoreName: 'review[star]',
+    score: 3
+    });

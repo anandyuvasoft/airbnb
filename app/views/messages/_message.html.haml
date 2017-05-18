@@ -1,0 +1,8 @@
+.panel
+  .panel-body
+    = image_tag avatar_url(message.user), class: 'img-circle avatar-small'
+    %strong= message.user.fullname
+    %span.pull-right= message.message_time
+    %br/
+    .row-space-2
+      = message.content

@@ -1,0 +1,88 @@
+.panel.panel-default
+
+  .row
+    .col-md-12
+
+      .row
+        .col-md-6
+          %h3 
+            Educations
+            - if @owner
+              %a{href: edit_room_path(education: true) }
+                %button.btn-circle.btn.btn-primary{:type => "button"}
+                  %i.glyphicon.glyphicon-plus 
+          %ul        
+            - @room.educations.each do |education|
+              %li.small
+                = education.school
+                (
+                = education.date.strftime('%Y')
+                )
+                - if @owner
+                  %a{href: edit_room_path(education: true, education_id: education.id) }
+                    %button.btn-circle.btn.btn-primary{:type => "button"}
+                      %i.glyphicon.glyphicon-edit
+
+
+        .col-md-6
+          %h3 
+            Conditions
+          - if @owner
+            = render "edit_conditions"
+            
+          - else
+            
+            %ul
+              - @room.conditions.each do |condition|
+                %li.small
+                  = condition.name
+
+      .row    
+        .col-md-6
+          %h3 
+            Insurances
+          - if @owner
+            = render "edit_insurances"
+          - else                    
+            %ul
+              - @room.insurances.each do |insurance|
+                %li.small
+                  = insurance.name
+
+        .col-md-6
+          %h3 
+            Procedures
+          - if @owner
+            = render "edit_procedures"
+          - else
+            %ul
+              - @room.procedures.each do |procedure|
+                %li.small
+                  = procedure.name
+
+
+      .row    
+        .col-md-8
+          %h3 
+            Languages
+          - if @owner
+            = render "edit_languages"
+          - else
+            %ul        
+              - @room.languages.each do |language|
+                %li.small
+                  = language.name
+
+      - if current_user && @owner          
+        .row    
+          .col-md-8
+            = render "bookings"
+
+      .col-md-8
+        %h3
+          Reviews
+          %span#average_rating
+          (#{@reviews.count})
+        = render 'reviews/form' if current_patient && has_booked?
+        .mt-20
+          = render 'reviews/list'

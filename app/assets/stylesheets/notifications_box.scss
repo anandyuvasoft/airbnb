@@ -1,0 +1,179 @@
+.theme-default #main-navbar .dropdown-menu {
+    background: none repeat scroll 0 0 #fff;
+}
+
+#main-navbar .pull-right .dropdown-menu {
+    float: right;
+    left: auto;
+    right: 0;
+}
+#main-navbar .dropdown-menu {
+    padding: 0;
+}
+.navbar-nav > li > .dropdown-menu {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-top: 0;
+}
+.pull-right .dropdown-menu {
+    float: right;
+    left: auto;
+    right: 0;
+}
+.open > .dropdown-menu {
+    display: block;
+}
+.no-padding {
+    padding: 0 !important;
+}
+.dropdown-menu {
+    border: 2px solid #ccc;
+    box-shadow: none;
+}
+
+
+
+.theme-default #main-navbar .widget-notifications .notification, .theme-default #main-navbar .widget-notifications .notifications-link {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-color: #f1f1f1;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+.widget-notifications .notification {
+    padding: 7px 12px;
+    position: relative;
+}
+
+.widget-notifications .notification-title {
+    font-size: 11px;
+    font-weight: 700;
+    padding-bottom: 1px;
+}
+.widget-notifications .notification-ago, .widget-notifications .notification-description, .widget-notifications .notification-title {
+    display: block;
+    margin-right: 35px;
+}
+.text-danger, .text-danger a, .text-danger a:focus, .text-danger:active, .text-danger:focus, .text-danger:hover {
+    color: #e14430;
+}
+
+
+.theme-default #main-navbar .widget-notifications .notification-description {
+    color: #999;
+}
+.widget-notifications .notification-description {
+    color: #666;
+    font-size: 11px;
+}
+.widget-notifications .notification-ago, .widget-notifications .notification-description, .widget-notifications .notification-title {
+    display: block;
+    margin-right: 35px;
+}
+
+.theme-default #main-navbar .widget-notifications .notification-description {
+    color: #999;
+}
+
+.theme-default #main-navbar .widget-notifications .notification-ago {
+    color: #bbb;
+}
+.widget-notifications .notification-ago {
+    color: #bbb;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.widget-notifications .notification-icon {
+    border-radius: 2px;
+    font-size: 14px;
+    height: 26px;
+    line-height: 26px;
+    margin: -13px 12px 0 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    width: 26px;
+}
+
+.widget-notifications a.notifications-link {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-color: #f1f1f1;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+}
+
+.widget-notifications .notifications-link {
+    border-top: 1px solid #e4e4e4;
+    color: #0075FF;
+    display: block;
+    font-size: 10px;
+    font-weight: 800;
+    height: auto !important;
+    line-height: 18px !important;
+    padding: 8px 0 !important;
+    text-align: center;
+    text-decoration: none !important;
+}
+
+.bg-danger {
+    background: none repeat scroll 0 0 #e66454 !important;
+}
+
+.bg-info {
+    background: none repeat scroll 0 0 #5bc0de !important;
+}
+
+.bg-success {
+    background: none repeat scroll 0 0 #5ebd5e !important;
+}
+
+.bg-default {
+    background: none repeat scroll 0 0 #98a3a4 !important;
+}
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.widget-notifications .notification,.widget-notifications .notifications-link {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-color: #f1f1f1;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    border: 1px solid #f1f1f1;
+}
+
+
+.navbar .nav-icon-btn.nav-icon-btn-danger .label {
+    background: none repeat scroll 0 0 #e66454;
+}
+.navbar .nav-icon-btn > a .badge, .navbar .nav-icon-btn > a .label {
+    display: block;
+    font-size: 8px;
+    line-height: 10px;
+    padding: 0 2px;
+    position: absolute;
+    right: 10px;
+}
+.navbar .nav-icon-btn > a .badge, .navbar .nav-icon-btn > a .label, .navbar .nav-icon-btn > a .small-screen-text {
+    display: inline-block;
+}
+.navbar .dropdown-menu .badge.pull-right, .navbar .dropdown-menu .label.pull-right, .navbar .nav-icon-btn .badge, .navbar .nav-icon-btn .label {
+    float: right;
+    top: 13px;
+}
+
+.navbar .nav-icon-btn > a .small-screen-text {
+    display: none;
+}
+
+/*.panel-body{
+    border: 2px solid #ccc;   
+    margin: 0px 0px 15px 0px;
+}*/
+ 
+    

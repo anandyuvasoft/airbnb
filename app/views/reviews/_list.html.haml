@@ -1,0 +1,23 @@
+- @reviews.order("id desc").each do |review|
+  .mb-30
+    .row
+      .col-md-1
+        = image_tag avatar_url(review.user), class: "img-circle avatar-medium"
+      .col-md-11
+
+        %div
+          %strong
+            = review.user.fullname.try(:capitalize)
+            %div{:id => "stars_#{review.id}"}
+
+        %div= review.created_at.strftime("%v")
+
+        %div= review.comment
+        %span.pull-right.small
+          = link_to "Remove", [@room, review], method: :delete, data: {confirm: "Are you sure?"} if current_user && current_user == review.user
+
+    :javascript
+      $('#stars_#{review.id}').raty ({
+      	readOnly: true,
+      	score: #{review.star}
+      });

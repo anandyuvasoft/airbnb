@@ -1,0 +1,37 @@
+- photos = room.photos
+
+#content
+  #siteNotice
+  .row
+    %div
+      #myCarousel.carousel.slide{"data-ride" => "carousel"}
+        - if photos.length>0
+          %ol.carousel-indicators
+            - photos.each do |photo|
+              %li{"data-slide-to" => photo.id, "data-target" => "#myCarousel"}
+          .carousel-inner{:role => "listbox"}
+            - photos.each do |photo|
+              %div{:class => "item #{'active' if photo.id == photos[0].id}"}
+                %img{:alt => "Mountain View", :src => photo.image.url(), :style => "width:190px;height:150px;"}/
+          %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+            %span.sr-only Previous
+          %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel", :role => "button"}
+            %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+            %span.sr-only Next
+    %br
+    %div        
+      %b= room.practice
+      %br
+      %b
+        = room.listing_name
+        ,
+        = room.degree
+        ,
+        = room.category
+      %br
+      %b.text-success
+        $
+        = room.price
+        
+

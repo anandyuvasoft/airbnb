@@ -1,0 +1,21 @@
+.row
+  = render '/shared/sidebarnav'
+  .col-md-9
+    .panel.panel-default
+      .panel-heading
+        Your purchases
+      .panel-body
+        - @rooms.each do |room|
+          - room.purchases.each do |purchase|
+            - if purchase.status
+              .row
+                .col-md-6
+                  = link_to room_path(purchase.room) do
+                    = image_tag purchase.room.photos[0].image.url(:thumb)
+                .col-md-2
+                  = link_to user_path(purchase.user) do
+                    = image_tag avatar_url(purchase.user), class: 'img-circle avatar-medium'
+                .col-md-2.right
+                  %h4
+                    $#{purchase.price}
+              %hr/

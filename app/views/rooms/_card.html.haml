@@ -1,0 +1,58 @@
+.panel.panel-default.docprofile.box
+  = render "rooms/ribbon"
+
+  .panel-defaultpanel-body
+
+    .row
+
+      .col-md-12
+        .col-md-8.nopadding
+
+          .col-md-3
+            .image-cropper
+              = image_tag @photos[0].try(:image) ? @photos[0].image.url(:medium) : "/assets/missing-room.jpg", class: 'img-responsive rounded'
+
+          .col-md-9
+            %h3
+              = link_to room_path(@room) do 
+                = @room.listing_name 
+                , #{@room.degree}, #{@room.category}
+              
+              - if @owner
+                %a{href: edit_room_path(personal: true) }
+                  %button.btn-circle.btn.btn-primary{:type => "button"}
+                    %i.glyphicon.glyphicon-edit  
+
+            - if @room.price.present?
+              %span.btn.btn-info.btn-xs
+                Rate  
+                $
+                = @room.price
+
+            %span.small
+              Address:
+              = @room.address
+            %h5
+              Practice: #{@room.practice}
+            
+            %p
+              = truncate(@room.biography,length: 30)
+              = link_to "Read more", "javascript:void(0)", class: 'small'
+
+            %h4
+              Reviews
+              %span#average_rating
+              (#{@reviews.count})
+
+        .col-md-4
+          - if !user_signed_in? || current_patient
+            = link_to 'Book An Appointment', bookings_path(room_id: @room.id), class: 'btn btn-block btn-primary', method: :post
+          = render 'purchases/form_enterprise' if @owner && !@upgraded
+
+
+- content_for :javascript do 
+  :javascript
+    $('#average_rating').raty ({
+    readOnly: true,
+    score: #{@room.average_rating}
+    });

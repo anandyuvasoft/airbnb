@@ -1,0 +1,21 @@
+- @owner = (current_user == @user) ? true : false
+
+.container
+
+  .my-50
+
+    = render "card"
+
+    - if @user.type.eql?("Doctor")
+      = render "rooms"
+
+
+    - if @user.type.eql?("Patient")
+          
+      = render "bookings" if @owner
+      = render "relatives"
+
+    = render "friends"    
+
+
+   

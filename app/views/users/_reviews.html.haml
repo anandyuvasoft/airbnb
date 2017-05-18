@@ -1,0 +1,18 @@
+.row
+  %h4 Reviews
+  - @rooms.each do |room|
+    - if room.reviews.present?
+      - room.reviews.each do |review|
+        .row
+          .col-md-2.text-center
+            = image_tag avatar_url(review.user), class: 'img-circle avatar-medium'
+            %br
+            = review.user.fullname
+          .col-md-10
+            = link_to room.listing_name, room
+            %br
+            = review.comment
+            %br
+            = review.created_at.strftime('%v')
+  .clearfix        
+  %strong= link_to "View more", "javascript:void(0)", class: 'pull-right' if false  

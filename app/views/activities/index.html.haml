@@ -1,0 +1,13 @@
+.container
+
+  .my-50
+    .row
+      .col-md-12
+        .panel.panel-default
+          .panel-heading
+            Notifications
+          %ul  
+            - @activities.each do |activity|
+              .panel-body
+                .container
+                  %li= render_activity activity

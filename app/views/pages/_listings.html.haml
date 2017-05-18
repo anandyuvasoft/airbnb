@@ -1,0 +1,31 @@
+- @upgraded = (@room.is_upgraded?) ? true : false
+- @photos = @room.photos
+
+.form-group
+  %h2.title-box My Listings
+  %ul.to-do-list.my-listing
+    %li
+      %span.avatar-box-big
+        -#%img{:alt => "", :src => "/assets/loggeduser.png"}/
+        = image_tag @photos[0].try(:image) ? @photos[0].image.url(:medium) : "/assets/missing-room.jpg", class: 'img-responsive rounded'
+
+      .extra-wrap
+        .col-md-6.clear-box
+          %p.messages-box
+            %h4
+              = @room.listing_name
+            %span= @room.practice
+            %a{:href => "javascript:void(0)"}= @room.category
+            %address
+              %i.fa.fa-map-marker
+              = @room.address
+        .col-md-6.clear-box
+          - unless @upgraded
+            %a.btn.btn-default.btn-block.fetured-btn{:href => "javascript:void(0)"}
+              Fetured
+              %span for $199/month
+          %a.btn.btn-default.btn-block.view-listing-btn{:href => room_path(@room.id)} View Listing
+      .clearfix
+      %a{:href => "/rooms/#{@room.id}/edit?personal=true"} Edit Listing
+    %center
+      %a.see-all-link{:href => "/rooms"} See All My Listings

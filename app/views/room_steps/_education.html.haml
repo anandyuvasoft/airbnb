@@ -1,0 +1,7 @@
+.form-group
+  %label Add your education:              
+  = education.text_field :school, placeholder: 'Enter the name of the school', class: 'form-control'
+.form-group                
+  = education.date_select :date, {order: [:year], prompt: {year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}
+
+

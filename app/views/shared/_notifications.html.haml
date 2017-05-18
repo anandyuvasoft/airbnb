@@ -1,0 +1,21 @@
+%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+
+  - count = unread_notification.count
+  - if count > 0
+    %span.label= count
+  %i.nav-icon.fa.fa-bell
+  %span.small-screen-text Notifications
+
+
+.dropdown-menu.widget-notifications.no-padding{:style => "width: 300px"}
+  .notifications-list
+    - unread_notification.first(5).each do |activity|
+      .notification
+        .notification-description
+          = render_activity activity
+        .notification-ago= time_ago_in_words(activity.created_at)
+    
+
+
+  = link_to 'See all', activities_path, class: 'notifications-link'  if count > 5 
+  
