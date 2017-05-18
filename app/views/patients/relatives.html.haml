@@ -1,5 +1,5 @@
 - @owner = (current_user == @user) ? true : false
-- @relatives = @user.relatives
+- @relatives = @user.relatives.paginate(:page => params[:page], :per_page => 5) 
 
 .container
 
@@ -25,4 +25,4 @@
               %strong= relative.fullname.capitalize
               %br
               = relative.relation.titleize
-           
+  = will_paginate @relatives     

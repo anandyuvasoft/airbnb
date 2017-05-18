@@ -1,0 +1,38 @@
+.panel
+  .panel-body
+    = image_tag avatar_url(message.user), style: " width: 3%;"
+    %strong
+      = message.user.fullname.capitalize
+    %span{:style => "float: right;"}
+      = message.message_time
+    %br/
+    .row-space-2
+      = message.content
+:css
+  .panel {
+      margin-bottom: 20px;
+      background-color: #fff;
+      border-radius: 0.2em;
+      box-shadow: 0 1px 5px 0 rgba(45, 62, 80, 0.12);
+      border: 0px;
+      border: 1.5px solid #e0e0e0;
+      padding: 20px;
+  }
+
+
+  .row-space-2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  .section > div, .panel > div {
+    padding: 0;
+  }
+  strong, dfn {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 10px;
+    margin-top: 10px;
+    vertical-align: top;
+  }
