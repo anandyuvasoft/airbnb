@@ -1,5 +1,5 @@
 - @owner = (current_user == @user) ? true : false
-- @friends = @user.friends
+- @friends = @user.friends.paginate(:page => params[:page], :per_page => 5)
 
 .container
 
@@ -21,3 +21,4 @@
               = image_tag("/assets/default-friend.jpg")
             .panel-body.text-center
               %strong= friend.fullname.capitalize
+    = will_paginate @friends

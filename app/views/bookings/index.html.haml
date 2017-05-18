@@ -17,6 +17,7 @@
                 = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : '/assets/missing-room.jpg'), height: '200px'
               .panel-body.text-center
                 %strong= room.practice.try(:capitalize)
+  = will_paginate @bookings          
           
 
 
