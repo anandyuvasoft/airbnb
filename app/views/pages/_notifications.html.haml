@@ -1,33 +1,42 @@
+- count = unread_notification.count
+
 
 .form-group
   %h2.title-box Recent Notifications
-  %ul.to-do-list
-    - unread_notification.first(10).each do |activity|
-      %li
-        %p
-          = render_activity activity
-        %span.hours-info
-          = time_ago_in_words(activity.created_at) + " ago"
 
-    / %li
-    /   %p
-    /     Congratulations!
-    /     %a{:href => "javascript:void(0)"} Your listing
-    /     was approved!
-    /   %span.hours-info About 4 hours ago
-    / %li
-    /   %p Your listing is under review. Please wait 24-48 hours.
-    /   %span.hours-info 2 days ago
-    / %li
-    /   %p
-    /     You've submitted a new listings for
-    /     %a{:href => "javascript:void(0)"} Reberto Carlos MD
-    /   %span.hours-info 3 days ago
-    / %li
-    /   %p
-    /     Welcome to GotDoc.com!
-    /     %a{:href => "javascript:void(0)"} Click here
-    /     to learn how to get started.
-    /   %span.hours-info 20 days ago
-  %center
-    %a.see-all-link{:href => "/activities"} See All My Notifications
+  - if count > 0 
+    %ul.to-do-list
+      - unread_notification.first(5).each do |activity|
+        %li
+          %p
+            = render_activity activity
+          %span.hours-info
+            = time_ago_in_words(activity.created_at) + " ago"
+      / %li
+      /   %p
+      /     Congratulations!
+      /     %a{:href => "javascript:void(0)"} Your listing
+      /     was approved!
+      /   %span.hours-info About 4 hours ago
+      / %li
+      /   %p Your listing is under review. Please wait 24-48 hours.
+      /   %span.hours-info 2 days ago
+      / %li
+      /   %p
+      /     You've submitted a new listings for
+      /     %a{:href => "javascript:void(0)"} Reberto Carlos MD
+      /   %span.hours-info 3 days ago
+      / %li
+      /   %p
+      /     Welcome to GotDoc.com!
+      /     %a{:href => "javascript:void(0)"} Click here
+      /     to learn how to get started.
+      /   %span.hours-info 20 days ago
+    
+    - if count > 5
+      %center
+        %a.see-all-link{:href => "/activities"} See All My Notifications
+  
+  - else
+    %center
+      .see-all-link{:href => "/activities"} You don't have any notifications yet.

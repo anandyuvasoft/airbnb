@@ -7,8 +7,10 @@ class PagesController < ApplicationController
   def sample;end
   def test;end
 
+
+  ## TODO recent messages should show 5 than see more links
   def dashboard
-    @room = current_doctor.rooms.first
+    @room = current_doctor.rooms.enabled.first
     @conversations = Conversation.involving(current_doctor)
   end
 

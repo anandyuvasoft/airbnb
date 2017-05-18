@@ -46,7 +46,7 @@
 
         .col-md-4
           - if !user_signed_in? || current_patient
-            = link_to 'Book An Appointment', bookings_path(room_id: @room.id), class: 'btn btn-block btn-primary', method: :post
+            = link_to 'Book An Appointment', booking_steps_path(room_id: @room.id), class: 'btn btn-block btn-primary'
           = render 'purchases/form_enterprise' if @owner && !@upgraded
 
 

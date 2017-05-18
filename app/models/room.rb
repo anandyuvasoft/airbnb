@@ -36,7 +36,9 @@ class Room < ActiveRecord::Base
   after_validation :geocode
   
   scope :upgraded, -> { joins(:purchases).where('purchases.purchased_at >= ?', DateTime.now.to_date-30) }
-
+  
+  ## TODO need to be set false for now
+  scope :enabled, -> { where(is_admin_active: false) }
 
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:star).round(2)

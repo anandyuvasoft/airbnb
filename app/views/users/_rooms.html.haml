@@ -1,18 +1,32 @@
+- count = @rooms.count
+
 .row              
   %h4 
-    Rooms (#{@rooms.length})
+    Rooms (#{count})
     - if @owner
       %a{href: room_steps_path}
         %button.btn-circle.btn.btn-primary{:type => "button"}
           %i.glyphicon.glyphicon-plus
 
-  - @rooms.order('updated_at desc').first(3).each do |room|
-    .col-md-4
-      = link_to room_path(room) do
-        .panel.panel-default
-          .panel-heading.preview
-            = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : '/assets/missing-room.jpg'), height: '200px'
-          .panel-body.text-center
-            %strong= room.practice.try(:capitalize)
-  .clearfix        
-  %strong= link_to "View more", "/rooms", class: 'pull-right'  if @rooms.length > 3
+  - if count > 0
+    - @rooms.order('updated_at desc').first(3).each do |room|
+      .col-md-4
+        = link_to room_path(room) do
+          .panel.panel-default
+            .panel-heading.preview
+              = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : '/assets/missing-room.jpg'), height: '200px'
+            .panel-body.text-center
+              %strong= room.practice.try(:capitalize)
+    .clearfix        
+    %strong= link_to "View more", "/rooms", class: 'pull-right'  if count > 3
+
+  -# else
+    / .see-all-link 
+    /   There is no enabled rooms yet.
+    /   - if @owner
+    /     %a{href: '/room_steps'} List your practice
+
+
+
+  
+

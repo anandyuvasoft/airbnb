@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
   skip_before_action :authenticate_patient!, :authenticate_doctor!
 
   def index
-    @rooms = current_user.rooms
+    @rooms = current_user.rooms.enabled
   end
 
   def show;end

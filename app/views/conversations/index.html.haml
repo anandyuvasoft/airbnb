@@ -1,3 +1,5 @@
+- count = @conversations.map(&:messages).count
+
 .container
 
   .my-50
@@ -8,15 +10,20 @@
           .panel-heading
             %h4 Your Conversations
           .panel-body
-            - @conversations.each do |conversation|
-              - other = conversation.sender == current_user ? conversation.recipient : conversation.sender
-              = link_to conversation_messages_path(conversation) do
-                .row.conversation
-                  .col-md-2
-                    = image_tag avatar_url(other), class: 'image-circle avatar-medium'
-                  .col-md-2
-                    = other.fullname
-                    %br/
-                    = conversation.messages.last.message_time
-                  .col-md-8
-                    = conversation.messages.last.content
+            - if count > 0
+              - @conversations.each do |conversation|
+                - other = conversation.sender == current_user ? conversation.recipient : conversation.sender
+                = link_to conversation_messages_path(conversation) do
+                  .row.conversation
+                    .col-md-2
+                      = image_tag avatar_url(other), class: 'image-circle avatar-medium'
+                    .col-md-2
+                      = other.fullname
+                      %br/
+                      = conversation.messages.last.message_time
+                    .col-md-8
+                      = conversation.messages.last.content
+
+            - else
+              .see-all-link 
+                You don't have any message yet.

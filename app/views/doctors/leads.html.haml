@@ -1,3 +1,6 @@
+- leads = current_doctor.booked_patients
+- count = leads.count
+
 .container
 
   .my-50
@@ -8,6 +11,11 @@
           .panel-heading
             My Leads
           .panel-body.box
-            - current_doctor.booked_patients.order('updated_at desc').each do |patient|
-              - @user = patient
-              = render "card"
+            - if count > 0
+              - leads.order('updated_at desc').each do |patient|
+                - @user = patient
+                = render "card"
+            - else
+              .see-all-link 
+                There is no leads yet.
+                %a{href: '/edit?personal=true'} Increase your trustmeter        

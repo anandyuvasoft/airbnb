@@ -38,10 +38,10 @@ class UsersController < ApplicationController
 
 
   def get_resources
-    @rooms = @user.rooms
+    @rooms = @user.rooms.enabled
     @friends = @user.friends
     @relatives = @user.relatives
-    @bookings = @user.bookings
+    @bookings = @user.bookings.enabled
   end
 
 

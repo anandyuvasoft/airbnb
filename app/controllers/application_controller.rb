@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   skip_before_filter :verify_authenticity_token 
   
+  before_action :store_location
   before_action :authenticate_doctor!, unless: :devise_controller? 
   before_action :authenticate_patient!, unless: :devise_controller?
 
@@ -12,7 +13,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_doctor, :current_patient,:require_doctor!, :require_patient!, :doctor_signed_in?, :patient_signed_in?
   
-  after_filter :store_location
+  
 
   def account_url
     return new_user_session_url unless user_signed_in?
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || account_url
+    stored_location_for(resource) || session[:previous_url] || account_url
   end
 
   private
@@ -38,7 +39,7 @@ class ApplicationController < ActionController::Base
       puts "*****authenticate_doctor!*****"
       authenticate_user!
       unless current_doctor
-        flash[:notice] = "You need to register as doctor for looking that page."
+        flash[:notice] = "You need to register as doctor for continuing."
         redirect_to root_path
       end
     end
@@ -48,13 +49,13 @@ class ApplicationController < ActionController::Base
     puts "****authenticate_patient!****"
     authenticate_user!
     unless current_patient
-      flash[:notice] = "You need to register as patient for looking that page."
+      flash[:notice] = "You need to register as patient for continuing."
       redirect_to root_path
     end
   end
 
     def store_location
-      session[:previous_url] = request.fullpath
+      session[:previous_url] = request.fullpath unless (request.fullpath == "/sign-in" || request.fullpath == "/")
     end
 
     def current_patient

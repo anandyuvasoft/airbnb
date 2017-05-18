@@ -1,18 +1,27 @@
+- count = @conversations.map(&:messages).count
+
+
 .form-group
   %h2.title-box Recent Messages
-  %ul.to-do-list.recent-messages
-    - @conversations.each do |conversation|
-      - other = conversation.sender == current_user ? conversation.recipient : conversation.sender
-      = link_to conversation_messages_path(conversation) do
-        %li
-          %span.avatar-box
-            = image_tag avatar_url(other)
-          .extra-wrap
-            %p.messages-box
-              %a{:href => user_path(other.id)}
-                = other.fullname
-              = conversation.messages.last.try(:content)
-            %span.hours-info= time_ago_in_words(conversation.messages.last.created_at) + " ago"
+  - if count > 0
+    %ul.to-do-list.recent-messages
+      - @conversations.each do |conversation|
+        - other = conversation.sender == current_user ? conversation.recipient : conversation.sender
+        = link_to conversation_messages_path(conversation) do
+          %li
+            %span.avatar-box
+              = image_tag avatar_url(other)
+            .extra-wrap
+              %p.messages-box
+                %a{:href => user_path(other.id)}
+                  = other.fullname
+                = conversation.messages.last.try(:content)
+              %span.hours-info= time_ago_in_words(conversation.messages.last.created_at) + " ago"
+
+  - else
+    %center
+      .see-all-link You don't have any message yet.
+
 
 
 / %li

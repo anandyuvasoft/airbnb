@@ -1,18 +1,28 @@
+- count = @leads.count
+
 .form-group
   %h2.title-box Recent Leads
   .leads-title
     User Requesting Appointment
     %span.pull-right Dates Created
-  %ul.to-do-list.recent-leads
-    - @leads.each do |patient|
-      %li
-        %span.avatar-box
-          = image_tag avatar_url(patient), class: 'img-responsive rounded' 
-        .extra-wrap
-          %p.messages-box
-            %a{:href => user_path(patient)}
-              = patient.fullname
-          %span.hours-info Apr 29
 
+  - if count > 0  
+    %ul.to-do-list.recent-leads
+
+
+      - @leads.each do |patient|
+        %li
+          %span.avatar-box
+            = image_tag avatar_url(patient), class: 'img-responsive rounded' 
+          .extra-wrap
+            %p.messages-box
+              %a{:href => user_path(patient)}
+                = patient.fullname
+            %span.hours-info Apr 29
+    - if count > 5        
+      %center
+        %a.see-all-link{:href => leads_path(current_doctor) } See All My Leads
+
+  - else
     %center
-      %a.see-all-link{:href => leads_path(current_doctor) } See All My Leads
+      .see-all-link You don't have any leads yet.

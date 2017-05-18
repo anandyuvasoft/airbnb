@@ -8,14 +8,15 @@
 
 
 .dropdown-menu.widget-notifications.no-padding{:style => "width: 300px"}
-  .notifications-list
-    - unread_notification.first(5).each do |activity|
-      .notification
-        .notification-description
-          = render_activity activity
-        .notification-ago= time_ago_in_words(activity.created_at)
-    
-
-
-  = link_to 'See all', activities_path, class: 'notifications-link'  if count > 5 
+  - if count > 0
+    .notifications-list
+      - unread_notification.first(5).each do |activity|
+        .notification
+          .notification-description
+            = render_activity activity
+          .notification-ago= time_ago_in_words(activity.created_at)
+    = link_to 'See all', activities_path, class: 'notifications-link'  if count > 5
+  - else
+    .see-all-link.text-center 
+      You don't have any new notifications yet.
   

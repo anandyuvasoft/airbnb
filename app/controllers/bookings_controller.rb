@@ -1,12 +1,6 @@
 class BookingsController < ApplicationController
 
-  skip_before_action :authenticate_doctor!
-
-  def create
-    @booking = current_patient.bookings.create(room_id: params[:room_id])
-    redirect_to booking_steps_path(booking_id: @booking.id)
-  end
-  
+  skip_before_action :authenticate_doctor! #, :authenticate_patient!
 
   def update
     booking = Booking.find(params[:id])

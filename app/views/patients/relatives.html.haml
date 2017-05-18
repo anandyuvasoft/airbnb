@@ -1,28 +1,37 @@
 - @owner = (current_user == @user) ? true : false
 - @relatives = @user.relatives
+- count = @relatives.count
 
 .container
 
   .my-50
     .row
       %h4#count
-        Relatives (#{@relatives.size})
-      - @relatives.order('updated_at desc').each do |relative|
-        .col-md-4{id: "relative_#{relative.id}"}
+        Relatives (#{count})
+
+      - if count > 0  
+        - @relatives.order('updated_at desc').each do |relative|
+          .col-md-4{id: "relative_#{relative.id}"}
+            - if @owner
+
+              = link_to "/edit?relative=true&relative_id=#{relative.id}", class: 'pull-right' do 
+                %button.btn-circle.btn.btn-primary{:type => "button"}
+                  %i.glyphicon.glyphicon-edit
+
+              = link_to "/relative/#{relative.id}", method: :delete, remote: true, class: 'pull-right' do 
+                %button.btn-circle.btn.btn-danger{:type => "button"}
+                  %i.glyphicon.glyphicon-remove
+            .panel.panel-default
+              .panel-heading.preview
+                = image_tag("/assets/default-family-member.jpg")
+              .panel-body.text-center
+                %strong= relative.fullname.capitalize
+                %br
+                = relative.relation.titleize
+
+      - else
+        .see-all-link 
+          There is no family members yet.
           - if @owner
-
-            = link_to "/edit?relative=true&relative_id=#{relative.id}", class: 'pull-right' do 
-              %button.btn-circle.btn.btn-primary{:type => "button"}
-                %i.glyphicon.glyphicon-edit
-
-            = link_to "/relative/#{relative.id}", method: :delete, remote: true, class: 'pull-right' do 
-              %button.btn-circle.btn.btn-danger{:type => "button"}
-                %i.glyphicon.glyphicon-remove
-          .panel.panel-default
-            .panel-heading.preview
-              = image_tag("/assets/default-family-member.jpg")
-            .panel-body.text-center
-              %strong= relative.fullname.capitalize
-              %br
-              = relative.relation.titleize
+            %a{href: "/edit?relative=true"} Add a new family member.
            
