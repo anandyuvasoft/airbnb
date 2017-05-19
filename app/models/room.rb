@@ -37,7 +37,7 @@ class Room < ActiveRecord::Base
   
   scope :upgraded, -> { joins(:purchases).where('purchases.purchased_at >= ?', DateTime.now.to_date-30) }
   
-  ## TODO need to be set false for now
+  ## TODO it should be true
   scope :enabled, -> { where(is_admin_active: false) }
 
   def average_rating

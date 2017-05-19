@@ -33,6 +33,9 @@
                     - @room = room
                     = render 'purchases/form_enterprise' unless room.is_upgraded?
               %hr
+            
+            .pull-right= will_paginate @rooms
+
           - else
             .see-all-link 
               There is no enabled rooms yet.

@@ -1,5 +1,5 @@
 - @owner = (current_user == @user) ? true : false
-- @friends = @user.friends
+- @friends = @user.friends.paginate(:page => params[:page], :per_page => 10)
 - count = @friends.count 
 
 .container
@@ -23,9 +23,13 @@
                 = image_tag("/assets/default-friend.jpg")
               .panel-body.text-center
                 %strong= friend.fullname.capitalize
+        
+        .clearfix    
+        .pull-right= will_paginate @friends 
 
       - else
         .see-all-link 
           There is no friends yet.
           - if @owner
             %a{href: "/edit?friend=true"} Add a new friend                
+      
