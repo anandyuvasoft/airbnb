@@ -11,15 +11,17 @@ class PurchasesController < ApplicationController
     if @purchase
       values = {
         business: 'ariefrizkyr-facilitator@gmail.com',
-        cmd: '_xclick',
+        cmd: '_xclick-subscriptions',
         upload: 1,
-        notify_url: 'http://b8c6a43c.ngrok.io/purchase_notify',
-        amount: @purchase.price,
-        description: @purchase.name,
+        notify_url: 'http://98a4b73e.ngrok.io/purchase_notify',
         item_name: room.listing_name,
-        item_number: @purchase.id,
+        invoice: @purchase.id,
         quantity: 1,
-        return: 'http://b8c6a43c.ngrok.io/'
+        return: 'http://98a4b73e.ngrok.io/',
+        a3: @purchase.price,
+        p3: 12,
+        t3: 'M'
+
       }
       redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
     else
