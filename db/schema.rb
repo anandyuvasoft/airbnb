@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170515105922) do
+ActiveRecord::Schema.define(version: 20170519104511) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(version: 20170515105922) do
   end
 
   add_index "friends", ["user_id"], name: "index_friends_on_user_id", using: :btree
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "room_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "groups", ["room_id"], name: "index_groups_on_room_id", using: :btree
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "insurance_providers", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -363,6 +373,8 @@ ActiveRecord::Schema.define(version: 20170515105922) do
   add_foreign_key "bookings", "users"
   add_foreign_key "educations", "rooms"
   add_foreign_key "friends", "users"
+  add_foreign_key "groups", "rooms"
+  add_foreign_key "groups", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "photos", "rooms"

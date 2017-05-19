@@ -52,6 +52,7 @@ private
       :language_ids=>[],
       :insurance_ids=>[],
       :procedure_ids=>[],
+      :member_ids=>[],
       :conditions=>[],
       # conditions_attributes: 
       #   [:id, {:condition=>[]},:_destroy, :name=>[]],

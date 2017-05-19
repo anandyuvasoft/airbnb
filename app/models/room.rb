@@ -25,6 +25,9 @@ class Room < ActiveRecord::Base
   has_many :languages, through: :rooms_languages    
 
 
+  has_many :groups
+  has_many :members, through: :groups, source: :user
+
   accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos, :allow_destroy => true
 
   validates :listing_name, presence: true, length: {maximum: 50}

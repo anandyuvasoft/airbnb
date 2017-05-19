@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
   has_many :friends, :dependent => :destroy
   has_many :bookings, :dependent => :destroy
 
+
+  has_many :groups
+  has_many :other_rooms, through: :groups, source: :room
+
+
   accepts_nested_attributes_for  :relatives, :friends, :allow_destroy => true, :reject_if => lambda { |a| a[:fullname].blank? }
 
 

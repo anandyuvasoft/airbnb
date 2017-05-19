@@ -12,6 +12,10 @@
           .panel-body
 
             .form-group
+              %label Add members:
+              = room.select :member_ids, User.all.map{|user| [user.fullname,user.id] }, {}, {:multiple => true, class: 'chosen-select'}
+
+            .form-group
               %label Conditons I'm experienced treating:
               = room.select :condition_ids, Condition.all.map{|condition| [condition.name,condition.id] }, {}, {:multiple => true, class: 'chosen-select'}
 
