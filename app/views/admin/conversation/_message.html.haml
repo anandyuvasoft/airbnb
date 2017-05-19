@@ -1,0 +1,10 @@
+.panel
+  .panel-body
+    = image_tag avatar_url(message.user), style: " width: 5%;"
+    %strong.col-md-6
+      = message.user.fullname.capitalize
+    %span{:style => "float: right;"}
+      = message.message_time
+    %br
+    .row-space-2
+      = message.content

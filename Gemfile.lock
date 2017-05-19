@@ -397,6 +397,7 @@ GEM
       chronic (>= 0.6.3)
     wicked (1.3.1)
       railties (>= 3.0.7)
+    will_paginate (3.1.5)
     zapier_ruby (0.0.5)
       rest-client
 
@@ -452,6 +453,7 @@ DEPENDENCIES
   web-console (~> 2.0)
   whenever
   wicked
+  will_paginate (~> 3.1.0)
   zapier_ruby
 
 BUNDLED WITH

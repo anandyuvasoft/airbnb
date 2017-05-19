@@ -20,9 +20,9 @@
                     .col-md-2
                       = other.fullname
                       %br/
-                      = conversation.messages.last.message_time
+                      = conversation.messages.last.try(:message_time)
                     .col-md-8
-                      = conversation.messages.last.content
+                      = conversation.messages.last.try(:content)
 
             - else
               .see-all-link 

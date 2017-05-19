@@ -26,12 +26,10 @@ class PagesController < ApplicationController
     rooms = rooms.where(category: params[:category]) if params[:category].present?
 
     # OPTIMIZE improve the code 
-    # TODO photos of a room on google map
-    upgraded_rooms = rooms.upgraded
+     upgraded_rooms = rooms.upgraded
     unupgraded_rooms = rooms - upgraded_rooms
     @rooms = upgraded_rooms + unupgraded_rooms
 
-    #@users = User.all
     @hash = Gmaps4rails.build_markers(@rooms) do |room, marker|
       marker.lat room.latitude
       marker.lng room.longitude

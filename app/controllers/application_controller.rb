@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
     def store_location
-      session[:previous_url] = request.fullpath unless (request.fullpath == "/sign-in" || request.fullpath == "/")
+      session[:previous_url] = request.fullpath unless (request.fullpath == "/sign-in" || request.fullpath == "/" || request.fullpath == "/sign-up")
     end
 
     def current_patient

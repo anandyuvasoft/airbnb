@@ -16,7 +16,8 @@
                 %a{:href => user_path(other.id)}
                   = other.fullname
                 = conversation.messages.last.try(:content)
-              %span.hours-info= time_ago_in_words(conversation.messages.last.created_at) + " ago"
+              - if conversation.messages.last.present? 
+                %span.hours-info= time_ago_in_words(conversation.messages.last.created_at) + " ago"
 
   - else
     %center
