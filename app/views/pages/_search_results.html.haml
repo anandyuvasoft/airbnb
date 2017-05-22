@@ -1,52 +1,68 @@
 .container-fluid
   .my-50
     .row
-
-      .col-md-7.no-padding
-        .panel.panel-default
-          .panel-heading
-            Search results
-          .panel-body.box
-            .col-md-12
-              - @rooms.each do |room|
-                - @reviews = room.reviews 
-                - @room = room
-                - @photos = room.photos
-                - @upgraded = (room.is_upgraded?) ? true : false
-                = render "rooms/room_card"
-
-      .col-md-5.no-padding         
-        .panel.panel-default
-          .panel-heading
-            Rooms on map
-          .panel-body.box
-            #map
+      .search-col-7
+        .panel-heading
+          Search results
+        .panel-body.box
+          - @rooms.each do |room|
+            - @reviews = room.reviews 
+            - @room = room
+            - @photos = room.photos
+            - @upgraded = (room.is_upgraded?) ? true : false
+            = render "rooms/room_card"
+          = will_paginate(@rooms)
+      .search-col-5.no-padding 
+        .overlay        
+          #map
 
 
 
 - content_for :javascript do 
   :javascript
-    var height = $('.col-md-7').height();
+
+    var height = $('.search-col-7').height();
 
     $("#map").height(height);
-    
+
     handler = Gmaps.build('Google');
     handler.buildMap(
     { 
-      provider:{
-          disableDefaultUI: true, zoom: 3
-      }, 
       internal: {
         id: 'map'
       }
     }, function(){
-
     markers = handler.addMarkers(#{raw @hash.to_json });
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
-    handler.getMap().setZoom(2)
+    handler.getMap().setZoom(12);
+    handler.setOptions( { scrollwheel: false});
     });
 
+    $('.overlay').click(function () {
+        $('.overlay #map').css("pointer-events", "auto");
+    });
+    
+    $(".overlay #map").mouseleave(function() {
+      $('.overlay #map').css("pointer-events", "none"); 
+    });
+       
 
 
- 
+:css
+  #map {
+    pointer-events: none;
+  }
+  .search-col-7 {
+    width:58%;
+    float: left;
+    margin-right: 10px;
+  }
+  .search-col-5 {
+    width:40%;
+    float: left;
+    position: fixed;
+    top: 72px;
+    right: 0;
+    z-index: 999;
+  }

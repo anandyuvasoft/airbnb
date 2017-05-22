@@ -7,7 +7,7 @@ class RoomsController < ApplicationController
   skip_before_action :authenticate_patient!, :authenticate_doctor!
 
   def index
-    @rooms = current_user.rooms.enabled.paginate(:page => params[:page], :per_page => 1)
+    @rooms = current_user.rooms.enabled.paginate(:page => params[:page], :per_page => 5)
   end
 
   def show;end

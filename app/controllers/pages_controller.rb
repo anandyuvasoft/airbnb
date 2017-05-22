@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   
   skip_before_action :authenticate_doctor!, :authenticate_patient!
-  
+  require 'will_paginate/array'
+
   def home;end
 
   def sample;end
@@ -14,7 +15,6 @@ class PagesController < ApplicationController
     @conversations = Conversation.involving(current_doctor)
   end
 
-
   def search
 
     if params[:location].present?
@@ -26,10 +26,10 @@ class PagesController < ApplicationController
     rooms = rooms.where(category: params[:category]) if params[:category].present?
 
     # OPTIMIZE improve the code 
-     upgraded_rooms = rooms.upgraded
+    upgraded_rooms = rooms.upgraded
     unupgraded_rooms = rooms - upgraded_rooms
     @rooms = upgraded_rooms + unupgraded_rooms
-
+    @rooms = @rooms.paginate(:page => params[:page], :per_page => 5)
     @hash = Gmaps4rails.build_markers(@rooms) do |room, marker|
       marker.lat room.latitude
       marker.lng room.longitude
@@ -38,4 +38,5 @@ class PagesController < ApplicationController
 
 
   end
+
 end
