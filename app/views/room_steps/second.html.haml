@@ -1,35 +1,34 @@
 .container
   .my-50
     .row
-
       %h3.text-center
         Hello #{current_user.fullname}! Let's get you ready to list your practice.
-
       = form_for(@room, url: wizard_path(:second), method: :put) do |room|
         = hidden_field_tag :room_id , params[:room_id]
         .panel.panel-default
           .panel-heading Step2: Help patients find you by telling them more about:
           .panel-body
-
             .form-group
-              %label Add members:
-              = room.select :member_ids, User.all.map{|user| [user.fullname,user.id] }, {}, {:multiple => true, class: 'chosen-select'}
-
+              %label Upload your profile picture
+              = file_field_tag 'images[]', type: :file, multiple: true, onchange: 'readURL(this)'
             .form-group
-              %label Conditons I'm experienced treating:
-              = room.select :condition_ids, Condition.all.map{|condition| [condition.name,condition.id] }, {}, {:multiple => true, class: 'chosen-select'}
-
+              = room.text_area :summary, cols:10, rows:10, class: 'form-control', placeholder: 'Describe about your pratice'  
             .form-group
-              %label Procedures I currently offer in my practice:
-              = room.select :procedure_ids, Procedure.all.map{|procedure| [procedure.name,procedure.id] }, {}, {:multiple => true, class: 'chosen-select'}
-
+              = room.select :practice_year_opened, options_for_select(2015.downto(1920))
             .form-group
               %label Insurance plans I currently accept in my practice:
               = room.select :insurance_ids, Insurance.all.map{|insurance_provider| [insurance_provider.name,insurance_provider.id] }, {}, {:multiple => true, class: 'chosen-select'}
-
             .form-group
-              %label Languages I speak:
-              = room.select :language_ids, Language.all.map{|language| [language.name, language.id] }, {}, {:multiple => true, class: 'chosen-select'}
+              = room.text_field :website,class: 'form-control', placeholder: 'Enter your website URL'   
+            .form-group
+              %label Add members:
+              = room.select :member_ids, User.all.map{|user| [user.fullname,user.id] }, {}, {:multiple => true, class: 'chosen-select'}
+            .form-group
+              %label Add other members:
+              %br
+              = text_field_tag :email_ids, nil, placeholder: 'Enter Email Ids', class: 'form-control',"data-role" => "tagsinput"
+              %br
+              %span Add team member's email id that are not in list  
 
             .form-group
               %label Cost of initial consultation:
@@ -37,4 +36,4 @@
                 .input-group-addon $
                 = room.text_field :price, placeholder: 'eg. $100', class: 'form-control'
         .actions.pull-right
-          = room.submit "Continue" , class: "btn btn-primary"
+          =link_to  "Continue","#", class: "btn btn-primary", id: "step_2"

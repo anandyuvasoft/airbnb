@@ -10,15 +10,48 @@
         .panel.panel-default
           .panel-heading Step3: Enhance your profile
           .panel-body
-          = room.fields_for :educations do |education|
-            .mb-20
-              .row
-                .col-md-9
-                  = render 'education', education: education
-                .col-md-2    
-                  %div= education.link_to_remove("", class: 'glyphicon glyphicon-remove btn-circle btn-danger') 
-          = room.link_to_add( "Add more", :educations, class: "btn btn-sm btn-primary")
-
+            .form-group
+              = room.text_area :summary, cols:7, rows:7, class: 'form-control', placeholder: 'Describe about your Biography'
+            .form-group
+              = room.text_field :wikipedia,class: 'form-control', placeholder: 'Add wikipedia Link'  
+            .form-group
+              %label Conditons I'm experienced treating:
+              = room.select :condition_ids, Condition.all.map{|condition| [condition.name,condition.id] }, {}, {:multiple => true, class: 'chosen-select'}
+            // Add doctors symptoms here  
+            .form-group
+              %label Procedures I currently offer in my practice:
+              = room.select :procedure_ids, Procedure.all.map{|procedure| [procedure.name,procedure.id] }, {}, {:multiple => true, class: 'chosen-select'}
+            .form-group
+              %label Languages I speak:
+              = room.select :language_ids, Language.all.map{|language| [language.name, language.id] }, {}, {:multiple => true, class: 'chosen-select'}      
+            = room.fields_for :educations do |education|
+              .mb-20.mg-20
+                .row
+                  .col-md-9
+                    = render 'education', education: education
+                  .col-md-2    
+                    %div= education.link_to_remove("", class: 'glyphicon glyphicon-remove btn-circle btn-danger') 
+              = room.link_to_add( "Add more", :educations, class: "btn btn-sm btn-primary")
+            %br
+            %br  
+            = room.fields_for :breakthroughs do |breakthrough|
+              .mb-20.mg-20
+                .row
+                  .col-md-9
+                    = render 'breakthrough', breakthrough: breakthrough
+                  .col-md-2    
+                    %div= breakthrough.link_to_remove("", class: 'glyphicon glyphicon-remove btn-circle btn-danger') 
+            = room.link_to_add( "Add more", :breakthroughs, class: "btn btn-sm btn-primary")
+            %br
+            %br  
+            = room.fields_for :awards do |award|
+              .mb-20.mg-20
+                .row
+                  .col-md-9
+                    = render 'award', award: award
+                  .col-md-2    
+                    %div= award.link_to_remove("", class: 'glyphicon glyphicon-remove btn-circle btn-danger') 
+            = room.link_to_add( "Add more", :awards, class: "btn btn-sm btn-primary")
         .actions.pull-right
           = room.submit 'Save', class: 'btn btn-primary' 
 

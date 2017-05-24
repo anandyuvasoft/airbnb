@@ -1,0 +1,5 @@
+.form-group
+  %label Add your Breakthroughs:              
+  = breakthrough.text_field :name, placeholder: 'Enter the name of the Breakthrough', class: 'form-control'
+.form-group                
+  = breakthrough.date_select :date, {order: [:year], prompt: {year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 100}, {required: false, class: 'col-md-3 mr-50'}

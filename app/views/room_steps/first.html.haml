@@ -10,22 +10,21 @@
           .panel-heading Step1: Tell us about your practice
           .panel-body
             .form-group
-              %label Upload your profile picture
-              = file_field_tag 'images[]', type: :file, multiple: true, onchange: 'readURL(this)'
-
-            .form-group
-              = room.text_field :practice, placeholder: 'Enter the name of your practice', class: 'form-control'                    
-            .form-group
               = room.text_field :listing_name, placeholder: 'Enter your full name', class: 'form-control'
             .form-group
-              = room.text_area :biography, cols:10, rows:10, class: 'form-control', placeholder: 'Describe about your pratice'
+              = room.select :degree, Degree.all.map{|degree| [degree.name, degree.name]}, include_blank: 'Select your professional degree', placeholder: 'Select your professional degree'  
             .form-group
-              = room.select :gender, [['Male','Male'],['Female','Female']], include_blank: 'Select gender', class: 'form-control'
+              = room.select :gender, [['Male','Male'],['Female','Female']], include_blank: 'Select gender', class: 'form-control' 
             .form-group
-              = room.text_field :address, placeholder: 'Enter a location', class: 'form-control'
+              = room.date_field :dob, placeholder: 'Enter your DOB', class: 'form-control'
             .form-group
-              = room.select :degree, Degree.all.map{|degree| [degree.name, degree.name]}, include_blank: 'Select your professional degree', placeholder: 'Select your professional degree'
+              = room.text_field :medical_license_number, placeholder: 'Enter your medical license number', class: 'form-control'  
+
             .form-group
               = room.select :category, Category.all.map{|category| [category.name, category.name]}, placeholder: 'I am an experienced', include_blank: 'I am an experienced'
+            .form-group
+              = room.text_field :practice, placeholder: 'Enter the name of your practice', class: 'form-control'      
+            .form-group
+              = room.text_field :address, placeholder: 'Enter a location', class: 'form-control'
         .actions.pull-right
           = room.submit "Continue" , class: 'btn btn-primary'
