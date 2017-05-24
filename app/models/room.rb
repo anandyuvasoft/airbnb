@@ -10,6 +10,8 @@ class Room < ActiveRecord::Base
   has_many :purchases, :dependent => :destroy
   has_many :specialities, :dependent => :destroy
   has_many :educations, :dependent => :destroy
+  has_many :breakthroughs, :dependent => :destroy
+  has_many :awards, :dependent => :destroy  
   has_many :bookings, :dependent => :destroy
 
   has_many :rooms_conditions
@@ -28,7 +30,7 @@ class Room < ActiveRecord::Base
   has_many :groups
   has_many :members, through: :groups, source: :user
 
-  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations, :photos, :allow_destroy => true
+  accepts_nested_attributes_for :conditions, :specialities, :procedures, :insurances, :languages, :educations,:breakthroughs, :awards, :photos, :allow_destroy => true
 
   validates :listing_name, presence: true, length: {maximum: 50}
   validates :address, presence: true

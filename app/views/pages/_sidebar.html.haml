@@ -8,9 +8,9 @@
           %a.pull-left.profile-thumb{:href => user_path(current_doctor)}
             -#%img.img-circle{:alt => "", :src => "/assets/user1.png"}/
             = image_tag avatar_url(current_doctor), class: 'img-circle' 
-        .col-md-2            
+        .col-md-7            
           .media-body
-            %h4.media-heading Roberto
+            %h4.media-heading #{current_user.fullname.capitalize}
             %small.text-muted
               %a{:href => "/edit?personal=true"} Edit profile
 

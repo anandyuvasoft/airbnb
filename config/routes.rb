@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :purchases, only: [:create]
   end
-
+  resources :invites
+  
   get '/preload' => 'reservations#preload'
   get '/preview' => 'reservations#preview'
   get '/your-trips' => 'reservations#your_trips'

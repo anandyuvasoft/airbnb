@@ -1,3 +1,37 @@
 // Place all the styles related to the room_steps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bootstrap-tagsinput {
+  width: 100% !important;
+}
+.label-info {
+   background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eee 100%);
+   border: 1px solid #aaa;
+   color: #333 !important;
+   font-weight: normal;
+}
+.bootstrap-tagsinput .label {
+  padding: .2em 2px 0.3em 5px !important;
+}
+
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  margin-left: 11px;
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #777;
+}
+
+.chosen-container-multi .chosen-choices li.search-field input[type="text"] {
+  height: 32px !important;
+}
+
+.chosen-container-multi .chosen-choices {
+  padding: 2px 0 0 7px !important;
+}
+.mg-20 {
+  margin-left: -15px !important;
+}

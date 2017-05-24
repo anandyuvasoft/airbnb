@@ -19,6 +19,8 @@ class RoomsController < ApplicationController
     @room.insurances.build
     @room.languages.build
     @room.educations.build
+    @room.breakthroughs.build
+    @room.awards.build
   end
 
   def create
@@ -62,6 +64,8 @@ class RoomsController < ApplicationController
         :insurances_attributes => [:insurance_provider,:_destroy,:id],
         :languages_attributes => [:language,:_destroy,:id],
         :educations_attributes => [:school, :date,:_destroy,:id ],
+        :breakthroughs_attributes => [:name, :date,:_destroy,:id ],
+        :awards_attributes => [:name, :date,:_destroy,:id ],
         :condition_ids=>[],
         :language_ids=>[],
         :insurance_ids=>[],
@@ -76,6 +80,8 @@ class RoomsController < ApplicationController
       @room.insurances.build
       @room.languages.build
       @room.educations.build
+      @room.breakthroughs.build
+      @room.awards.build
     end
 
     def resources
