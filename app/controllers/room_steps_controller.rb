@@ -30,16 +30,18 @@ class RoomStepsController < ApplicationController
 
   def update
    	@room.update_attributes(room_params)
-    emails_ids = params[:email_ids].split(' ')
-    emails_ids.each do |email|
-      @invite = Invite.create(email: email, group_id: @room.groups.last.id,sender_id: current_doctor.id)
-      if @invite.recipient != nil 
-        InviteMailer.existing_user_invite(@invite).deliver 
-        @invite.recipient.groups.push(@invite.group)
-      else
-        InviteMailer.new_user_invite(@invite, new_user_registration_url(invite_token: @invite.token)).deliver_now
+    if params[:email_ids].present?
+      emails_ids = params[:email_ids].split(' ')
+      emails_ids.each do |email|
+        @invite = Invite.create(email: email, group_id: @room.groups.last.id,sender_id: current_doctor.id)
+        if @invite.recipient != nil 
+          InviteMailer.existing_user_invite(@invite).deliver 
+          @invite.recipient.groups.push(@invite.group)
+        else
+          InviteMailer.new_user_invite(@invite, new_user_registration_url(invite_token: @invite.token)).deliver_now
+        end
       end
-    end
+    end  
     if params[:id].eql? "third"
       redirect_to_finish_wizard
     else
