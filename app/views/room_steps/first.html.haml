@@ -5,12 +5,31 @@
       %h3.text-center
         Hello #{current_user.fullname}! Let's get you ready to list your practice.
 
-      = form_for(Room.new, url: room_steps_path, method: :post) do |room|
+      = form_for(current_doctor, url: room_steps_path, method: :post) do |user|
         .panel.panel-default
           .panel-heading Step1: Tell us about your practice
           .panel-body
             .form-group
-              = room.text_field :listing_name, placeholder: 'Enter your full name', class: 'form-control'
+              = user.text_field :fullname, placeholder: 'Enter your full name', class: 'form-control'
+            .form-group
+              = user.select :degree, Degree.all.map{|degree| [degree.name, degree.name]}, include_blank: 'Select your professional degree', placeholder: 'Select your professional degree'
+            .form-group
+              = user.select :gender, [['Male','Male'],['Female','Female']], include_blank: 'Select gender', class: 'form-control' 
+            .form-group
+              = user.date_field :birthday, placeholder: 'Birthday', class: 'form-control'                            
+            .form-group
+              = user.text_field :license, placeholder: 'Enter your medical license number', class: 'form-control'  
+            .form-group
+              = user.select :category, Category.all.map{|category| [category.name, category.name]}, placeholder: 'I am an experienced', include_blank: 'I am an experienced'
+
+            / = user.fields_for :rooms, user.object.rooms.new do |room|
+            /   = hidden_field_tag :friend, true
+
+
+
+          -#.panel-body
+            .form-group
+              = room.text_field :name, placeholder: 'Title', class: 'form-control'
             .form-group
               = room.select :degree, Degree.all.map{|degree| [degree.name, degree.name]}, include_blank: 'Select your professional degree', placeholder: 'Select your professional degree'  
             .form-group
@@ -26,5 +45,7 @@
               = room.text_field :practice, placeholder: 'Enter the name of your practice', class: 'form-control'      
             .form-group
               = room.text_field :address, placeholder: 'Enter a location', class: 'form-control'
+
+
         .actions.pull-right
-          = room.submit "Continue" , class: 'btn btn-primary'
+          = user.submit "Continue" , class: 'btn btn-primary'

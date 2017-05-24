@@ -33,7 +33,7 @@ class ReservationsController < ApplicationController
         upload: 1,
         notify_url: 'http://5b7a64cd.ngrok.com/notify',
         amount: @reservation.total,
-        item_name: @reservation.room.listing_name,
+        item_name: @reservation.room.name,
         item_number: @reservation.id,
         quantity: 1,
         return: 'http://5b7a64cd.ngrok.com/your-trips'

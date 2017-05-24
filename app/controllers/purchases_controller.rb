@@ -14,7 +14,7 @@ class PurchasesController < ApplicationController
         cmd: '_xclick-subscriptions',
         upload: 1,
         notify_url: 'http://98a4b73e.ngrok.io/purchase_notify',
-        item_name: room.listing_name,
+        item_name: room.name,
         invoice: @purchase.id,
         quantity: 1,
         return: 'http://98a4b73e.ngrok.io/',

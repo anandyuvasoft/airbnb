@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170519104511) do
+ActiveRecord::Schema.define(version: 20170524125014) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -64,6 +64,14 @@ ActiveRecord::Schema.define(version: 20170519104511) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "awards", force: :cascade do |t|
+    t.integer  "room_id",    limit: 4
+    t.string   "name",       limit: 255
+    t.date     "date"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "room_id",    limit: 4
@@ -75,6 +83,14 @@ ActiveRecord::Schema.define(version: 20170519104511) do
 
   add_index "bookings", ["room_id"], name: "index_bookings_on_room_id", using: :btree
   add_index "bookings", ["user_id"], name: "index_bookings_on_user_id", using: :btree
+
+  create_table "breakthroughs", force: :cascade do |t|
+    t.integer  "room_id",    limit: 4
+    t.string   "name",       limit: 255
+    t.date     "date"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -147,6 +163,16 @@ ActiveRecord::Schema.define(version: 20170519104511) do
     t.string   "name",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string   "email",        limit: 255
+    t.integer  "group_id",     limit: 4
+    t.integer  "sender_id",    limit: 4
+    t.integer  "recipient_id", limit: 4
+    t.string   "token",        limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "languages", force: :cascade do |t|
@@ -248,36 +274,21 @@ ActiveRecord::Schema.define(version: 20170519104511) do
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "rooms", force: :cascade do |t|
-    t.string   "listing_name",           limit: 255
-    t.text     "summary",                limit: 65535
-    t.string   "address",                limit: 255
-    t.string   "street",                 limit: 255
-    t.string   "city",                   limit: 255
-    t.string   "state",                  limit: 255
-    t.string   "zipcode",                limit: 255
-    t.string   "country",                limit: 255
-    t.integer  "price",                  limit: 4
-    t.boolean  "active"
-    t.string   "degree",                 limit: 255
-    t.string   "gender",                 limit: 255
-    t.string   "medical_license_number", limit: 255
-    t.string   "category",               limit: 255
-    t.text     "biography",              limit: 65535
-    t.text     "education",              limit: 65535
-    t.string   "practice",               limit: 255
-    t.string   "phone",                  limit: 255
-    t.string   "email",                  limit: 255
-    t.boolean  "accepting_insurance"
-    t.text     "languages",              limit: 65535
-    t.text     "board_certifications",   limit: 65535
-    t.text     "specialities",           limit: 65535
-    t.string   "website",                limit: 255
-    t.integer  "user_id",                limit: 4
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
-    t.float    "latitude",               limit: 24
-    t.float    "longitude",              limit: 24
-    t.boolean  "is_admin_active",                      default: false
+    t.string   "name",            limit: 255
+    t.string   "address",         limit: 255
+    t.integer  "price",           limit: 4
+    t.text     "biography",       limit: 65535
+    t.string   "practice",        limit: 255
+    t.string   "phone",           limit: 255
+    t.string   "email",           limit: 255
+    t.string   "website",         limit: 255
+    t.integer  "user_id",         limit: 4
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.float    "latitude",        limit: 24
+    t.float    "longitude",       limit: 24
+    t.boolean  "is_admin_active",               default: false
+    t.datetime "opened_at"
   end
 
   add_index "rooms", ["user_id"], name: "index_rooms_on_user_id", using: :btree
@@ -363,6 +374,10 @@ ActiveRecord::Schema.define(version: 20170519104511) do
     t.string   "gender",                 limit: 255
     t.datetime "birthday"
     t.string   "type",                   limit: 255
+    t.text     "biography",              limit: 65535
+    t.string   "degree",                 limit: 255
+    t.integer  "license",                limit: 4
+    t.string   "category",               limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

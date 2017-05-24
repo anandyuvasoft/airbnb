@@ -27,7 +27,7 @@
                 });
                 var marker = new google.maps.Marker({
                   position: {lat: <%= @room.latitude %>, lng: <%= @room.longitude %>},
-                  title: "<%= @room.listing_name %>"
+                  title: "<%= @room.name %>"
                 });
                 var contentString = '<div id="content">'+
                 '<div id="siteNotice">'+
@@ -63,7 +63,7 @@
                       '</div>' +
                     '</div>' +
                   '</div>' +
-                '<h3 id="firstHeading" class="firstHeading"><%= @room.listing_name %></h3>'+
+                '<h3 id="firstHeading" class="firstHeading"><%= @room.name %></h3>'+
                 '<h4 id="firstHeading" class="firstHeading"><%= @room.category %></h4>'+
                 '<div id="bodyContent">'+
                 '</div>';

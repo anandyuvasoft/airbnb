@@ -9,6 +9,6 @@
             .panel-heading.preview
               = image_tag (room.photos[0].try(:image) ? room.photos[0].image.url(:medium) : "/assets/missing.png")
             .panel-body
-              = link_to room.listing_name, room
+              = link_to room.name, room
               %br/
               (#{room.distance.round(2)} miles away)

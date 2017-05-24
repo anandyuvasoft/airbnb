@@ -12,9 +12,9 @@
           .col-md-6.clear-box
             %p.messages-box
               %h4
-                = @room.listing_name
+                = @room.name
               %span= @room.practice
-              %a{:href => "javascript:void(0)"}= @room.category
+              -#%a{:href => "javascript:void(0)"}= @room.category
               %address
                 %i.fa.fa-map-marker
                 = @room.address
